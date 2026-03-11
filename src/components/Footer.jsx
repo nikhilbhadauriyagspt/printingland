@@ -179,7 +179,7 @@ export default function Footer() {
         {/* --- MAP --- */}
         <div className="w-full h-[300px] mb-16 grayscale border border-slate-100 rounded-[2rem] overflow-hidden opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-700">
            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3055.6728464654876!2d-82.952952423455!3d40.051515971499895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8838890252554e8b%3A0xe75868c2217c2a7e!2s4664%20Cleveland%20Ave%2C%20Columbus%2C%20OH%2043231%2C%20USA!5e0!3m2!1sen!2sin!4v1709664000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3185.23456789!2d-93.554321!3d37.058765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87cf63f123456789%3A0xabcdef123456789!2zMjU2IE5FIEVsbSBTdCwgQmlsbGluZ3MsIE1PIDY1NjEwLCBVU0E!5e0!3m2!1sen!2sus!4v1709664000000!5m2!1sen!2sus" 
               width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
             />

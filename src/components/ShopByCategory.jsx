@@ -78,11 +78,11 @@ export default function ShopByCategory({ categories = [] }) {
                 <Link to={`/shop?category=${item.slug}`} className="group flex flex-col items-center">
                   {/* Larger Circular Node */}
                   <div className="relative mb-8">
-                    <div className="h-40 w-40 md:h-48 md:w-48 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center p-8 relative z-10 transition-all duration-500 group-hover:scale-105 group-hover:border-indigo-600 group-hover:bg-white shadow-sm overflow-hidden">
+                    <div className="h-40 w-40 md:h-48 md:w-48 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center p-1.5 relative z-10 transition-all duration-500 group-hover:scale-105 group-hover:border-indigo-600 group-hover:bg-white shadow-sm overflow-hidden">
                       <img 
                         src={getImagePath(item.image)} 
                         alt={item.name}
-                        className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:rotate-6 group-hover:scale-110"
+                        className="w-full h-full object-cover rounded-full transition-transform duration-700 group-hover:scale-110"
                         onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=" + item.name; }}
                       />
                     </div>
