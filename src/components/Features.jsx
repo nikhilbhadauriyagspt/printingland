@@ -1,56 +1,60 @@
-import { Truck, RotateCcw, Headset, CreditCard } from 'lucide-react';
+import { Truck, RotateCcw, Headset, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const features = [
   {
-    icon: <Truck size={32} className="text-blue-600" />,
-    title: "Free Shipping & Return",
-    desc: "For all orders"
+    icon: <Truck size={20} strokeWidth={1.5} className="text-black" />,
+    title: "Complimentary Shipping",
+    desc: "On all domestic orders"
   },
   {
-    icon: <RotateCcw size={32} className="text-blue-600" />,
-    title: "Money Back Guarantee",
-    desc: "Any back within 30 days"
+    icon: <RotateCcw size={20} strokeWidth={1.5} className="text-black" />,
+    title: "30-Day Returns",
+    desc: "Hassle-free guarantee"
   },
   {
-    icon: <Headset size={32} className="text-blue-600" />,
-    title: "Online Support 24/7",
-    desc: "Dedicated support team"
+    icon: <Headset size={20} strokeWidth={1.5} className="text-black" />,
+    title: "Dedicated Support",
+    desc: "24/7 expert assistance"
   },
   {
-    icon: <CreditCard size={32} className="text-blue-600" />,
-    title: "Secure Payment",
-    desc: "100% secure payment gateway"
+    icon: <ShieldCheck size={20} strokeWidth={1.5} className="text-black" />,
+    title: "Secure Checkout",
+    desc: "Encrypted payments"
   }
 ];
 
 export default function Features() {
   return (
-    <section className="bg-white py-12 border-t border-gray-100 font-jakarta">
-      <div className="max-w-[1600px] mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((item, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex items-center gap-6 p-4 group cursor-default"
-            >
-              <div className="h-16 w-16 bg-gray-50 flex items-center justify-center rounded-full group-hover:bg-blue-50 transition-colors shrink-0">
-                {item.icon}
-              </div>
-              <div className="space-y-1">
-                <h4 className="text-[15px] font-black text-bold  uppercase  leading-none group-hover:text-blue-600 transition-colors">
-                  {item.title}
-                </h4>
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest leading-none">
-                  {item.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+    <section className="relative z-20 -mt-6 md:-mt-10 pb-16 font-jakarta">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
+        <div className="bg-white border border-gray-100 shadow-[0_15px_40px_rgba(0,0,0,0.04)] rounded-sm overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-50">
+            {features.map((item, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="flex items-center gap-5 p-8 lg:p-10 group hover:bg-gray-50 transition-colors duration-300"
+              >
+                <div className="h-12 w-12 bg-gray-50 flex items-center justify-center rounded-full shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all duration-300">
+                  <div className="group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                </div>
+                <div className="space-y-0.5">
+                  <h4 className="text-[12px] font-bold text-black uppercase">
+                    {item.title}
+                  </h4>
+                  <p className="text-[11px] text-gray-400 font-medium whitespace-nowrap">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

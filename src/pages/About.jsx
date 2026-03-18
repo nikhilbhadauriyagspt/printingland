@@ -1,133 +1,203 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, ChevronRight, Award, ShieldCheck, Heart } from 'lucide-react';
+import { Shield, Zap, Award, Heart, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
+import printerHero from "@/assets/category/printer_cat.jpg";
 import aboutHero from "@/assets/bannerr/about.jpg";
-import bannerBg from "@/assets/bannerr/banner6.jpg";
 
 const About = () => {
   return (
-    <div className="bg-white min-h-screen font-jakarta text-gray-900 overflow-x-hidden">
+    <div className="bg-[#FBFBFA] min-h-screen font-jakarta text-black overflow-x-hidden">
       <SEO 
-        title="About | LucyPrinters"
-        description="A new perspective on professional printing solutions. Discover why businesses trust LucyPrinters."
+        title="Our Story | Mike's Printer"
+        description="Discover the philosophy behind Mike's Printer. We combine luxury design with high-performance printing technology."
       />
 
-      {/* --- FULL WIDTH IMMERSIVE HERO --- */}
-      <section className="relative h-[60vh] md:h-[75vh] w-full flex items-center justify-center overflow-hidden">
-        <img 
-          src={bannerBg} 
-          alt="Immersive Background" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-6">
+      {/* --- PREMIUM STORY HEADER --- */}
+      <section className="pt-24 pb-16 px-6 lg:px-12">
+        <div className="max-w-[1920px] mx-auto text-center space-y-6">
           <motion.span 
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-blue-700 text-[16px] font-black uppercase tracking-[0.4em] block"
+            className="text-[11px] font-bold tracking-[0.4em] uppercase text-gray-400 block"
           >
-            Since 2026
+            The Art of Printing
           </motion.span>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl md:text-7xl font-black text-white  uppercase "
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-light uppercase tracking-tight"
           >
-            A Better Way <br /> To <span className="text-blue-500">Print.</span>
+            A Legacy of <span className="font-semibold italic">Precision</span>
           </motion.h1>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex justify-center"
-          >
-            <div className="h-1 w-16 bg-blue-600 rounded-full" />
-          </motion.div>
         </div>
       </section>
 
-      {/* --- REFINED TEXT BLOCK --- */}
-      <section className="py-24 px-4 md:px-10 bg-white">
-        <div className="max-w-[1600px] mx-auto grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          <div className="lg:col-span-5 space-y-4">
-            <span className="text-blue-600 text-[16px] font-blackt">The LucyPrinters Promise</span>
-            <h2 className="text-2xl md:text-4xl font-black text-black uppercase ">
-              We find the best <br /> printers, so you <br /> don't have to.
-            </h2>
+      {/* --- LUXURY PRODUCT STORY LAYOUT --- */}
+      <section className="py-20 md:py-32 px-6 lg:px-12 relative">
+        <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 items-center gap-16 lg:gap-0">
+          
+          {/* LEFT CONTENT BLOCK */}
+          <div className="lg:col-span-3 space-y-24 text-right hidden lg:block">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.2em]">Our Goal</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                We work hard to bring you the best printer for your daily life, making sure every page looks perfect.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="space-y-4"
+            >
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.2em]">Top Quality</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                We only pick the strongest printer models that are built to last a long time in any home or office.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="space-y-4"
+            >
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.2em]">New Designs</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                Our team finds the newest printer styles that are easy to use and look great on your desk.
+              </p>
+            </motion.div>
           </div>
-          <div className="lg:col-span-7 space-y-8">
-            <p className="text-gray-500 text-base md:text-xl font-medium leading-relaxed max-w-2xl">
-              LucyPrinters was built on a simple idea everyone deserves a printer that just works. We spent months searching for the most reliable, easy-to-use machines so that you can buy with confidence and get straight to work.
-            </p>
-            <p className="text-gray-500 text-sm md:text-base leading-relaxed max-w-2xl">
-              We don't believe in using  or making things complicated. Our goal is to provide honest advice and original products from brands you already know and trust. Whether it's for a small home office or a growing business, we have the right fit for you.
-            </p>
-            <div className="pt-8 grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-gray-100">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 text-blue-600">
-                  <ShieldCheck size={20} />
-                  <h4 className="text-sm font-black uppercase text-black">100% Original</h4>
-                </div>
-                <p className="text-gray-500 text-xs md:text-sm leading-relaxed">Every printer we sell is brand new and comes directly from the factory in a sealed box.</p>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 text-blue-600">
-                  <Award size={20} />
-                  <h4 className="text-sm font-black uppercase text-black">Full Warranty</h4>
-                </div>
-                <p className="text-gray-500 text-xs md:text-sm leading-relaxed">Your purchase is always protected with a full manufacturer's warranty for total peace of mind.</p>
-              </div>
+
+          {/* CENTER PRODUCT IMAGE */}
+          <div className="lg:col-span-6 flex justify-center relative">
+            <div className="relative group">
+              {/* Main Image Container */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className="relative z-10 w-full max-w-[500px] aspect-square bg-white rounded-full flex items-center justify-center p-1 overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.08)] border-4 border-white"
+              >
+                <img 
+                  src={aboutHero} 
+                  alt="About Us" 
+                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-1000"
+                />
+              </motion.div>
+
+              {/* Floating Category Details */}
+              <motion.div 
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-10 -right-10 w-32 h-32 rounded-full border-4 border-white bg-white z-20 flex items-center justify-center p-0.5 shadow-2xl overflow-hidden hidden md:flex"
+              >
+                <img src="/category/all-in-one-printers.jpg" className="w-full h-full object-cover rounded-full" alt="All-in-One" />
+              </motion.div>
+
+              <motion.div 
+                animate={{ y: [0, 15, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full border-4 border-white bg-white z-20 flex items-center justify-center p-0.5 shadow-2xl overflow-hidden hidden md:flex"
+              >
+                <img src="/category/laser-printers.jpg" className="w-full h-full object-cover rounded-full" alt="Laser Printers" />
+              </motion.div>
             </div>
           </div>
+
+          {/* RIGHT CONTENT BLOCK */}
+          <div className="lg:col-span-3 space-y-24 text-left">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.2em]">Reliable</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                You can trust your printer to work every time you need to print an important document.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="space-y-4"
+            >
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.2em]">Fast Printing</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                Get your papers ready quickly with a printer that starts fast and finishes even faster.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="space-y-4"
+            >
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.2em]">Helpful Team</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                Our experts are here to help you pick the right printer and show you how to use it easily.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-     
-      {/* --- VALUES SECTION --- */}
-      <section className="py-24 px-4 md:px-10 bg-gray-50 border-y border-gray-100">
-        <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+      {/* --- MINIMALIST VALUES GRID --- */}
+      <section className="py-24 px-6 lg:px-12 bg-white">
+        <div className="max-w-[1920px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:divide-x divide-gray-100">
             {[
-              { title: "Direct Shipping", desc: "Fast and secure delivery directly from our hub to your home or office." },
-              { title: "Setup Support", desc: "Our team is always ready to help you get your new printer started in minutes." },
-              { title: "Honest Advice", desc: "We help you pick the best printer for what you actually need, not just the most expensive." }
+              { icon: <Shield size={24} strokeWidth={1} />, title: "Safe Buying", desc: "Your details are always safe when you buy a printer from us." },
+              { icon: <Zap size={24} strokeWidth={1} />, title: "Quick Setup", desc: "Get your printer ready to go in just a few simple steps." },
+              { icon: <Award size={24} strokeWidth={1} />, title: "Real Brand", desc: "We only sell the original printer brands that you know and trust." }
             ].map((v, i) => (
-              <div key={i} className="p-10 bg-white border border-gray-200 rounded-sm shadow-sm hover:shadow-xl hover:border-blue-600/20 transition-all group">
-                <span className="text-2xl font-black text-blue-600/20 block mb-4 group-hover:text-blue-600 transition-colors">0{i+1}</span>
-                <h3 className="text-lg font-black text-black uppercase tracking-tight mb-3 group-hover:text-blue-600 transition-colors">{v.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed font-medium">{v.desc}</p>
-              </div>
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center text-center px-10 space-y-6 group"
+              >
+                <div className="text-black group-hover:scale-110 transition-transform duration-500">{v.icon}</div>
+                <h3 className="text-[13px] font-bold uppercase tracking-[0.2em]">{v.title}</h3>
+                <p className="text-gray-400 text-sm font-medium leading-relaxed">{v.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- CLEAN FINAL ACTION --- */}
-      <section className="py-24 px-4 md:px-10 bg-white">
-        <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row items-center justify-between gap-10 bg-black p-12 md:p-20 rounded-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-            <span className="text-8xl font-black uppercase italic">LUCY</span>
+      {/* --- FINAL CTA --- */}
+      <section className="py-32 px-6 lg:px-12 bg-[#FBFBFA] border-t border-gray-100 text-center">
+        <div className="max-w-2xl mx-auto space-y-12">
+          <div className="space-y-4">
+            <h2 className="text-3xl md:text-5xl font-light uppercase tracking-tight text-black">Find Your <br /><span className="font-semibold italic">Perfect Printer</span></h2>
+            <p className="text-gray-500 text-base font-medium">Upgrade your home or office setup with a new printer today.</p>
           </div>
-          
-          <div className="relative z-10 space-y-3 text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
-              Find Your <br /> Perfect Match
-            </h2>
-            <p className="text-gray-400 text-sm md:text-base font-medium max-w-xs mx-auto md:mx-0">
-              Browse our selection of the most reliable printers on the market.
-            </p>
-          </div>
-
-          <div className="relative z-10 flex flex-col sm:flex-row gap-4">
-            <Link to="/shop" className="bg-blue-600 text-white px-12 py-4 rounded-sm font-black uppercase text-xs hover:bg-white hover:text-black transition-all shadow-xl inline-flex items-center gap-2 active:scale-95">
-              Start Shopping <ArrowRight size={16} />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link to="/shop" className="bg-black text-white px-12 h-16 flex items-center justify-center rounded-full font-bold text-[11px] uppercase tracking-[0.3em] transition-all hover:bg-gray-800 hover:shadow-2xl active:scale-95 w-full sm:w-auto">
+              Shop Now
             </Link>
-            <Link to="/contact" className="bg-transparent border-2 border-white/10 text-white px-12 py-4 rounded-sm font-black uppercase text-xs hover:border-white transition-all inline-flex items-center gap-2 active:scale-95">
-              Contact Us <ChevronRight size={16} />
+            <Link to="/contact" className="bg-white border border-gray-100 text-black px-12 h-16 flex items-center justify-center rounded-full font-bold text-[11px] uppercase tracking-[0.3em] transition-all hover:bg-black hover:text-white active:scale-95 shadow-sm w-full sm:w-auto">
+              Contact Us
             </Link>
           </div>
         </div>

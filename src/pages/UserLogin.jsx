@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, Loader2 } from 'lucide-react';
 import API_BASE_URL from '../config';
 import SEO from '@/components/SEO';
-import { cn } from '../lib/utils';
 
 export default function UserLogin() {
   const [email, setEmail] = useState('');
@@ -33,94 +32,116 @@ export default function UserLogin() {
         window.dispatchEvent(new Event('storage'));
         navigate('/');
       } else {
-        setError(data.message || 'Login failed. Please check your details.');
+        setError(data.message || 'Login failed. Please check your credentials.');
       }
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError('Connection error. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className=" flex items-center justify-center bg-gray-50 font-jakarta px-4 py-20 text-gray-900">
-      <SEO title="Login | LucyPrinters" />
+    <div className="flex items-center justify-center min-h-screen bg-[#FBFBFA] font-jakarta px-6 py-20 text-black">
+      <SEO title="Sign In | Mike's Printer" />
       
-      <div className="max-w-[450px] w-full">
-        {/* --- HEADER --- */}
-        <div className="text-center mb-10 space-y-2">
-          <h1 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">
-            Welcome <span className="text-blue-600">Back</span>
-          </h1>
-          <p className="text-gray-500 font-medium text-sm uppercase tracking-widest">Access your printer dashboard</p>
+      <div className="max-w-[440px] w-full">
+        {/* --- PREMIUM HEADER --- */}
+        <div className="text-center mb-12 space-y-4">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 block"
+          >
+            Client Portal
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-4xl font-light uppercase tracking-tight"
+          >
+            Welcome <span className="font-semibold italic">Back</span>
+          </motion.h1>
         </div>
 
         {/* --- FORM PANEL --- */}
-        <div className="bg-white p-8 md:p-10 border border-gray-100 shadow-2xl shadow-gray-200/50 rounded-sm">
-          <form onSubmit={handleLogin} className="space-y-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="bg-white p-8 md:p-12 border border-gray-100 shadow-[0_30px_60px_rgba(0,0,0,0.03)] rounded-sm"
+        >
+          <form onSubmit={handleLogin} className="space-y-8">
             <AnimatePresence>
               {error && (
                 <motion.div 
-                  initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-red-50 text-red-600 rounded-sm text-xs font-bold border border-red-100 text-center uppercase tracking-wider"
+                  initial={{ opacity: 0, height: 0 }} 
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="p-4 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest text-center border border-red-100"
                 >
                   {error}
                 </motion.div>
               )}
             </AnimatePresence>
 
-            <div className="space-y-5">
-              <div className="space-y-2">
-                <label className="text-[11px] font-black text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
-                <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-blue-600 transition-colors" size={18} />
+            <div className="space-y-8">
+              <div className="space-y-2 group">
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-black transition-colors" size={16} strokeWidth={1.5} />
                   <input 
-                    required type="email" placeholder="e.g. user@business.com" value={email}
+                    required type="email" placeholder="YOUR EMAIL" value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-12 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-[14px] font-medium transition-all"
+                    className="w-full h-12 pl-8 pr-4 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[12px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-wider"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <div className="flex justify-between items-center px-1">
-                  <label className="text-[11px] font-black text-gray-400 uppercase tracking-widest">Password</label>
-                  <Link to="#" className="text-[11px] font-bold text-blue-600 hover:text-black transition-colors uppercase tracking-widest">Forgot?</Link>
+              <div className="space-y-2 group">
+                <div className="flex justify-between items-center">
+                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Password</label>
+                  <Link to="#" className="text-[9px] font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-widest">Forgot?</Link>
                 </div>
-                <div className="relative group">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-blue-600 transition-colors" size={18} />
+                <div className="relative">
+                  <Lock className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-black transition-colors" size={16} strokeWidth={1.5} />
                   <input 
                     required type={showPassword ? "text" : "password"} placeholder="••••••••" value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-12 pl-12 pr-12 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-[14px] font-medium transition-all"
+                    className="w-full h-12 pl-8 pr-10 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[12px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-wider"
                   />
                   <button 
                     type="button" onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black transition-colors"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black transition-colors"
                   >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    {showPassword ? <EyeOff size={16} strokeWidth={1.5} /> : <Eye size={16} strokeWidth={1.5} />}
                   </button>
                 </div>
               </div>
             </div>
 
-            <button 
-              disabled={loading}
-              className="w-full h-12 bg-black text-white rounded-sm font-black text-[12px] uppercase tracking-widest hover:bg-blue-600 transition-all flex items-center justify-center gap-3 disabled:opacity-50 active:scale-95 shadow-xl shadow-gray-200"
-            >
-              {loading ? <Loader2 className="animate-spin" size={20} /> : (
-                <>Sign In Now <ArrowRight size={18} /></>
-              )}
-            </button>
+            <div className="pt-4">
+              <button 
+                disabled={loading}
+                className="group relative w-full inline-flex items-center justify-center gap-4 bg-black text-white h-14 rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl active:scale-95 disabled:opacity-50"
+              >
+                <span className="relative z-10 text-[11px] font-bold uppercase tracking-[0.3em]">
+                  {loading ? "Authenticating..." : "Sign In"}
+                </span>
+                {!loading && <ArrowRight size={16} className="relative z-10 transition-transform duration-500 group-hover:translate-x-1" />}
+                <div className="absolute inset-0 bg-gray-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </button>
+            </div>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-gray-50 text-center">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-              New to LucyPrinters?
-              <Link to="/signup" className="text-blue-600 font-black ml-2 hover:underline">Create Account</Link>
+          <div className="mt-10 pt-8 border-t border-gray-50 text-center">
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
+              New to Mike's Printer?
+              <Link to="/signup" className="text-black border-b border-black pb-0.5 ml-3 hover:text-gray-600 hover:border-gray-600 transition-colors">Create Account</Link>
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

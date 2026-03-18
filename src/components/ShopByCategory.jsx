@@ -40,47 +40,46 @@ export default function ShopByCategory({ categories = [] }) {
   };
 
   return (
-    <section className="bg-white py-16 w-full overflow-hidden font-jakarta border-t border-gray-100">
-      <div className="w-full relative">
+    <section className="bg-white py-16 md:py-24 w-full overflow-hidden font-jakarta border-t border-gray-100">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
         
-        {/* --- EDGE-TO-GRID BADGE HEADER --- */}
-        <div className="flex items-center justify-between mb-16 pr-4 md:pr-10">
-          <div className="relative flex items-center h-16">
-            {/* The Badge: Starts from screen edge, ends with a rounded corner */}
-            <div className="bg-blue-600 h-full w-[380px] absolute left-0 rounded-r-full shadow-lg shadow-blue-600/10" />
-            
-            <div className="relative z-10 pl-4 md:pl-10">
-              <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-wider">
-                Shop By <span className="text-yellow-400 font-black">Category</span>
-              </h2>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            <button className="cat-prev h-11 w-11 bg-gray-50 flex items-center justify-center rounded-full hover:bg-blue-600 hover:text-white transition-all border border-gray-100">
-              <ChevronLeft size={22} />
-            </button>
-            <button className="cat-next h-11 w-11 bg-gray-50 flex items-center justify-center rounded-full hover:bg-blue-600 hover:text-white transition-all border border-gray-100">
-              <ChevronRight size={22} />
-            </button>
-          </div>
+        {/* --- CENTERED MINIMAL HEADER --- */}
+        <div className="flex flex-col items-center mb-16 text-center">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[11px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-4"
+          >
+            Curated Collections
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-4xl font-light text-black uppercase tracking-tight"
+          >
+            Shop By <span className="font-semibold">Category</span>
+          </motion.h2>
+          <div className="w-12 h-[1px] bg-black mt-8" />
         </div>
 
-        {/* --- COMPACT CAROUSEL --- */}
-        <div className="w-full px-4 md:px-10">
+        {/* --- CAROUSEL WITH SIDE NAVIGATION --- */}
+        <div className="relative group/carousel px-4">
           <Swiper
             modules={[Navigation]}
-            spaceBetween={20}
+            spaceBetween={30}
             slidesPerView={2.2}
             navigation={{
-              prevEl: '.cat-prev',
-              nextEl: '.cat-next',
+              prevEl: '.category-prev',
+              nextEl: '.category-next',
             }}
             breakpoints={{
               640: { slidesPerView: 3.5 },
               1024: { slidesPerView: 5 },
-              1280: { slidesPerView: 6.5 },
-              1600: { slidesPerView: 8 },
+              1280: { slidesPerView: 6 },
+              1600: { slidesPerView: 7 },
             }}
             className="!overflow-visible"
           >
@@ -92,31 +91,40 @@ export default function ShopByCategory({ categories = [] }) {
                   onMouseLeave={() => setHoveredId(null)}
                   className="block group"
                 >
-                  <div className="flex flex-col items-center gap-4">
-                    {/* Compact Image Container */}
-                    <div className="w-full aspect-square bg-[#f9fafb] rounded-2xl flex items-center justify-center p-6 transition-all duration-500 group-hover:bg-white group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] border border-transparent group-hover:border-gray-100">
-                      <motion.img 
-                        src={getImagePath(item.image)} 
-                        alt={item.name} 
-                        className="max-h-full max-w-full object-contain drop-shadow-sm"
-                        animate={hoveredId === item.id ? { scale: 1.1, y: -5 } : { scale: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=" + item.name; }}
-                      />
+                  <div className="flex flex-col items-center gap-6">
+                    {/* Circle Image Container */}
+                    <div className="w-full aspect-square bg-gray-50 rounded-full flex items-center justify-center p-1 transition-all duration-700 group-hover:bg-white group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] border border-transparent group-hover:border-gray-100 relative overflow-hidden">
+                      <div className="w-full h-full rounded-full overflow-hidden">
+                        <motion.img 
+                          src={getImagePath(item.image)} 
+                          alt={item.name} 
+                          className="w-full h-full object-cover"
+                          animate={hoveredId === item.id ? { scale: 1.15 } : { scale: 1 }}
+                          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                          onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=" + item.name; }}
+                        />
+                      </div>
                     </div>
 
-                    {/* Simple Text Label */}
-                    <div className="text-center w-full">
-                      <h3 className="text-[13px] font-bold text-gray-800 uppercase  truncate transition-colors group-hover:text-blue-600">
+                    {/* Elegant Text Label */}
+                    <div className="text-center w-full px-2">
+                      <h3 className="text-[12px] font-bold text-black uppercase tracking-wide transition-colors group-hover:text-gray-500">
                         {item.name}
                       </h3>
-                      <div className="h-0.5 w-0 bg-blue-600 mx-auto mt-1 transition-all duration-300 group-hover:w-8" />
                     </div>
                   </div>
                 </Link>
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Navigation Arrows */}
+          <button className="category-prev absolute top-1/2 -translate-y-1/2 -left-2 lg:-left-8 z-[30] h-12 w-12 bg-white flex items-center justify-center rounded-full shadow-xl border border-gray-100 opacity-0 group-hover/carousel:opacity-100 transition-all hover:bg-black hover:text-white hover:border-black disabled:opacity-0 disabled:pointer-events-none">
+            <ChevronLeft size={20} strokeWidth={1.5} />
+          </button>
+          <button className="category-next absolute top-1/2 -translate-y-1/2 -right-2 lg:-right-8 z-[30] h-12 w-12 bg-white flex items-center justify-center rounded-full shadow-xl border border-gray-100 opacity-0 group-hover/carousel:opacity-100 transition-all hover:bg-black hover:text-white hover:border-black disabled:opacity-0 disabled:pointer-events-none">
+            <ChevronRight size={20} strokeWidth={1.5} />
+          </button>
         </div>
 
       </div>

@@ -85,7 +85,7 @@ export default function Home() {
   return (
     <div className="bg-white font-snpro overflow-x-hidden text-slate-900">
       <SEO 
-        title="LucyPrinters | Quality Printers & Hardware"
+        title="Mike's Printer | Quality Printers & Hardware"
         description="Your trusted source for high-quality printers and printing hardware. Delivering excellence across the USA."
       />
 
@@ -105,45 +105,50 @@ export default function Home() {
         products={data.printers} 
       />
        
-     {/* --- MINIMAL CONTACT CTA SECTION --- */}
-<section className="py-12 bg-white font-jakarta">
-  <div className="max-w-[1600px] mx-auto px-4 md:px-10">
-    <div className="relative rounded-sm p-10 md:p-16 text-center overflow-hidden min-h-[300px] flex items-center justify-center border border-gray-100 shadow-md">
+     {/* --- PREMIUM CONTACT CTA SECTION --- */}
+<section className="py-20 bg-white font-jakarta">
+  <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
+    <div className="relative rounded-sm p-12 md:p-20 text-center overflow-hidden min-h-[400px] flex items-center justify-center border border-gray-100 shadow-[0_30px_60px_rgba(0,0,0,0.03)] group">
       
-      {/* Background Image with Overlay */}
+      {/* Immersive Background Image */}
       <img 
         src={bannerImg}
         alt="" 
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[5000ms] group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-white/90" />
+      <div className="absolute inset-0 bg-white/90 backdrop-blur-[2px]" />
 
-      <div className="max-w-xl mx-auto space-y-6 relative z-10">
-        <div className="space-y-3">
-          <h2 className="text-2xl md:text-3xl font-bold text-black leading-tight">
-            Need expert help for <br /> 
-            <span className="text-blue-600 font-medium">your business?</span>
+      <div className="max-w-2xl mx-auto space-y-10 relative z-10">
+        <div className="space-y-4">
+          <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Expert Consultation</span>
+          <h2 className="text-3xl md:text-5xl font-light text-black leading-tight uppercase tracking-tight">
+            Elevate Your <br /> 
+            <span className="font-semibold italic">Business Workflow</span>
           </h2>
-          <p className="text-gray-500 text-sm md:text-base font-normal max-w-sm mx-auto">
-            Find the perfect printing setup with our professional advice. We are here to help you 24/7.
+          <p className="text-gray-500 text-sm md:text-base font-medium max-w-md mx-auto leading-relaxed">
+            Connect with our printing specialists for a tailored solution that meets your professional demands.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 pt-2">
+        <div className="flex flex-wrap justify-center gap-6">
           <Link
             to="/contact"
-            className="bg-blue-600 hover:bg-black text-white px-8 py-3 rounded-sm font-bold text-sm transition-all duration-300"
+            className="bg-black text-white px-10 h-14 flex items-center justify-center rounded-sm font-bold text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gray-800 hover:shadow-xl active:scale-95"
           >
-            Contact An Expert
+            Connect Now
           </Link>
           <Link
             to="/faq"
-            className="bg-gray-100 hover:bg-gray-200 text-black px-8 py-3 rounded-sm font-bold text-sm transition-all duration-300"
+            className="bg-white border border-gray-100 text-black px-10 h-14 flex items-center justify-center rounded-sm font-bold text-[11px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-black hover:text-white active:scale-95 shadow-sm"
           >
-            View FAQ
+            Resources
           </Link>
         </div>
       </div>
+      
+      {/* Subtle Decorative Elements */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50/50 rounded-full -mr-16 -mt-16" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gray-50/50 rounded-full -ml-12 -mb-12" />
     </div>
   </div>
 </section>

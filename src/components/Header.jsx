@@ -6,60 +6,37 @@ import {
   Search, 
   User, 
   Heart, 
-  ChevronDown, 
-  X,
-  ChevronRight,
-  Loader2,
-  Menu, 
-  Printer, 
   ShoppingCart,
-  Mail,
-  PackageCheck,
+  Menu,
+  X,
   ArrowRight,
-  LayoutGrid
+  Loader2,
+  Package
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
 
 export default function Header() {
-  const { cartCount, wishlistCount, cart, openCartDrawer } = useCart();
+  const { cartCount, wishlistCount, openCartDrawer } = useCart();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); 
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [user, setUser] = useState(null);
-  const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [suggestions, setSuggestions] = useState({ products: [], categories: [] });
+  const [suggestions, setSuggestions] = useState({ products: [] });
   const [isSearching, setIsSearching] = useState(false);
-  const [selectedSearchCategory, setSelectedSearchCategory] = useState('All Categories');
   const navigate = useNavigate();
   const location = useLocation();
   const searchRef = useRef(null);
-
-  const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
-
-  const printerCategoriesForSearch = [
-    "Inkjet Printers",
-    "Laser Printers",
-    "All-in-One Printers",
-    "Thermal Printers",
-    "Dot Matrix Printers",
-    "LED Printers",
-    "Large Format Printers",
-    "Photo Printers",
-    "Supertank Printers",
-    "Printer Accessories"
-  ];
 
   useEffect(() => {
     const fetchSuggestions = async () => {
       if (searchQuery.trim().length > 0) {
         setIsSearching(true);
         try {
-          const catParam = selectedSearchCategory !== 'All Categories' ? `&category=${selectedSearchCategory}` : '';
-          const pRes = await fetch(`${API_BASE_URL}/products?search=${encodeURIComponent(searchQuery)}${catParam}&limit=8`);
+          const pRes = await fetch(`${API_BASE_URL}/products?search=${encodeURIComponent(searchQuery)}&limit=6`);
           const pData = await pRes.json();
           if (pData.status === 'success') {
-            setSuggestions({ products: pData.data || [], categories: [] });
+            setSuggestions({ products: pData.data || [] });
           }
         } catch (err) { 
           console.error('Search Error:', err); 
@@ -67,30 +44,23 @@ export default function Header() {
           setIsSearching(false); 
         }
       } else {
-        setSuggestions({ products: [], categories: [] });
+        setSuggestions({ products: [] });
       }
     };
     const timeoutId = setTimeout(fetchSuggestions, 300);
     return () => clearTimeout(timeoutId);
-  }, [searchQuery, selectedSearchCategory]);
+  }, [searchQuery]);
 
   const handleSearch = (e) => {
     if (e) e.preventDefault();
     if (searchQuery.trim()) {
-      const catParam = selectedSearchCategory !== 'All Categories' ? `&category=${selectedSearchCategory}` : '';
-      navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}${catParam}`);
+      navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery('');
+      setIsSearchOpen(false);
     }
   };
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/categories`)
-      .then(res => res.json())
-      .then(data => {
-        if(data.status === 'success') {
-          setCategories(data.data.filter(cat => !cat.name.toLowerCase().includes('laptop')));
-        }
-      });
     const checkUser = () => {
       const storedUser = localStorage.getItem('user');
       const parsedUser = storedUser ? JSON.parse(storedUser) : null;
@@ -109,244 +79,231 @@ export default function Header() {
     { name: 'FAQ', path: '/faq' }
   ];
 
+  const subNavCategories = [
+    { name: 'All-in-One', img: '/category/all-in-one-printers.jpg', slug: 'all-in-one-printers' },
+    { name: 'Laser', img: '/category/laser-printers.jpg', slug: 'laser-printers' },
+    { name: 'Inkjet', img: '/category/inkjet-printers.jpg', slug: 'inkjet-printers' },
+    { name: 'Thermal', img: '/category/thermal-printers.jpg', slug: 'thermal-printers' },
+    { name: 'Dot Matrix', img: '/category/dot-matrix-printers.jpg', slug: 'dot-matrix-printers' },
+    { name: 'Large Format', img: '/category/large-format-printers.jpg', slug: 'large-format-printers' },
+    { name: 'Photo', img: '/category/photo-printers.jpg', slug: 'photo-printers' },
+    { name: 'LED', img: '/category/led-printers.jpg', slug: 'led-printers' },
+    { name: 'Accessories', img: '/category/printer-accessories.jpg', slug: 'printer-accessories' },
+    { name: 'Supertank', img: '/category/supertank-printers.jpg', slug: 'supertank-printers' },
+  ];
+
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-[100] font-jakarta shadow-sm">
-        {/* 1. TOP BAR (Light Grey) */}
-        <div className="bg-[#f5f5f5] text-[#666] py-2 border-b border-gray-200">
-          <div className="w-full px-4 flex justify-between items-center text-[11px] font-semibold tracking-wide uppercase">
-            {/* Left: Info Email */}
-            <div className="flex items-center gap-1.5 hover:text-blue-600 transition-colors cursor-pointer">
-              <Mail size={12} className="text-blue-600" />
-              <span>info@lucyprinters.shop</span>
-            </div>
-
-            {/* Center: Welcome Message */}
-            <div className="hidden md:block ml-40 text-gray-400">
-              Welcome to Printer Store
-            </div>
-
-            {/* Right: Auth & Track */}
-            <div className="flex items-center gap-6">
-              <Link to="/orders" className="hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                <PackageCheck size={12} className="text-blue-600" />
-                <span>Track Your Order</span>
-              </Link>
-              <Link to="/login" className="hover:text-blue-600 transition-colors">Register / Sign In</Link>
-            </div>
-          </div>
-        </div>
-
-        {/* 2. MAIN HEADER (White) */}
-        <div className="bg-white border-b border-gray-100">
-          <div className="w-full h-20 px-4 flex items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="shrink-0 transition-transform hover:scale-105 ml-15  duration-300">
-              <img src="/logo/MYPRINTERMANNN.png" alt="LucyPrinters" className="h-8 md:h-12 w-auto object-contain" />
-            </Link>
-
-
-            {/* Center Navigation */}
-            <nav className="hidden lg:flex items-center ml-50 gap-10">
+      <header className="fixed top-0 left-0 w-full z-[100] bg-[#ffffff] border-b border-gray-100 font-jakarta">
+        <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20 md:h-24">
+            
+            {/* Left: Navigation Links */}
+            <nav className="hidden lg:flex items-center gap-8 xl:gap-10 flex-1">
               {navLinks.map((link) => (
                 <Link 
-                  key={link.name} to={link.path} 
+                  key={link.name} 
+                  to={link.path} 
                   className={cn(
-                    "text-[13px] font-bold uppercase tracking-widest transition-all",
-                    location.pathname === link.path ? "text-blue-600" : "text-black hover:text-blue-600"
+                    "text-[12px] font-semibold tracking-[0.15em] uppercase transition-all duration-300 relative group py-2",
+                    location.pathname === link.path ? "text-black" : "text-gray-600 hover:text-black"
                   )}
                 >
                   {link.name}
+                  <span className={cn(
+                    "absolute bottom-0 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full",
+                    location.pathname === link.path && "w-full"
+                  )} />
                 </Link>
               ))}
             </nav>
 
-            {/* Right: User Utilities (Account, Wishlist, Cart) */}
-            <div className="flex items-center mr-15 gap-8">
-              {/* Account */}
-              <Link to={user ? "/profile" : "/login"} className="flex items-center gap-3 group">
-                <div className="h-10 w-10 bg-gray-50 flex items-center justify-center rounded-full group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                  <User size={20} />
-                </div>
-                <div className="hidden sm:flex flex-col items-start">
-                  <span className="text-[10px] font-bold text-gray-400 uppercase ">Account</span>
-                  <span className="text-[13px] font-bold group-hover:text-blue-600 transition-colors">{user ? "Profile" : "Sign In"}</span>
-                </div>
+            {/* Center: Logo */}
+            <div className="flex-none lg:flex-1 flex justify-center">
+              <Link to="/" className="transition-opacity hover:opacity-80 duration-300">
+                <img src="/logo/logo.png" alt="Mike's Printer" className="h-8 md:h-14 w-auto object-contain" />
               </Link>
+            </div>
 
-              {/* Wishlist */}
-              <Link to="/wishlist" className="flex items-center gap-3 group">
-                <div className="relative h-10 w-10 bg-gray-50 flex items-center justify-center rounded-full group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                  <Heart size={20} />
-                  {wishlistCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-[9px] font-bold h-4 w-4 flex items-center justify-center rounded-full border border-white">
-                      {wishlistCount}
-                    </span>
-                  )}
-                </div>
-                <div className="hidden sm:flex flex-col items-start ">
-                  <span className="text-[10px] font-bold text-gray-400 uppercase ">Saved</span>
-                  <span className="text-[13px] font-bold group-hover:text-blue-600 transition-colors">Wishlist</span>
-                </div>
-              </Link>
-              
-              {/* Cart */}
-              <button onClick={openCartDrawer} className="flex items-center gap-3 group">
-                <div className="relative h-10 w-10 bg-gray-50 flex items-center justify-center rounded-full group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                  <ShoppingCart size={20} />
-                  {cartCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-[9px] font-bold h-4 w-4 flex items-center justify-center rounded-full border border-white">
-                      {cartCount}
-                    </span>
-                  )}
-                </div>
-                <div className="hidden sm:flex flex-col items-start">
-                  <span className="text-[10px] font-bold text-gray-400 uppercase ">Total</span>
-                  <span className="text-[13px] font-bold group-hover:text-blue-600 transition-colors">${cartTotal}</span>
-                </div>
+            {/* Right: Icons with Labels */}
+            <div className="flex items-center justify-end gap-6 md:gap-8 flex-1">
+              <button onClick={() => setIsSearchOpen(true)} className="flex items-center gap-2.5 text-black hover:text-gray-500 transition-colors group">
+                <Search size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform duration-300" />
+                <span className="hidden xl:inline text-[11px] font-bold tracking-[0.1em] uppercase">Search</span>
               </button>
 
-              <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden text-black hover:text-blue-600">
-                <Menu size={24} />
+              <Link to={user ? "/profile" : "/login"} className="flex items-center gap-2.5 text-black hover:text-gray-500 transition-colors group">
+                <User size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform duration-300" />
+                <span className="hidden xl:inline text-[11px] font-bold tracking-[0.1em] uppercase">{user ? "Profile" : "Login"}</span>
+              </Link>
+
+              <Link to="/wishlist" className="flex items-center gap-2.5 text-black hover:text-gray-500 transition-colors group relative">
+                <div className="relative">
+                  <Heart size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform duration-300" />
+                  {wishlistCount > 0 && <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black rounded-full ring-2 ring-white" />}
+                </div>
+                <span className="hidden xl:inline text-[11px] font-bold tracking-[0.1em] uppercase">Wishlist</span>
+              </Link>
+
+              <button onClick={openCartDrawer} className="flex items-center gap-2.5 text-black hover:text-gray-500 transition-colors group relative">
+                <div className="relative">
+                  <ShoppingCart size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform duration-300" />
+                  {cartCount > 0 && <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black rounded-full ring-2 ring-white" />}
+                </div>
+                <span className="hidden xl:inline text-[11px] font-bold tracking-[0.1em] uppercase">Cart</span>
               </button>
+
+              <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden text-black p-1 ml-2"><Menu size={24} strokeWidth={1.5} /></button>
             </div>
           </div>
         </div>
 
-        {/* 3. SEARCH + CATEGORY BAR (Blue) */}
-        <div className="bg-blue-500">
-          <div className="w-full px-4 flex items-center h-14">
-            {/* Categories Button - Conditional */}
-            <div className="relative h-full shrink-0">
-              {location.pathname === '/' ? (
-                <button className="h-full w-[280px] bg-blue-700 text-white flex items-center justify-center gap-3 text-[12px] font-black uppercase tracking-widest hover:bg-black transition-all">
-                  <Menu size={18} />
-                  CATEGORIES
-                </button>
-              ) : (
-                <Link 
-                  to="/shop" 
-                  className="h-full w-[280px] bg-blue-700 text-white flex items-center justify-center gap-3 text-[12px] font-black uppercase tracking-widest hover:bg-blue-800 transition-all border-r border-blue-500/20"
-                >
-                  <LayoutGrid size={18} />
-                  Explore Collection
+        {/* --- THIN SUB-HEADER MARQUEE --- */}
+        <div className="hidden md:block bg-gray-100 border-b border-gray-100 py-1.5 overflow-hidden">
+          <div className="max-w-[1920px] mx-auto px-6 lg:px-12 relative group/marquee">
+            <div className="flex animate-marquee whitespace-nowrap gap-12 pause-on-hover">
+              {[...subNavCategories, ...subNavCategories].map((cat, idx) => (
+                <Link key={idx} to={`/shop?category=${cat.slug}`} className="flex items-center gap-3 transition-all hover:scale-105">
+                  <div className="w-7 h-7 rounded-full overflow-hidden bg-white border border-gray-100 shadow-sm shrink-0">
+                    <img src={cat.img} alt={cat.name} className="w-full h-full object-cover" />
+                  </div>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/70">{cat.name} Printers</span>
                 </Link>
-              )}
-            </div>
-
-            {/* Large Search Bar - Centered */}
-            <div className="flex-1 flex ml-60 px-4">
-              <form onSubmit={handleSearch} className="w-full max-w-4xl flex h-11 bg-white rounded-sm relative shadow-inner" ref={searchRef}>
-                {/* Search Category Dropdown */}
-                <div className="relative group border-r border-gray-100 h-full hidden md:block shrink-0">
-                  <select 
-                    value={selectedSearchCategory}
-                    onChange={(e) => setSelectedSearchCategory(e.target.value)}
-                    className="h-full px-6 bg-white text-[11px] font-bold text-gray-500 uppercase tracking-widest outline-none cursor-pointer hover:bg-gray-100 transition-all appearance-none pr-10"
-                  >
-                    <option>All Categories</option>
-                    {printerCategoriesForSearch.map(catName => (
-                      <option key={catName} value={catName.toLowerCase().replace(/ /g, '-')}>{catName}</option>
-                    ))}
-                  </select>
-                  <ChevronDown size={10} className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400" />
-                </div>
-
-                <input 
-                  type="text" 
-                  placeholder="Search for products..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  autoComplete="off"
-                  className="flex-1 px-6 text-[14px] font-medium text-black outline-none placeholder:text-gray-300"
-                />
-
-                <button type="submit" className="px-8 bg-blue-700 text-white hover:bg-blue-800 transition-all flex items-center gap-2 text-[12px] font-black uppercase tracking-widest">
-                  <Search size={18} />
-                </button>
-
-                {/* Suggestions Overlay - Larger and Centered */}
-                <AnimatePresence>
-                  {searchQuery.trim().length > 0 && (isSearching || (suggestions.products && suggestions.products.length > 0)) && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      exit={{ opacity: 0, y: 10 }} 
-                      className="absolute top-[calc(100%+8px)] left-0 right-0 bg-white shadow-[0_30px_100px_rgba(0,0,0,0.25)] rounded-sm border border-gray-200 overflow-hidden z-[250]"
-                    >
-                      <div className="p-3">
-                        {isSearching ? (
-                          <div className="p-12 text-center">
-                            <Loader2 size={30} className="animate-spin mx-auto text-blue-600 mb-3" />
-                            <p className="text-[11px] font-bold uppercase text-gray-400 tracking-widest">Searching Premium Inventory...</p>
-                          </div>
-                        ) : suggestions.products && suggestions.products.length > 0 ? (
-                          <div className="max-h-[550px] overflow-y-auto custom-scrollbar space-y-1">
-                            {suggestions.products.map(p => {
-                              const rawImg = p.images ? (typeof p.images === 'string' ? JSON.parse(p.images)[0] : p.images[0]) : '';
-                              const imageSrc = rawImg && !rawImg.startsWith('http') && !rawImg.startsWith('/') ? `/${rawImg}` : rawImg;
-                              
-                              return (
-                                <Link 
-                                  key={p.id} 
-                                  to={`/product/${p.slug}`} 
-                                  onClick={() => setSearchQuery('')} 
-                                  className="flex items-center gap-6 p-4 hover:bg-gray-50 transition-all group rounded-sm border border-transparent hover:border-gray-100"
-                                >
-                                  <div className="h-20 w-20 bg-white border border-gray-100 p-2 flex items-center justify-center rounded-sm shrink-0 shadow-sm group-hover:shadow-md transition-all">
-                                    <img src={imageSrc} className="max-h-full max-w-full object-contain" alt="" />
-                                  </div>
-                                  <div className="flex-1 min-w-0 text-left">
-                                    <p className="text-[15px] font-bold text-black truncate group-hover:text-blue-600 transition-colors">{p.name}</p>
-                                    <div className="flex items-center gap-3 mt-1">
-                                      <p className="text-[14px] font-black text-blue-600">${p.price}</p>
-                                      {p.old_price && <p className="text-[12px] text-gray-400 line-through">${p.old_price}</p>}
-                                    </div>
-                                  </div>
-                                  <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-50 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                                    <ArrowRight size={18} />
-                                  </div>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        ) : (
-                          <div className="p-12 text-center">
-                            <Search size={40} className="mx-auto text-gray-200 mb-4" />
-                            <p className="text-gray-400 font-bold text-[12px] uppercase tracking-widest">No matching products found</p>
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </form>
+              ))}
             </div>
           </div>
         </div>
+
+        {/* --- PREMIUM SEARCH OVERLAY --- */}
+        <AnimatePresence>
+          {isSearchOpen && (
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[200] bg-white flex flex-col"
+            >
+              {/* Search Top Bar */}
+              <div className="h-32 border-b border-gray-50 flex items-center px-6 lg:px-12">
+                <div className="max-w-[1920px] mx-auto w-full flex items-center gap-8">
+                  <Search size={24} className="text-black shrink-0" strokeWidth={1.5} />
+                  <form onSubmit={handleSearch} className="flex-1">
+                    <input 
+                      type="text" autoFocus
+                      placeholder="ENTER SEARCH TERMS..." 
+                      className="w-full bg-transparent border-none outline-none text-2xl md:text-4xl font-light tracking-tight uppercase placeholder:text-gray-200"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </form>
+                  <button 
+                    onClick={() => { setIsSearchOpen(false); setSearchQuery(''); }}
+                    className="h-14 w-14 flex items-center justify-center rounded-full bg-gray-50 hover:bg-black hover:text-white transition-all duration-500"
+                  >
+                    <X size={24} strokeWidth={1.2} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Search Content */}
+              <div className="flex-1 overflow-y-auto bg-[#FBFBFA]">
+                <div className="max-w-6xl mx-auto py-20 px-6">
+                  {searchQuery.length === 0 ? (
+                    <div className="space-y-12">
+                      <div className="space-y-6 text-center">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Quick Finder</span>
+                        <h3 className="text-xl font-light uppercase tracking-widest text-black">Popular Categories</h3>
+                      </div>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {subNavCategories.slice(0, 4).map(cat => (
+                          <Link 
+                            key={cat.slug} to={`/shop?category=${cat.slug}`} onClick={() => setIsSearchOpen(false)}
+                            className="bg-white p-8 border border-gray-100 rounded-sm text-center hover:shadow-xl transition-all group"
+                          >
+                            <img src={cat.img} alt="" className="h-12 w-12 object-contain mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                            <span className="text-[11px] font-bold uppercase tracking-widest">{cat.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-12">
+                      <div className="flex items-center justify-between border-b border-gray-100 pb-6">
+                        <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-400">Search Results</span>
+                        {isSearching && <Loader2 size={16} className="animate-spin text-gray-300" />}
+                      </div>
+
+                      {suggestions.products.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                          {suggestions.products.map(p => {
+                            const rawImg = p.images ? (typeof p.images === 'string' ? JSON.parse(p.images)[0] : p.images[0]) : '';
+                            const imageSrc = rawImg && !rawImg.startsWith('http') && !rawImg.startsWith('/') ? `/${rawImg}` : rawImg;
+                            return (
+                              <Link 
+                                key={p.id} to={`/product/${p.slug}`} onClick={() => setIsSearchOpen(false)}
+                                className="flex items-center gap-8 group bg-white p-4 rounded-sm border border-transparent hover:border-gray-100 hover:shadow-sm transition-all"
+                              >
+                                <div className="h-24 w-24 bg-[#FBFBFA] flex items-center justify-center p-4 rounded-sm shrink-0 overflow-hidden">
+                                  <img src={imageSrc} className="max-h-full max-w-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700" alt="" />
+                                </div>
+                                <div className="space-y-1 flex-1">
+                                  <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400">{p.brand_name || 'Premium'}</span>
+                                  <h4 className="text-[15px] font-medium uppercase tracking-tight line-clamp-1">{p.name}</h4>
+                                  <p className="text-[13px] font-light text-black">${p.price}</p>
+                                </div>
+                                <ArrowRight size={18} className="text-gray-200 group-hover:text-black transition-all" />
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      ) : !isSearching && (
+                        <div className="text-center py-20 space-y-4">
+                          <Package size={48} className="mx-auto text-gray-100" strokeWidth={1} />
+                          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-300">No products found for your query</p>
+                        </div>
+                      )}
+                      
+                      {suggestions.products.length > 0 && (
+                        <div className="text-center pt-8">
+                          <button onClick={handleSearch} className="text-[11px] font-bold uppercase tracking-[0.4em] border-b border-black pb-1 hover:text-gray-400 hover:border-gray-200 transition-all">View All Results</button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
-      {/* Dynamic Spacer */}
-      <div className="h-[188px]"></div>
+      {/* Spacer */}
+      <div className="h-20 md:h-[136px]"></div>
 
-      {/* --- MOBILE SIDEBAR --- */}
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {isSidebarOpen && (
           <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsSidebarOpen(false)} className="fixed inset-0 z-[200] bg-black/50 backdrop-blur-sm" />
-            <motion.div initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }} className="fixed top-0 left-0 h-full w-[320px] bg-white z-[210] flex flex-col shadow-2xl">
-              <div className="p-6 bg-blue-600 flex justify-between items-center text-white">
-                <span className="text-xl font-bold italic uppercase tracking-tighter">Menu</span>
-                <button onClick={() => setIsSidebarOpen(false)} className="h-10 w-10 flex items-center justify-center bg-white/10 rounded-md"><X size={24} /></button>
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} 
+              onClick={() => setIsSidebarOpen(false)} 
+              className="fixed inset-0 z-[200] bg-black/10 backdrop-blur-sm" 
+            />
+            <motion.div 
+              initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} 
+              className="fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-white z-[210] flex flex-col shadow-2xl"
+            >
+              <div className="flex justify-between items-center p-8 border-b border-gray-50">
+                <span className="text-[11px] font-bold tracking-[0.3em] uppercase">Menu</span>
+                <button onClick={() => setIsSidebarOpen(false)} className="text-black"><X size={24} strokeWidth={1.2} /></button>
               </div>
-              <div className="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
-                <div className="space-y-4">
-                  {navLinks.map(link => (
-                    <Link key={link.name} to={link.path} onClick={() => setIsSidebarOpen(false)} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg text-[12px] font-bold uppercase text-black hover:bg-blue-50 hover:text-blue-600 transition-all">
-                      {link.name} <ChevronRight size={16} />
-                    </Link>
-                  ))}
-                </div>
+              <nav className="flex flex-col p-8 gap-8">
+                {navLinks.map(link => (
+                  <Link key={link.name} to={link.path} onClick={() => setIsSidebarOpen(false)} className="text-[14px] font-semibold tracking-[0.2em] uppercase text-black hover:text-gray-400 transition-colors">{link.name}</Link>
+                ))}
+              </nav>
+              <div className="mt-auto p-8 border-t border-gray-50 grid gap-4">
+                <Link to="/login" onClick={() => setIsSidebarOpen(false)} className="text-[12px] font-bold tracking-widest uppercase py-2">My Account</Link>
+                <Link to="/wishlist" onClick={() => setIsSidebarOpen(false)} className="text-[12px] font-bold tracking-widest uppercase py-2">Wishlist</Link>
+                <Link to="/contact" onClick={() => setIsSidebarOpen(false)} className="text-[12px] font-bold tracking-widest uppercase py-2">Support</Link>
               </div>
             </motion.div>
           </>

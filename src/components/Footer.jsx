@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Loader2, MapPin, ArrowRight, ShieldCheck, Clock, Phone } from 'lucide-react';
+import { Mail, Loader2, MapPin, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import API_BASE_URL from '../config';
@@ -54,29 +54,40 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white text-zinc-600 pt-24 pb-12 font-jakarta border-t border-zinc-100">
-      <div className="max-w-full mx-auto px-6 md:px-10">
+    <footer className="bg-[#FBFBFA] text-black pt-24 pb-12 font-jakarta border-t border-gray-100">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
         
         {/* --- MAIN GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-24">
           
           {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-8">
-            <Link to="/">
-              <img src="/logo/MYPRINTERMANNN.png" alt="LucyPrinters" className="h-12 w-auto object-contain " />
+          <div className="lg:col-span-4 space-y-10">
+            <Link to="/" className="inline-block transition-opacity hover:opacity-80">
+              <img src="/logo/logo.png" alt="Mike's Printer" className="h-10 md:h-15 w-auto object-contain" />
             </Link>
-            <p className="text-zinc-500 text-md font-medium leading-relaxed max-w-sm mt-5">
-Your one-stop shop for high-quality printers and reliable printing solutions. Perfect for all your home and office needs            </p>
+            <p className="text-gray-500 text-sm md:text-base font-medium leading-relaxed max-w-sm">
+              Premium printers and high-quality hardware for every need. Providing reliable printing solutions for homes and businesses across the country.
+            </p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 group">
+                <MapPin size={18} className="text-black shrink-0 mt-1" strokeWidth={1.5} />
+                <p className="text-sm font-medium text-gray-600 leading-tight">4100 University Ave, West Des Moines, <br />IA 50266, USA</p>
+              </div>
+              <div className="flex items-center gap-4 group">
+                <Mail size={18} className="text-black shrink-0" strokeWidth={1.5} />
+                <p className="text-sm font-medium text-gray-600">info@mikesprinter.shop</p>
+              </div>
+            </div>
           </div>
 
           {/* Links Columns */}
           <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-8">
-            <div className="space-y-6">
-              <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-zinc-900">Collections</h4>
-              <ul className="space-y-3">
+            <div className="space-y-8">
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">Collections</h4>
+              <ul className="space-y-4">
                 {categories.map(cat => (
                   <li key={cat.id}>
-                    <Link to={`/shop?category=${cat.slug}`} className="text-zinc-500 hover:text-[#0e12e9] transition-all text-[13px] font-bold">
+                    <Link to={`/shop?category=${cat.slug}`} className="text-gray-500 hover:text-black transition-colors text-[13px] font-medium">
                       {cat.name}
                     </Link>
                   </li>
@@ -84,9 +95,9 @@ Your one-stop shop for high-quality printers and reliable printing solutions. Pe
               </ul>
             </div>
 
-            <div className="space-y-6">
-              <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-zinc-900">Support</h4>
-              <ul className="space-y-3">
+            <div className="space-y-8">
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">Support</h4>
+              <ul className="space-y-4">
                 {[
                   { name: 'About Us', path: '/about' },
                   { name: 'Contact Us', path: '/contact' },
@@ -94,7 +105,7 @@ Your one-stop shop for high-quality printers and reliable printing solutions. Pe
                   { name: 'FAQs', path: '/faq' }
                 ].map(item => (
                   <li key={item.name}>
-                    <Link to={item.path} className="text-zinc-500 hover:text-[#0e12e9] transition-all text-[13px] font-bold">
+                    <Link to={item.path} className="text-gray-500 hover:text-black transition-colors text-[13px] font-medium">
                       {item.name}
                     </Link>
                   </li>
@@ -102,9 +113,9 @@ Your one-stop shop for high-quality printers and reliable printing solutions. Pe
               </ul>
             </div>
 
-            <div className="space-y-6">
-              <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-zinc-900">Policies</h4>
-              <ul className="space-y-3">
+            <div className="space-y-8">
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">Policies</h4>
+              <ul className="space-y-4">
                 {[
                   { name: 'Privacy Policy', path: '/privacy-policy' },
                   { name: 'Terms & Conditions', path: '/terms-and-conditions' },
@@ -113,7 +124,7 @@ Your one-stop shop for high-quality printers and reliable printing solutions. Pe
                   { name: 'Cookie Policy', path: '/cookie-policy' }
                 ].map(item => (
                   <li key={item.name}>
-                    <Link to={item.path} className="text-zinc-500 hover:text-[#0e12e9] transition-all text-[13px] font-bold">
+                    <Link to={item.path} className="text-gray-500 hover:text-black transition-colors text-[13px] font-medium">
                       {item.name}
                     </Link>
                   </li>
@@ -122,59 +133,43 @@ Your one-stop shop for high-quality printers and reliable printing solutions. Pe
             </div>
           </div>
 
-          {/* Contact & Newsletter Column */}
+          {/* Newsletter Column */}
           <div className="lg:col-span-3 space-y-10">
-            <div className="space-y-4">
-              <h4 className="text-[12px] font-black uppercase tracking-[0.2em] text-zinc-900">Stay Updated</h4>
-              <form onSubmit={handleSubscribe} className="relative">
+            <div className="space-y-6">
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">Stay Updated</h4>
+              <p className="text-xs text-gray-400 font-medium tracking-wide">Subscribe to receive the latest updates and exclusive offers.</p>
+              <form onSubmit={handleSubscribe} className="relative group">
                 <input
                   required type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email Address"
-                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl py-3.5 px-5 text-sm text-zinc-900 focus:outline-none focus:border-[#0e12e9] transition-all font-bold placeholder:text-zinc-300"
+                  placeholder="EMAIL ADDRESS"
+                  className="w-full bg-transparent border-b border-gray-200 py-4 pr-12 text-[11px] font-bold tracking-[0.2em] text-black focus:outline-none focus:border-black transition-all placeholder:text-gray-300"
                 />
                 <button
                   disabled={loading}
-                  className="absolute right-2 top-1.5 bottom-1.5 px-4 bg-zinc-900 text-white rounded-lg transition-all font-black text-[10px] uppercase hover:bg-[#0e12e9] active:scale-95 flex items-center justify-center"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-end text-black hover:scale-110 transition-transform"
                 >
-                  {loading ? <Loader2 className="animate-spin" size={16} /> : <ArrowRight size={18} strokeWidth={3} />}
+                  {loading ? <Loader2 className="animate-spin" size={16} /> : <ArrowRight size={20} strokeWidth={1.2} />}
                 </button>
               </form>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-start gap-4 group">
-                <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-50 flex items-center justify-center text-[#0e12e9] group-hover:bg-[#0e12e9] group-hover:text-white transition-all border border-zinc-100"><MapPin size={18} /></div>
-                <div className="space-y-1">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Location</p>
-                  <p className="text-[12px] font-bold text-zinc-600 leading-tight">2453 Hennepin Ave, Minneapolis, MN 55405, USA</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 group">
-                <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-50 flex items-center justify-center text-[#0e12e9] group-hover:bg-[#0e12e9] group-hover:text-white transition-all border border-zinc-100"><Mail size={18} /></div>
-                <div className="space-y-1">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Email Us</p>
-                  <p className="text-[13px] font-bold text-zinc-600 leading-tight">info@lucyprinters.shop</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
         {/* --- BOTTOM BAR --- */}
-        <div className="pt-10 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-          <div className="space-y-2">
-            <p className="text-[11px] font-black tracking-[0.2em] uppercase text-zinc-400">
-              © 2026 LucyPrinters | All Rights Reserved.
-            </p>
-          </div>
-          <div className="flex items-center gap-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-             <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-6" />
+        <div className="pt-12 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400">
+            © 2026 Mike's Printer. ALL RIGHTS RESERVED.
+          </p>
+          
+          <div className="flex items-center gap-10 grayscale opacity-40 hover:opacity-100 transition-opacity duration-500">
+             <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-5" />
           </div>
         </div>
-  {/* --- DISCLAIMER --- */}
-        <div className="mt-12 pt-8 text-center border-t border-slate-100">
-          <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">
-            Disclaimer - For Informational only. No software installation or distribution.
+
+        {/* --- DISCLAIMER --- */}
+        <div className="mt-12 text-center">
+          <p className="text-gray-600 text-[9px] font-bold uppercase tracking-[0.3em] leading-loose">
+          Disclaimer - For Informational only. No software installation or distribution.
           </p>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { ArrowRight, ChevronDown, MessageCircle, HelpCircle, CheckCircle, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
@@ -65,95 +64,88 @@ export default function FAQ() {
   const filteredFaqs = faqs.find(f => f.category === activeCategory)?.questions || [];
 
   return (
-    <div className="bg-white min-h-screen font-jakarta text-gray-900 overflow-x-hidden">
+    <div className="bg-white min-h-screen font-jakarta text-black">
       <SEO 
-        title="FAQ | LucyPrinters" 
+        title="FAQ | Mike's Printer" 
         description="Find simple answers to your questions about printers, delivery, and support."
       />
 
-      {/* --- HERO HEADER --- */}
-      <section className="pt-16 pb-12 px-4 md:px-10 bg-gray-50 border-b border-gray-100 text-center space-y-4">
-        <span className="text-blue-600 text-xs font-black uppercase tracking-[0.3em] block">Help Center</span>
-        <h1 className="text-3xl md:text-5xl font-black text-black uppercase tracking-tight">
-          How can we <span className="text-blue-600">Help?</span>
-        </h1>
-        <p className="text-gray-500 text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed">
-          Find simple and clear answers to common questions about our printers and service.
-        </p>
+      {/* --- PREMIUM HERO HEADER --- */}
+      <section className="bg-[#FBFBFA] border-b border-gray-100 py-20 md:py-28 px-6 lg:px-12">
+        <div className="max-w-[1920px] mx-auto text-center space-y-6">
+          <span className="text-[11px] font-bold tracking-[0.4em] uppercase text-gray-400 block">Help Center</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light uppercase tracking-tight">
+            How can we <span className="font-semibold italic text-black/80">Help?</span>
+          </h1>
+          <div className="w-20 h-[1px] bg-black mx-auto mt-8" />
+        </div>
       </section>
 
       {/* --- MAIN CONTENT --- */}
-      <div className="max-w-[1600px] mx-auto px-4 md:px-10 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-12 py-20 md:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24 items-start">
           
           {/* --- CATEGORY NAVIGATION --- */}
-          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-[220px]">
-            <h4 className="text-[12px] font-black uppercase tracking-widest text-black border-b-2 border-blue-600 pb-2 inline-block">Pick a Topic</h4>
-            <div className="flex lg:flex-col gap-1 overflow-x-auto pb-4 lg:pb-0 no-scrollbar">
+          <div className="lg:col-span-4 space-y-8">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-black border-b border-gray-100 pb-4">Categories</h4>
+            <div className="flex lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 no-scrollbar">
               {faqs.map((f) => (
                 <button
                   key={f.category}
                   onClick={() => { setActiveCategory(f.category); setActiveIdx(null); }}
                   className={cn(
-                    "px-6 py-4 text-[13px] font-bold transition-all whitespace-nowrap text-left flex items-center justify-between rounded-sm",
+                    "px-6 py-4 text-[12px] font-bold transition-all whitespace-nowrap text-left flex items-center justify-between rounded-sm",
                     activeCategory === f.category 
-                      ? "bg-blue-600 text-white shadow-xl shadow-blue-600/20" 
-                      : "text-gray-500 hover:bg-gray-50 hover:text-black"
+                      ? "bg-gray-100 text-black border border-gray-200" 
+                      : "bg-[#FBFBFA] text-gray-500 hover:bg-gray-100 hover:text-black"
                   )}
                 >
-                  <span className="uppercase tracking-wider">{f.category}</span>
-                  <ChevronRight size={16} className={cn("transition-transform duration-300", activeCategory === f.category ? "opacity-100" : "opacity-0")} />
+                  <span className="uppercase tracking-[0.1em]">{f.category}</span>
+                  <ChevronRight size={16} strokeWidth={1.5} className={cn("transition-transform duration-300", activeCategory === f.category ? "opacity-100" : "opacity-0")} />
                 </button>
               ))}
             </div>
           </div>
 
           {/* --- ACCORDION PANEL --- */}
-          <div className="lg:col-span-8 space-y-8">
+          <div className="lg:col-span-8 space-y-6">
             <div className="space-y-4">
               {filteredFaqs.map((faq, i) => (
                 <div 
                   key={i}
                   className={cn(
-                    "bg-white border transition-all duration-500 rounded-sm overflow-hidden",
-                    activeIdx === i ? "border-blue-600/30 shadow-2xl shadow-blue-600/5" : "border-gray-100 hover:border-gray-200"
+                    "bg-white border-b transition-all duration-500 overflow-hidden",
+                    activeIdx === i ? "border-black" : "border-gray-100 hover:border-gray-300"
                   )}
                 >
                   <button
                     onClick={() => toggle(i)}
-                    className="w-full flex items-center justify-between p-6 md:p-8 text-left group"
+                    className="w-full flex items-center justify-between py-6 text-left group"
                   >
                     <span className={cn(
-                      "text-base md:text-lg font-bold transition-colors leading-tight",
-                      activeIdx === i ? "text-blue-600" : "text-gray-800"
+                      "text-base md:text-lg font-semibold transition-colors leading-tight pr-8",
+                      activeIdx === i ? "text-black" : "text-gray-800 group-hover:text-black"
                     )}>
                       {faq.q}
                     </span>
                     <div className={cn(
-                      "h-10 w-10 rounded-full bg-gray-50 flex items-center justify-center transition-all duration-500 shrink-0 ml-6",
-                      activeIdx === i ? "bg-blue-600 text-white rotate-180" : "bg-gray-50 text-gray-400 group-hover:text-black"
+                      "h-8 w-8 rounded-full border flex items-center justify-center transition-all duration-500 shrink-0",
+                      activeIdx === i ? "border-black bg-white text-black rotate-180" : "border-gray-200 bg-white text-black group-hover:border-black"
                     )}>
-                      <ChevronDown size={20} />
+                      <ChevronDown size={16} strokeWidth={1.5} />
                     </div>
                   </button>
 
-                  <AnimatePresence>
-                    {activeIdx === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="px-6 md:px-8 pb-8">
-                          <div className="h-0.5 w-8 bg-blue-600 mb-6" />
-                          <p className="text-gray-500 text-sm md:text-base font-medium leading-relaxed max-w-3xl">
-                            {faq.a}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <div className={cn(
+                    "overflow-hidden transition-all duration-300",
+                    activeIdx === i ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                  )}>
+                    <div className="pb-8 pr-12">
+                      <p className="text-gray-500 text-sm md:text-base font-medium leading-relaxed">
+                        {faq.a}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -163,24 +155,20 @@ export default function FAQ() {
       </div>
 
       {/* --- CTA SECTION --- */}
-      <section className="pb-24 px-4 md:px-10 bg-white">
-         <div className="max-w-[1600px] mx-auto">
-            <div className="bg-black rounded-sm p-12 md:p-20 text-center relative overflow-hidden">
-               <div className="max-w-3xl mx-auto space-y-8 relative z-10">
-                  <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">
-                    Still Need <span className="text-blue-500">Help?</span>
-                  </h2>
-                  <p className="text-gray-400 text-lg font-medium max-w-xl mx-auto">
-                    If you couldn't find your answer here, our team is always ready to talk.
-                  </p>
-                  <div className="pt-4">
-                    <Link to="/contact" className="bg-blue-600 text-white px-12 py-4 rounded-sm font-black uppercase text-sm hover:bg-white hover:text-black transition-all shadow-xl">
-                      Talk to Us
-                    </Link>
-                  </div>
-               </div>
-            </div>
-         </div>
+      <section className="py-24 px-6 lg:px-12 bg-[#FBFBFA] border-t border-gray-100 text-center">
+        <div className="max-w-2xl mx-auto space-y-10">
+          <div className="space-y-4">
+            <h2 className="text-3xl md:text-5xl font-light uppercase tracking-tight text-black">Still Need <span className="font-semibold italic text-black/80">Help?</span></h2>
+            <p className="text-gray-500 text-base font-medium">If you couldn't find your answer here, our team is always ready to talk.</p>
+          </div>
+          <div className="pt-4 flex justify-center">
+            <Link to="/contact" className="group relative inline-flex items-center gap-6 bg-black text-white h-16 px-12 rounded-full overflow-hidden transition-all duration-500 hover:shadow-2xl active:scale-95">
+              <span className="relative z-10 text-[11px] font-bold uppercase tracking-[0.3em]">Talk To Us</span>
+              <ArrowRight size={18} className="relative z-10 transition-transform duration-500 group-hover:translate-x-2" />
+              <div className="absolute inset-0 bg-gray-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            </Link>
+          </div>
+        </div>
       </section>
     </div>
   );

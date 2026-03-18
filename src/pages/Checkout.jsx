@@ -90,15 +90,17 @@ export default function Checkout() {
 
   if (cart.length === 0 && step !== 3) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 font-jakarta bg-white">
-        <SEO title="Empty Checkout | LucyPrinters" />
-        <div className="h-24 w-24 bg-gray-50 rounded-full border border-gray-100 flex items-center justify-center mb-8">
-             <ShoppingCart size={40} className="text-gray-200" />
+      <div className="min-h-screen flex flex-col items-center justify-center px-6 font-jakarta bg-white text-black">
+        <SEO title="Empty Checkout | Mike's Printer" />
+        <div className="h-24 w-24 bg-[#FBFBFA] rounded-full border border-gray-100 flex items-center justify-center mb-8">
+             <ShoppingCart size={32} className="text-gray-200" strokeWidth={1} />
         </div>
-        <h2 className="text-3xl font-black text-black uppercase tracking-tight mb-4">Your cart is <span className="text-blue-600">empty</span></h2>
-        <p className="text-gray-500 font-medium mb-10 text-center max-w-sm">Please add some printers to your cart before checking out.</p>
-        <Link to="/shop" className="h-14 px-12 bg-black text-white flex items-center gap-4 text-[12px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all active:scale-95 shadow-xl group">
-          Browse Shop <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+        <h2 className="text-2xl md:text-3xl font-light uppercase tracking-widest mb-4 text-center">Your bag is <span className="font-semibold italic">empty</span></h2>
+        <p className="text-gray-400 text-sm font-medium mb-10 text-center max-w-sm">Please add some printers to your selection before checking out.</p>
+        <Link to="/shop" className="group relative inline-flex items-center gap-6 bg-black text-white h-16 px-12 rounded-full overflow-hidden transition-all duration-500 hover:pr-14 hover:shadow-2xl active:scale-95">
+          <span className="relative z-10 text-[11px] font-bold uppercase tracking-[0.3em]">Browse Shop</span>
+          <ArrowRight size={18} className="relative z-10 transition-transform duration-500 group-hover:translate-x-2" />
+          <div className="absolute inset-0 bg-gray-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
         </Link>
       </div>
     );
@@ -106,142 +108,137 @@ export default function Checkout() {
 
   if (step === 3) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 font-jakarta bg-white text-center">
-        <SEO title="Order Confirmed | LucyPrinters" />
+      <div className="min-h-screen flex flex-col items-center justify-center px-6 font-jakarta bg-white text-center text-black">
+        <SEO title="Order Confirmed | Mike's Printer" />
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="relative mb-8">
           <div className="h-24 w-24 bg-green-50 text-green-600 flex items-center justify-center shadow-xl border border-green-100 rounded-full mx-auto">
-            <CheckCircle2 size={40} strokeWidth={3} />
+            <CheckCircle2 size={40} strokeWidth={2} />
           </div>
         </motion.div>
-        <h1 className="text-4xl md:text-6xl font-black text-black uppercase tracking-tighter mb-4">Order <span className="text-blue-600">Confirmed</span></h1>
-        <p className="text-gray-500 font-bold text-xs mb-10 uppercase tracking-widest">Your printer is being prepared for shipment.</p>
+        <h1 className="text-4xl md:text-6xl font-light uppercase tracking-tighter mb-4 text-black">Order <span className="font-semibold italic">Confirmed</span></h1>
+        <p className="text-gray-400 font-bold text-[10px] mb-12 uppercase tracking-[0.4em]">Your hardware is being prepared for dispatch.</p>
         
-        <div className="bg-gray-50 p-10 border border-gray-100 mb-10 max-w-sm w-full rounded-sm">
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Order Reference</p>
-          <p className="text-2xl font-black text-black uppercase tracking-tight">#{orderId || 'PROCESS'}</p>
+        <div className="bg-[#FBFBFA] p-12 border border-gray-50 mb-12 max-w-sm w-full rounded-sm shadow-sm">
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mb-3">Order Reference</p>
+          <p className="text-3xl font-light text-black tracking-tight">#{orderId || 'PROCESS'}</p>
         </div>
 
-        <Link to="/" className="h-14 px-12 bg-black text-white text-[11px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all active:scale-95 shadow-2xl">
-          Back to Home
+        <Link to="/" className="group relative inline-flex items-center justify-center gap-6 bg-black text-white h-16 px-14 rounded-full overflow-hidden transition-all duration-500 hover:shadow-2xl active:scale-95">
+          <span className="relative z-10 text-[11px] font-bold uppercase tracking-[0.3em]">Back to Home</span>
+          <div className="absolute inset-0 bg-gray-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white pt-16 pb-24 font-jakarta text-gray-900 overflow-x-hidden">
-      <SEO title="Secure Checkout | LucyPrinters" />
-      <div className="max-w-[1600px] mx-auto px-4 md:px-10 relative z-10">
+    <div className="min-h-screen bg-white pt-24 pb-24 font-jakarta text-black overflow-x-hidden">
+      <SEO title="Secure Checkout | Mike's Printer" />
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-12 relative z-10">
         
         {/* --- HEADER --- */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-16 border-b border-gray-100 pb-12">
-          <div className="flex flex-col items-start space-y-6">
-            <Link to="/cart" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-blue-600 transition-all group">
-              <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-              Return to Cart
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-20 border-b border-gray-100 pb-16">
+          <div className="flex flex-col items-start space-y-8">
+            <Link to="/cart" className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-all group">
+              <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform text-gray-300" />
+              Return to Selection
             </Link>
-            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tight">
-              Secure <span className="text-blue-600">Checkout</span>
+            <h1 className="text-4xl md:text-6xl font-light uppercase tracking-tight text-black leading-none">
+              Secure <span className="font-semibold italic">Checkout</span>
             </h1>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className={cn("px-6 py-3 rounded-sm text-[10px] font-black uppercase tracking-widest transition-all duration-500 border", step >= 1 ? "bg-blue-600 text-white border-blue-600" : "bg-gray-50 text-gray-300 border-gray-100")}>
+          <div className="flex items-center gap-6">
+            <div className={cn("px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-700 border", step >= 1 ? "bg-black text-white border-black" : "bg-[#FBFBFA] text-gray-300 border-gray-100")}>
                01 Logistics
             </div>
-            <div className="h-px w-6 bg-gray-200" />
-            <div className={cn("px-6 py-3 rounded-sm text-[10px] font-black uppercase tracking-widest transition-all duration-500 border", step >= 2 ? "bg-blue-600 text-white border-blue-600" : "bg-gray-50 text-gray-300 border-gray-100")}>
+            <div className="h-px w-8 bg-gray-100" />
+            <div className={cn("px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-700 border", step >= 2 ? "bg-black text-white border-black" : "bg-[#FBFBFA] text-gray-300 border-gray-100")}>
                02 Settlement
             </div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-20 xl:gap-32 items-start">
           
           <div className="lg:col-span-8">
             <AnimatePresence mode="wait">
               {step === 1 ? (
-                <motion.div key="step1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-12">
+                <motion.div key="step1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-16">
                   {/* Section 1: Email */}
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3">
-                      <div className="h-8 w-1 bg-blue-600 rounded-full" />
-                      <h3 className="text-[12px] font-black uppercase tracking-widest text-black flex items-center gap-3">
-                         <Mail size={16} className="text-blue-600" /> Contact Details
-                      </h3>
+                  <div className="space-y-10">
+                    <div className="flex items-center gap-4">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-gray-400">Personal Information</span>
+                      <div className="flex-1 h-px bg-gray-50" />
                     </div>
-                    <div className="space-y-2">
-                       <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Email Address <span className="text-blue-600">*</span></label>
-                       <input required name="email" value={formData.email} onChange={handleInputChange} type="email" placeholder="e.g. john@business.com" className="w-full h-12 px-5 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-sm font-bold transition-all" />
+                    <div className="space-y-2 group">
+                       <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Email Address</label>
+                       <input required name="email" value={formData.email} onChange={handleInputChange} type="email" placeholder="YOUR EMAIL" className="w-full h-14 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[13px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-widest" />
                     </div>
                   </div>
 
                   {/* Section 2: Address */}
-                  <div className="space-y-8 pt-12 border-t border-gray-100">
-                    <div className="flex items-center gap-3">
-                      <div className="h-8 w-1 bg-blue-600 rounded-full" />
-                      <h3 className="text-[12px] font-black uppercase tracking-widest text-black flex items-center gap-3">
-                         <MapPin size={16} className="text-blue-600" /> Shipping Address
-                      </h3>
+                  <div className="space-y-12 pt-16 border-t border-gray-100">
+                    <div className="flex items-center gap-4">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-gray-400">Shipping Logistics</span>
+                      <div className="flex-1 h-px bg-gray-50" />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">First name <span className="text-blue-600">*</span></label>
-                         <input required name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="First Name" className="w-full h-12 px-5 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-sm font-bold transition-all" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                      <div className="space-y-2 group">
+                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">First name</label>
+                         <input required name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="FIRST NAME" className="w-full h-14 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[13px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-widest" />
                       </div>
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Last name <span className="text-blue-600">*</span></label>
-                         <input required name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Last Name" className="w-full h-12 px-5 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-sm font-bold transition-all" />
+                      <div className="space-y-2 group">
+                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Last name</label>
+                         <input required name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="LAST NAME" className="w-full h-14 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[13px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-widest" />
                       </div>
                     </div>
-                    <div className="space-y-2">
-                       <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Street Address <span className="text-blue-600">*</span></label>
-                       <input required name="address" value={formData.address} onChange={handleInputChange} placeholder="Full Home or Office Address" className="w-full h-12 px-5 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-sm font-bold transition-all" />
+                    <div className="space-y-2 group">
+                       <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Street Address</label>
+                       <input required name="address" value={formData.address} onChange={handleInputChange} placeholder="FULL DESTINATION ADDRESS" className="w-full h-14 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[13px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-widest" />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">City <span className="text-blue-600">*</span></label>
-                         <input required name="city" value={formData.city} onChange={handleInputChange} placeholder="City" className="w-full h-12 px-5 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-sm font-bold transition-all" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                      <div className="space-y-2 group">
+                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">City</label>
+                         <input required name="city" value={formData.city} onChange={handleInputChange} placeholder="CITY" className="w-full h-14 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[13px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-widest" />
                       </div>
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Zip Code <span className="text-blue-600">*</span></label>
-                         <input required name="zipCode" value={formData.zipCode} onChange={handleInputChange} placeholder="Zip Code" className="w-full h-12 px-5 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-sm font-bold transition-all" />
+                      <div className="space-y-2 group">
+                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Zip Code</label>
+                         <input required name="zipCode" value={formData.zipCode} onChange={handleInputChange} placeholder="ZIP CODE" className="w-full h-14 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[13px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-widest" />
                       </div>
                     </div>
-                    <div className="space-y-2">
-                       <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Phone Number <span className="text-blue-600">*</span></label>
-                       <input required name="phone" value={formData.phone} onChange={handleInputChange} type="tel" placeholder="e.g. (555) 000-0000" className="w-full h-12 px-5 bg-gray-50 border border-gray-200 rounded-sm focus:bg-white focus:border-blue-600 outline-none text-sm font-bold transition-all" />
+                    <div className="space-y-2 group">
+                       <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Phone Number</label>
+                       <input required name="phone" value={formData.phone} onChange={handleInputChange} type="tel" placeholder="YOUR CONTACT NUMBER" className="w-full h-14 bg-transparent border-b border-gray-100 focus:border-black outline-none text-[13px] font-medium transition-all placeholder:text-gray-200 uppercase tracking-widest" />
                     </div>
                   </div>
                 </motion.div>
               ) : (
-                <motion.div key="step2" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-12">
-                  <div className="space-y-8">
-                    <div className="flex items-center gap-3">
-                      <div className="h-8 w-1 bg-blue-600 rounded-full" />
-                      <h3 className="text-[12px] font-black uppercase tracking-widest text-black flex items-center gap-3">
-                         <CreditCard size={16} className="text-blue-600" /> Payment Method
-                      </h3>
+                <motion.div key="step2" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-16">
+                  <div className="space-y-12">
+                    <div className="flex items-center gap-4">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-gray-400">Payment Selection</span>
+                      <div className="flex-1 h-px bg-gray-50" />
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* COD */}
                       <div 
                         onClick={() => setFormData({...formData, paymentMethod: 'cod'})}
                         className={cn(
-                          "p-8 border rounded-sm cursor-pointer transition-all duration-500 flex flex-col justify-between h-48 relative overflow-hidden",
-                          formData.paymentMethod === 'cod' ? "border-blue-600 bg-blue-50/10 shadow-lg shadow-blue-600/5" : "border-gray-100 bg-white hover:border-gray-300"
+                          "p-10 border rounded-sm cursor-pointer transition-all duration-700 flex flex-col justify-between h-56 relative overflow-hidden",
+                          formData.paymentMethod === 'cod' ? "border-black bg-[#FBFBFA] shadow-xl" : "border-gray-100 bg-white hover:border-gray-300"
                         )}
                       >
                         <div className="flex items-center justify-between">
-                          <div className={cn("h-6 w-6 rounded-full border-2 flex items-center justify-center transition-all", formData.paymentMethod === 'cod' ? "border-blue-600" : "border-gray-200")}>
-                            {formData.paymentMethod === 'cod' && <div className="h-3 w-3 rounded-full bg-blue-600" />}
+                          <div className={cn("h-6 w-6 rounded-full border flex items-center justify-center transition-all", formData.paymentMethod === 'cod' ? "border-black bg-black" : "border-gray-200")}>
+                            {formData.paymentMethod === 'cod' && <div className="h-2 w-2 rounded-full bg-white" />}
                           </div>
-                          <Truck size={32} className={cn("transition-colors", formData.paymentMethod === 'cod' ? "text-blue-600" : "text-gray-200")} />
+                          <Truck size={32} strokeWidth={1} className={cn("transition-colors", formData.paymentMethod === 'cod' ? "text-black" : "text-gray-200")} />
                         </div>
-                        <div className="space-y-1">
-                           <h4 className="text-lg font-black text-black uppercase">Pay on Delivery</h4>
-                           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pay when you get your printer</p>
+                        <div className="space-y-2">
+                           <h4 className="text-xl font-medium text-black uppercase tracking-tight">Pay on Delivery</h4>
+                           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Flexible settlement upon hardware arrival</p>
                         </div>
                       </div>
 
@@ -249,35 +246,37 @@ export default function Checkout() {
                       <div 
                         onClick={() => setFormData({...formData, paymentMethod: 'paypal'})}
                         className={cn(
-                          "p-8 border rounded-sm cursor-pointer transition-all duration-500 flex flex-col justify-between h-48 relative overflow-hidden",
-                          formData.paymentMethod === 'paypal' ? "border-blue-600 bg-blue-50/10 shadow-lg shadow-blue-600/5" : "border-gray-100 bg-white hover:border-gray-300"
+                          "p-10 border rounded-sm cursor-pointer transition-all duration-700 flex flex-col justify-between h-56 relative overflow-hidden",
+                          formData.paymentMethod === 'paypal' ? "border-black bg-[#FBFBFA] shadow-xl" : "border-gray-100 bg-white hover:border-gray-300"
                         )}
                       >
                         <div className="flex items-center justify-between">
-                          <div className={cn("h-6 w-6 rounded-full border-2 flex items-center justify-center transition-all", formData.paymentMethod === 'paypal' ? "border-blue-600" : "border-gray-200")}>
-                            {formData.paymentMethod === 'paypal' && <div className="h-3 w-3 rounded-full bg-blue-600" />}
+                          <div className={cn("h-6 w-6 rounded-full border flex items-center justify-center transition-all", formData.paymentMethod === 'paypal' ? "border-black bg-black" : "border-gray-200")}>
+                            {formData.paymentMethod === 'paypal' && <div className="h-2 w-2 rounded-full bg-white" />}
                           </div>
-                          <div className={cn("italic font-black text-xl tracking-tighter transition-colors", formData.paymentMethod === 'paypal' ? "text-blue-600" : "text-gray-200")}>PayPal</div>
+                          <div className={cn("font-bold text-xl tracking-tighter transition-colors flex items-center gap-2", formData.paymentMethod === 'paypal' ? "text-black" : "text-gray-200")}>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-5" />
+                          </div>
                         </div>
-                        <div className="space-y-1">
-                           <h4 className="text-lg font-black text-black uppercase">Secure Online Pay</h4>
-                           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Safe and instant digital payment</p>
+                        <div className="space-y-2">
+                           <h4 className="text-xl font-medium text-black uppercase tracking-tight">Secure Digital</h4>
+                           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Instant encrypted gateway transaction</p>
                         </div>
                       </div>
                     </div>
 
                     <AnimatePresence>
                       {formData.paymentMethod === 'paypal' && (
-                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="space-y-8 pt-8">
-                          <div className="p-10 bg-gray-50 border border-gray-100 rounded-sm text-center space-y-4">
-                            <ShieldCheck className="mx-auto text-blue-600" size={40} />
-                            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-black">Secure Checkout Active</p>
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="space-y-10 pt-10">
+                          <div className="p-12 bg-[#FBFBFA] border border-gray-50 rounded-sm text-center space-y-6">
+                            <ShieldCheck className="mx-auto text-black" size={40} strokeWidth={1} />
+                            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">High-Security Active</p>
                             <div className="max-w-xs mx-auto">
                               <PayPalButtons 
-                                style={{ layout: "vertical", shape: "rect", label: "pay" }}
+                                style={{ layout: "vertical", shape: "pill", label: "pay" }}
                                 createOrder={(data, actions) => {
                                   return actions.order.create({
-                                    purchase_units: [{ amount: { value: finalTotal.toString() }, description: `LucyPrinters - Order Checkout` }],
+                                    purchase_units: [{ amount: { value: finalTotal.toString() }, description: `Mike's Printer - Order Checkout` }],
                                   });
                                 }}
                                 onApprove={async (data, actions) => {
@@ -297,23 +296,24 @@ export default function Checkout() {
               )}
             </AnimatePresence>
 
-            <div className="pt-12 flex flex-col items-center gap-6 border-t border-gray-100 mt-12">
+            <div className="pt-16 flex flex-col items-center gap-8 border-t border-gray-50 mt-16">
               {(formData.paymentMethod === 'cod' || step === 1) && (
                 <button 
                   type="submit" disabled={loading}
-                  className="h-14 px-16 bg-black text-white hover:bg-blue-600 flex items-center justify-center gap-4 text-[12px] font-black uppercase tracking-widest transition-all shadow-xl active:scale-95 group w-full md:w-auto rounded-sm"
+                  className="group relative h-16 px-20 bg-black text-white rounded-full flex items-center justify-center gap-6 text-[12px] font-bold uppercase tracking-[0.3em] transition-all shadow-2xl active:scale-95 disabled:opacity-50 w-full md:w-auto overflow-hidden"
                 >
                   {loading ? <Loader2 className="animate-spin" size={20} /> : (
-                    <>
-                      {step === 1 ? 'Go to Payment' : 'Complete Purchase'}
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </>
+                    <span className="relative z-10 flex items-center gap-4">
+                      {step === 1 ? 'Logistics Confirmed' : 'Finalize Purchase'}
+                      <ArrowRight size={18} className="transition-transform duration-500 group-hover:translate-x-2" />
+                    </span>
                   )}
+                  <div className="absolute inset-0 bg-gray-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 </button>
               )}
               {step === 2 && (
-                <button type="button" onClick={() => setStep(1)} className="text-[10px] font-black text-gray-400 hover:text-black uppercase tracking-widest transition-all flex items-center gap-2">
-                   <ChevronLeft size={14} className="text-blue-600" /> Return to Shipping Details
+                <button type="button" onClick={() => setStep(1)} className="text-[10px] font-bold text-gray-400 hover:text-black uppercase tracking-[0.3em] transition-all flex items-center gap-3">
+                   <ChevronLeft size={16} strokeWidth={1.5} className="text-gray-300" /> Back to Logistics
                 </button>
               )}
             </div>
@@ -321,40 +321,40 @@ export default function Checkout() {
 
           {/* --- SUMMARY SIDEBAR --- */}
           <div className="lg:col-span-4">
-            <div className="bg-white border border-gray-100 p-8 rounded-sm sticky top-[220px] space-y-10 shadow-2xl shadow-gray-100">
-              <div className="space-y-6">
-                 <h3 className="text-[12px] font-black uppercase tracking-widest text-black border-b-2 border-blue-600 pb-2 inline-block">Manifest</h3>
-                 <div className="space-y-6 max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="bg-white border border-gray-100 p-10 rounded-sm sticky top-[120px] space-y-12 shadow-[0_30px_60px_rgba(0,0,0,0.03)]">
+              <div className="space-y-10">
+                 <h3 className="text-[11px] font-bold uppercase tracking-[0.3em] text-black border-b border-gray-100 pb-4 inline-block">Order Manifest</h3>
+                 <div className="space-y-10 max-h-[400px] overflow-y-auto pr-4 custom-scrollbar">
                     {cart.map(item => (
-                      <div key={item.id} className="flex gap-4 group/item">
-                        <div className="h-16 w-16 bg-gray-50 flex items-center justify-center p-3 shrink-0 border border-gray-50 overflow-hidden">
-                          <img src={getImagePath(item.images)} className="max-w-full max-h-full object-contain mix-blend-multiply" alt="" />
+                      <div key={item.id} className="flex gap-6 group/item">
+                        <div className="h-20 w-20 bg-[#FBFBFA] flex items-center justify-center p-4 shrink-0 border border-gray-50 overflow-hidden relative">
+                          <img src={getImagePath(item.images)} className="max-w-full max-h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover/item:scale-110" alt="" />
                         </div>
-                        <div className="flex-1 min-w-0 flex flex-col justify-center">
-                          <h4 className="text-[13px] font-bold text-black uppercase tracking-tight truncate mb-1">{item.name}</h4>
-                          <p className="text-[11px] font-bold text-gray-400 uppercase">Qty: {item.quantity} â€¢ ${(item.price * item.quantity).toLocaleString()}</p>
+                        <div className="flex-1 min-w-0 flex flex-col justify-center space-y-1">
+                          <h4 className="text-[13px] font-semibold text-black uppercase tracking-tight truncate leading-tight">{item.name}</h4>
+                          <p className="text-[11px] font-medium text-gray-400 uppercase tracking-widest">Qty: {item.quantity} â€¢ ${(item.price * item.quantity).toLocaleString()}</p>
                         </div>
                       </div>
                     ))}
                  </div>
               </div>
 
-              <div className="space-y-4 border-t border-gray-100 pt-8">
-                <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-widest text-gray-400">
+              <div className="space-y-6 border-t border-gray-100 pt-10">
+                <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
                   <span>Subtotal</span>
                   <span className="text-black">${total.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                  <span>Shipping</span>
-                  <span className="text-green-600 bg-green-50 px-2 py-0.5 rounded-sm">Free</span>
+                <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                  <span>Logistics</span>
+                  <span className="text-black font-bold">Complimentary</span>
                 </div>
-                <div className="flex flex-col pt-6 border-t border-gray-100 mt-4">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-1">Final Total</span>
-                  <span className="text-4xl font-black text-black leading-none">${finalTotal.toLocaleString()}</span>
+                <div className="flex flex-col pt-10 border-t border-gray-100 mt-6">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 mb-3">Settlement Total</span>
+                  <span className="text-5xl font-light text-black leading-none tracking-tighter">${finalTotal.toLocaleString()}</span>
                 </div>
               </div>
 
-              <div className="mt-8 flex items-center justify-center gap-4 opacity-30 grayscale border-t border-gray-50 pt-6">
+              <div className="mt-10 flex items-center justify-center gap-6 opacity-30 grayscale border-t border-gray-50 pt-8">
                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-4" />
               </div>
             </div>

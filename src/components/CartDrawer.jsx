@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Plus, Minus, Trash2, ArrowRight, ShoppingCart, Package, ChevronRight } from 'lucide-react';
+import { X, Plus, Minus, Trash2, ArrowRight, ShoppingCart, Package } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
@@ -22,50 +22,52 @@ export default function CartDrawer() {
     <AnimatePresence>
       {isCartDrawerOpen && (
         <>
-          {/* Overlay */}
+          {/* Subtle Glassmorphic Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeCartDrawer}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[1000]"
+            className="fixed inset-0 bg-black/10 backdrop-blur-sm z-[1000]"
           />
 
-          {/* Drawer */}
+          {/* Premium Float & Scale Drawer */}
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed top-0 right-0 bottom-0 w-full max-w-[450px] bg-white z-[1001] flex flex-col font-jakarta border-l border-gray-100 shadow-2xl"
+            initial={{ x: '20%', opacity: 0, scale: 0.95, rotateY: -10 }}
+            animate={{ x: 0, opacity: 1, scale: 1, rotateY: 0 }}
+            exit={{ x: '20%', opacity: 0, scale: 0.95, rotateY: -10 }}
+            transition={{ type: "spring", damping: 30, stiffness: 200 }}
+            style={{ perspective: '1000px' }}
+            className="fixed top-4 right-4 bottom-4 w-[calc(100%-32px)] max-w-[480px] bg-white z-[1001] flex flex-col font-jakarta shadow-[0_40px_100px_rgba(0,0,0,0.15)] rounded-2xl border border-gray-100"
           >
             {/* Header */}
-            <div className="p-8 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
+            <div className="px-8 py-10 flex items-center justify-between border-b border-gray-50">
               <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 block">Your Selection</span>
-                <h2 className="text-2xl font-black text-black uppercase tracking-tight">Cart <span className="text-blue-600">Review</span></h2>
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 block">Your Selection</span>
+                <h2 className="text-2xl font-light uppercase tracking-tight text-black">Shopping <span className="font-semibold italic">Bag</span></h2>
               </div>
               <button 
                 onClick={closeCartDrawer}
-                className="h-10 w-10 flex items-center justify-center bg-white rounded-full text-gray-400 hover:text-black border border-gray-100 transition-all shadow-sm"
+                className="h-12 w-12 flex items-center justify-center rounded-full text-gray-400 hover:text-black hover:bg-gray-50 transition-all group"
               >
-                <X size={20} />
+                <X size={20} strokeWidth={1.5} className="group-hover:rotate-90 transition-transform duration-500" />
               </button>
             </div>
 
-            {/* Content */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
+            {/* Cart Items */}
+            <div className="flex-1 overflow-y-auto px-8 py-6 space-y-10 custom-scrollbar">
               {cart.length > 0 ? (
-                <div className="space-y-4">
+                <div className="space-y-10">
                   {cart.map((item) => (
                     <motion.div 
                       layout
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       key={item.id} 
-                      className="group flex gap-4 p-4 bg-white border border-gray-100 rounded-sm transition-all hover:border-blue-600/20"
+                      className="group flex gap-8 relative"
                     >
-                      <div className="h-24 w-24 bg-gray-50 rounded-sm flex items-center justify-center flex-shrink-0 p-4 border border-gray-50 overflow-hidden relative">
+                      {/* Image Container */}
+                      <div className="h-32 w-32 bg-[#FBFBFA] rounded-sm flex items-center justify-center flex-shrink-0 p-4 overflow-hidden relative group-hover:bg-[#F5F5F3] transition-colors duration-500">
                         <img 
                           src={getImagePath(item.images)} 
                           alt={item.name}
@@ -73,44 +75,52 @@ export default function CartDrawer() {
                         />
                       </div>
                       
-                      <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
-                        <div>
+                      {/* Item Details */}
+                      <div className="flex-1 min-w-0 flex flex-col py-1">
+                        <div className="space-y-1">
                           <div className="flex justify-between items-start">
-                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{item.brand_name || 'Premium'}</span>
-                            <button onClick={() => removeFromCart(item.id)} className="text-gray-300 hover:text-red-500 transition-colors"><Trash2 size={14} /></button>
+                            <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{item.brand_name || 'Premium'}</span>
+                            <button 
+                              onClick={() => removeFromCart(item.id)} 
+                              className="text-gray-300 hover:text-black transition-colors p-1"
+                              title="Remove Item"
+                            >
+                              <X size={14} strokeWidth={2} />
+                            </button>
                           </div>
                           <Link to={`/product/${item.slug}`} onClick={closeCartDrawer}>
-                            <h3 className="text-[13px] font-bold text-black uppercase tracking-tight leading-tight line-clamp-2 group-hover:text-blue-600 transition-colors">{item.name}</h3>
+                            <h3 className="text-[14px] font-medium text-black leading-snug line-clamp-2 hover:text-gray-500 transition-colors uppercase tracking-tight">{item.name}</h3>
                           </Link>
                         </div>
 
-                        <div className="flex items-center justify-between mt-2">
-                          <div className="h-8 bg-gray-50 flex items-center rounded-sm border border-gray-100 overflow-hidden">
-                            <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="h-full w-8 flex items-center justify-center text-gray-500 hover:bg-white hover:text-blue-600 transition-all border-r border-gray-100"><Minus size={12} /></button>
-                            <span className="text-[12px] font-bold w-8 text-center text-black">{item.quantity}</span>
-                            <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="h-full w-8 flex items-center justify-center text-gray-500 hover:bg-white hover:text-blue-600 transition-all border-l border-gray-100"><Plus size={12} /></button>
+                        <div className="flex items-center justify-between mt-auto pt-4">
+                          <div className="flex items-center border border-gray-100 rounded-full h-9 px-1">
+                            <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-7 flex items-center justify-center text-gray-400 hover:text-black transition-colors"><Minus size={12} /></button>
+                            <span className="text-[12px] font-bold w-6 text-center text-black">{item.quantity}</span>
+                            <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-7 flex items-center justify-center text-gray-400 hover:text-black transition-colors"><Plus size={12} /></button>
                           </div>
-                          <span className="text-[15px] font-black text-blue-600">${(item.price * item.quantity).toLocaleString()}</span>
+                          <span className="text-base font-light text-black tracking-tight">${(item.price * item.quantity).toLocaleString()}</span>
                         </div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
               ) : (
-                <div className="h-full flex flex-col items-center justify-center text-center p-10 space-y-6">
-                  <div className="h-20 w-20 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100">
-                    <ShoppingCart size={32} className="text-gray-200" />
+                <div className="h-full flex flex-col items-center justify-center text-center space-y-8">
+                  <div className="h-24 w-24 bg-[#FBFBFA] rounded-full flex items-center justify-center border border-gray-50">
+                    <ShoppingCart size={32} strokeWidth={1} className="text-gray-200" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-black text-black uppercase tracking-tight">Your cart is empty</h3>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Find your perfect printer in our shop</p>
+                  <div className="space-y-3">
+                    <h3 className="text-xl font-light uppercase tracking-widest text-black">Your bag is empty</h3>
+                    <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Discover our premium printer collection</p>
                   </div>
                   <Link 
                     to="/shop"
                     onClick={closeCartDrawer}
-                    className="w-full h-12 bg-black text-white rounded-sm flex items-center justify-center text-[11px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-lg active:scale-95"
+                    className="group relative inline-flex items-center gap-4 bg-black text-white h-14 px-10 rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl active:scale-95"
                   >
-                    Start Shopping
+                    <span className="relative z-10 text-[11px] font-bold uppercase tracking-[0.2em]">Start Shopping</span>
+                    <div className="absolute inset-0 bg-gray-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   </Link>
                 </div>
               )}
@@ -118,35 +128,34 @@ export default function CartDrawer() {
 
             {/* Footer */}
             {cart.length > 0 && (
-              <div className="p-8 bg-gray-50 border-t border-gray-100 space-y-6">
-                <div className="flex items-center justify-between">
+              <div className="p-8 space-y-8 bg-white border-t border-gray-100">
+                <div className="flex items-end justify-between">
                   <div className="space-y-1">
-                     <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block">Subtotal Amount</span>
-                     <span className="text-3xl font-black text-black leading-none">${total.toLocaleString()}</span>
+                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] block">Estimated Total</span>
+                     <span className="text-4xl font-light text-black tracking-tighter leading-none">${total.toLocaleString()}</span>
                   </div>
-                  <div className="text-right">
-                     <div className="flex items-center gap-2 text-blue-600 mb-1">
-                        <Package size={14} />
-                        <span className="text-[10px] font-black uppercase tracking-widest">{cartCount} Items</span>
-                     </div>
+                  <div className="flex items-center gap-2 text-black/40">
+                    <Package size={14} strokeWidth={1.5} />
+                    <span className="text-[10px] font-bold uppercase tracking-widest">{cartCount} Items</span>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3">
+                <div className="space-y-3">
                   <Link 
                     to="/checkout"
                     onClick={closeCartDrawer}
-                    className="w-full h-14 bg-blue-600 text-white rounded-sm flex items-center justify-center gap-3 text-[12px] font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-95 group"
+                    className="group relative w-full inline-flex items-center justify-center gap-6 bg-black text-white h-16 rounded-full overflow-hidden transition-all duration-500 hover:shadow-2xl active:scale-95"
                   >
-                    Checkout <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    <span className="relative z-10 text-[12px] font-bold uppercase tracking-[0.3em]">Continue to Checkout</span>
+                    <ArrowRight size={18} className="relative z-10 transition-transform duration-500 group-hover:translate-x-2" />
+                    <div className="absolute inset-0 bg-gray-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   </Link>
-                  <Link 
-                    to="/cart" 
+                  <button 
                     onClick={closeCartDrawer}
-                    className="w-full h-12 border border-gray-200 bg-white text-gray-500 rounded-sm hover:text-black hover:border-black flex items-center justify-center text-[10px] font-black uppercase tracking-widest transition-all"
+                    className="w-full text-center py-2 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 hover:text-black transition-colors"
                   >
-                    View Shopping Cart
-                  </Link>
+                    Continue Shopping
+                  </button>
                 </div>
               </div>
             )}
