@@ -40,7 +40,7 @@ export default function CategorySection({ title, subtitle, categoryKeyword, bgCo
       <div className="flex items-end justify-between mb-12 border-b border-gray-100 pb-8">
         <div>
           <span className="text-[10px] font-black tracking-[0.4em] uppercase text-blue-600 mb-2 block ml-1">{subtitle}</span>
-          <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+          <h2 className="text-4xl font-black text-slate-900 er uppercase leading-none">
             {title.split(' ')[0]} <span className="text-slate-400 italic">{title.split(' ').slice(1).join(' ')}.</span>
           </h2>
         </div>

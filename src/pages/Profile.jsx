@@ -130,14 +130,14 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-white pt-32 pb-24 font-jakarta text-slate-900 overflow-x-hidden">
-      <SEO title="My Account |Printer Club" />
+      <SEO title="My Account |Lux Printers" />
       
       <div className="w-full px-4 md:px-10">
         
         {/* --- HEADER --- */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 pb-10 mb-12">
           <div className="space-y-2 text-left">
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight leading-none">
+            <h1 className="text-3xl md:text-5xl font-bold  leading-none">
               Account <span className="text-blue-600">settings</span>
             </h1>
             <p className="text-slate-500 font-medium text-sm md:text-base">Managing your details and order history</p>
@@ -202,7 +202,7 @@ export default function Profile() {
                     <div className="h-12 w-12 rounded-full bg-gray-50 flex items-center justify-center text-slate-900 border border-gray-100">
                        <User size={24} />
                     </div>
-                    <h2 className="text-2xl font-bold tracking-tight">Personal details</h2>
+                    <h2 className="text-2xl font-bold ">Personal details</h2>
                   </div>
 
                   <form onSubmit={handleProfileUpdate} className="space-y-8">
@@ -248,7 +248,7 @@ export default function Profile() {
                   className="space-y-6"
                 >
                   <div className="flex items-center justify-between mb-2 px-2">
-                     <h2 className="text-2xl font-bold tracking-tight">Recent orders</h2>
+                     <h2 className="text-2xl font-bold ">Recent orders</h2>
                      <Link to="/orders" className="text-xs font-bold text-blue-600 hover:underline">View all history</Link>
                   </div>
 
@@ -303,7 +303,7 @@ export default function Profile() {
                     <div className="h-12 w-12 rounded-full bg-gray-50 flex items-center justify-center text-slate-900 border border-gray-100">
                        <Lock size={24} />
                     </div>
-                    <h2 className="text-2xl font-bold tracking-tight">Security update</h2>
+                    <h2 className="text-2xl font-bold ">Security update</h2>
                   </div>
 
                   <form onSubmit={handleSecurityUpdate} className="space-y-8">

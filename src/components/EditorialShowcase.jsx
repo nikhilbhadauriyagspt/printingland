@@ -40,7 +40,7 @@ const EditorialShowcase = () => {
           <span className="text-[10px] md:text-[11px] font-semibold tracking-[0.35em] uppercase text-[#333330]/45 mb-4">
             Editorial Stories
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-light text-[#333330] tracking-tight leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-light text-[#333330]  leading-[1.1]">
             Designed for{" "}
             <span className="font-medium italic text-[#96968B]">Excellence</span>
           </h2>
@@ -81,7 +81,7 @@ const EditorialShowcase = () => {
                         </span>
                       </div>
 
-                      <h3 className="text-[34px] sm:text-[42px] md:text-[56px] xl:text-[72px] font-light text-[#333330] tracking-tight leading-[1.02] uppercase">
+                      <h3 className="text-[34px] sm:text-[42px] md:text-[56px] xl:text-[72px] font-light text-[#333330]  leading-[1.02] uppercase">
                         {section.title}
                         <br />
                         <span className="font-medium italic text-[#96968B]">

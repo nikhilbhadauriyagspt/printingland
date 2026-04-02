@@ -27,7 +27,7 @@ export const MiddleBannerOne = () => (
              className="max-w-xl"
            >
              <span className="inline-block py-1.5 px-4 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest mb-6">Limited Edition</span>
-             <h3 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-6 leading-none drop-shadow-lg">
+             <h3 className="text-4xl md:text-6xl font-black text-white er uppercase mb-6 leading-none drop-shadow-lg">
                Master your <br /><span className="text-blue-400 italic">Workflow.</span>
              </h3>
              <Button size="xl" className="bg-white text-black hover:bg-blue-600 hover:text-white rounded-2xl px-10 h-14 font-black text-xs tracking-widest shadow-2xl transition-all">
@@ -59,7 +59,7 @@ export const MiddleBannerTwo = () => (
              className="max-w-xl"
            >
              <span className="inline-block py-1.5 px-4 rounded-full bg-purple-600 text-white text-[10px] font-black uppercase tracking-widest mb-6">New in Stock</span>
-             <h3 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-6 leading-none drop-shadow-lg">
+             <h3 className="text-4xl md:text-6xl font-black text-white er uppercase mb-6 leading-none drop-shadow-lg">
                High Speed <br /><span className="text-purple-400 italic">Precision.</span>
              </h3>
              <div className="flex justify-end">
@@ -92,7 +92,7 @@ export const MiddleBannerThree = () => (
              whileInView={{ opacity: 1, y: 0 }}
              transition={{ delay: 0.2 }}
            >
-             <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mb-2 leading-none">
+             <h3 className="text-4xl md:text-5xl font-black text-white er uppercase mb-2 leading-none">
                The Print <span className="text-blue-400 italic">Vault.</span>
              </h3>
              <p className="text-white/80 font-bold text-sm uppercase tracking-[0.2em]">Curated Accessories for Professionals</p>

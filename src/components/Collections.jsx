@@ -9,7 +9,7 @@ import banner6 from "@/assets/bannerr/banner6.png";
 export default function Collections() {
   return (
     <section className="  bg-white">
-      <div className="w-full px-4 md:px-8 lg:px-12">
+      <div className="w-full ">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,15 +28,15 @@ export default function Collections() {
           {/* Content */}
           <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 gap-6">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-900/30 mb-4">
-                <Sparkles size={12} className="text-blue-800" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black border border-black mb-4">
+                <Sparkles size={12} className="text-white" />
                 <span className="text-[10px] font-black uppercase tracking-[2px] text-white">Exclusive 2026 Series</span>
               </div>
               
               <h3 className="text-2xl md:text-4xl font-black text-white leading-tight">
-                High-Performance <span className="text-blue-900 text-3xl md:text-5xl">Inventory.</span>
+                Smart Printing <span className="text-black text-3xl md:text-5xl">Solutions.</span>
               </h3>
-              <p className="text-slate-100 text-xs md:text-sm font-bold mt-2 max-w-md hidden md:block">
+              <p className="text-slate-100 text-xs md:text-sm font-bold mt-2  hidden md:block">
                 Precision-engineered for the modern workspace. Experience unmatched speed and clarity.
               </p>
             </div>

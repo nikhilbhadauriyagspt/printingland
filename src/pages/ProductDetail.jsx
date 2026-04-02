@@ -109,7 +109,7 @@ export default function ProductDetail() {
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-24 font-jakarta text-slate-900 overflow-x-hidden">
-      <SEO title={`${product.name} |Printer Club`} description={product.description?.substring(0, 160)} />
+      <SEO title={`${product.name} |Lux Printers`} description={product.description?.substring(0, 160)} />
       
       <div className="max-w-[1400px] mx-auto px-4 md:px-10">
         
@@ -179,7 +179,7 @@ export default function ProductDetail() {
               </h1>
 
               <div className="flex items-baseline gap-4">
-                <span className="text-3xl font-bold text-slate-900 tracking-tight">${parseFloat(product.price).toLocaleString()}</span>
+                <span className="text-3xl font-bold text-slate-900 ">${parseFloat(product.price).toLocaleString()}</span>
                 {product.sale_price && (
                   <span className="text-lg font-medium text-slate-300 line-through">${parseFloat(product.sale_price).toLocaleString()}</span>
                 )}

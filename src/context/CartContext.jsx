@@ -93,6 +93,13 @@ export const CartProvider = ({ children }) => {
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const wishlistCount = wishlist.length;
+  
+  const cartTotal = cart.reduce((total, item) => {
+    const price = typeof item.price === 'string' 
+      ? parseFloat(item.price.replace(/[$,]/g, '')) 
+      : parseFloat(item.price);
+    return total + (isNaN(price) ? 0 : price * item.quantity);
+  }, 0);
 
   return (
     <CartContext.Provider value={{
@@ -106,6 +113,7 @@ export const CartProvider = ({ children }) => {
       isInWishlist,
       cartCount,
       wishlistCount,
+      cartTotal,
       toast,
       showToast,
       isCartDrawerOpen,

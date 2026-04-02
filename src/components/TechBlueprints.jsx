@@ -41,7 +41,7 @@ export default function TechBlueprints() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-blue-600 rounded-full"></div>
         </div>
         <div>
-          <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+          <h2 className="text-4xl font-black text-slate-900 er uppercase leading-none">
             Printer <br /><span className="text-blue-600 italic">Blueprints.</span>
           </h2>
           <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mt-4 flex items-center gap-2">
@@ -66,7 +66,7 @@ export default function TechBlueprints() {
 
             <div className="mb-12">
               <span className="text-[10px] font-black tracking-widest text-blue-600 uppercase">{p.series}</span>
-              <h3 className="text-3xl font-black text-slate-900 tracking-tighter mt-1">{p.name}</h3>
+              <h3 className="text-3xl font-black text-slate-900 er mt-1">{p.name}</h3>
             </div>
 
             {/* Performance Bars */}

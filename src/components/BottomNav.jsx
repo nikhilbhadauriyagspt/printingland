@@ -33,7 +33,7 @@ export default function BottomNav() {
                 <div className="relative text-slate-400">
                   <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-tighter text-slate-400">
+                <span className="text-[10px] font-black uppercase er text-slate-400">
                   {item.name}
                 </span>
               </button>
@@ -60,7 +60,7 @@ export default function BottomNav() {
                   />
                 )}
               </div>
-              <span className={`text-[10px] font-black uppercase tracking-tighter ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
+              <span className={`text-[10px] font-black uppercase er ${isActive ? 'text-slate-900' : 'text-slate-400'}`}>
                 {item.name}
               </span>
             </Link>

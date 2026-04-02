@@ -38,7 +38,7 @@ export default function FlashSale({ products: deals = [] }) {
               <span className="h-1 w-1 rounded-full bg-gray-300"></span>
               <span className="text-[10px] font-black tracking-[0.1em] uppercase text-slate-400">Ends in: 04:22:15</span>
             </div>
-            <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+            <h2 className="text-4xl font-black text-slate-900 er uppercase leading-none">
               Flash <span className="text-slate-400 italic">Sale.</span>
             </h2>
           </div>
@@ -59,7 +59,7 @@ export default function FlashSale({ products: deals = [] }) {
                 <span className="inline-block py-1.5 px-4 rounded-full bg-orange-500 text-white text-[10px] font-black uppercase tracking-widest mb-6 shadow-lg shadow-orange-500/20">
                   Save ${(deal.price * 0.2).toFixed(0)}
                 </span>
-                <h3 className="text-2xl lg:text-3xl font-black text-slate-900 tracking-tighter mb-4 uppercase line-clamp-2">{deal.name}</h3>
+                <h3 className="text-2xl lg:text-3xl font-black text-slate-900 er mb-4 uppercase line-clamp-2">{deal.name}</h3>
                               <div className="flex items-center gap-4 mb-8">
                                 <span className="text-2xl font-black text-slate-900">${deal.price}</span>
                                 <span className="text-lg font-bold text-slate-300 line-through">${(deal.price * 1.25).toFixed(0)}</span>

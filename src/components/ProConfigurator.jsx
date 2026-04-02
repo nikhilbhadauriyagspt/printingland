@@ -44,7 +44,7 @@ export default function ProConfigurator() {
           <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-600/20 to-transparent"></div>
           <div className="relative z-10">
             <span className="text-[10px] font-black tracking-[0.3em] uppercase text-blue-400 mb-4 block">Engineered for Pro</span>
-            <h3 className="text-5xl font-black tracking-tighter mb-6 leading-none">BUILD YOUR <br />ULTIMATE RIG.</h3>
+            <h3 className="text-5xl font-black er mb-6 leading-none">BUILD YOUR <br />ULTIMATE RIG.</h3>
             <p className="text-slate-400 font-bold max-w-md">Customize every component to match your professional workflow. From memory to graphics.</p>
           </div>
           
@@ -75,7 +75,7 @@ export default function ProConfigurator() {
                 </div>
                 <div>
                   <h4 className="font-black text-slate-900 text-sm">{f.title}</h4>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tight">{f.desc}</p>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase ">{f.desc}</p>
                 </div>
               </motion.div>
             )

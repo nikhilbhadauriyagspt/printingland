@@ -49,7 +49,7 @@ export default function TheVault({ products = [] }) {
                   <span className="h-[1px] w-4 bg-blue-600 animate-pulse" />
                   <span className="text-[9px] font-black text-blue-600 uppercase tracking-[0.4em]">Quality Printer</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.85]">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 er uppercase leading-[0.85]">
                   <span className="block mb-2">THE</span>
                   <span className="text-transparent stroke-text-light">VAULT.</span>
                 </h2>
@@ -85,10 +85,10 @@ export default function TheVault({ products = [] }) {
                          <Box size={12} className="text-blue-600" />
                          <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{p.brand_name || 'Authentic'}</span>
                       </div>
-                      <h4 className="text-[15px] font-black text-slate-900 uppercase tracking-tighter line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors mb-2">{p.name}</h4>
+                      <h4 className="text-[15px] font-black text-slate-900 uppercase er line-clamp-2 leading-tight group-hover:text-blue-600 transition-colors mb-2">{p.name}</h4>
                       
                       <div className="mt-auto flex items-center justify-between">
-                         <p className="text-2xl font-black text-slate-900 tracking-tighter">${p.price}</p>
+                         <p className="text-2xl font-black text-slate-900 er">${p.price}</p>
                          <div className="h-12 w-12 rounded-2xl bg-white border border-slate-100 text-slate-900 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-500 shadow-sm">
                             <ArrowUpRight size={20} />
                          </div>

@@ -30,7 +30,7 @@ export default function QuickPicks({ products = [] }) {
               <span className="h-[1px] w-4 bg-blue-600 animate-pulse" />
               <span className="text-[9px] font-black text-blue-600 uppercase tracking-[0.4em]">Essential Helpers</span>
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[0.85] tracking-tight flex flex-col">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[0.85]  flex flex-col">
               <span className="capitalize">Quick</span>
               <span className="italic text-blue-600 capitalize">Picks.</span>
             </h2>
@@ -79,10 +79,10 @@ export default function QuickPicks({ products = [] }) {
                     <div className="flex items-center justify-between mb-2">
                        <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">{p.brand_name || 'Authentic'}</span>
                     </div>
-                    <h4 className="text-lg font-black text-slate-900 capitalize tracking-tight line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight mb-4">{p.name.toLowerCase()}</h4>
+                    <h4 className="text-lg font-black text-slate-900 capitalize  line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight mb-4">{p.name.toLowerCase()}</h4>
                     
                     <div className="mt-auto flex items-center justify-between">
-                       <p className="text-2xl font-black text-slate-900 tracking-tighter">${p.price}</p>
+                       <p className="text-2xl font-black text-slate-900 er">${p.price}</p>
                        <button 
                         onClick={(e) => { 
                           e.preventDefault(); 

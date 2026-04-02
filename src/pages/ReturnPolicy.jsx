@@ -6,7 +6,7 @@ export default function ReturnPolicy() {
     <PolicyLayout
       title="Return Policy"
       subtitle="Read our return and refund policy for your purchases."
-      lastUpdated="April 2, 2026"
+      lastUpdated="April 3, 2026"
     >
       <h2>RETURNS</h2>
       <p>
@@ -15,11 +15,11 @@ export default function ReturnPolicy() {
 
       <h2>RETURN PROCESS</h2>
       <p>
-                 To return an item, please email customer service at <a href="mailto:info@printerclub.shop">info@printerclub.shop</a>.      </p>
+                 To return an item, please email customer service at <a href="mailto:info@luxprinters.shop">info@luxprinters.shop</a>.      </p>
       <div className="bg-slate-50 p-8 rounded-none border border-slate-100 mt-6 not-prose">
         <p className="font-medium text-slate-700 mb-4 italic">Place the item securely in its original packaging and include your proof of purchase, then mail your return to the following address:</p>
-        <address className="not-italic text-slate-900 font-black leading-relaxed uppercase tracking-tighter">
-                    Printer Club <br />
+        <address className="not-italic text-slate-900 font-black leading-relaxed uppercase er">
+                    Lux Printers <br />
                     2300 Lakeland Dr, Flowood, MS 39232, United States
         </address>
         <p className="mt-6 text-blue-600 font-black uppercase text-xs tracking-widest">
@@ -42,7 +42,7 @@ export default function ReturnPolicy() {
       <p>If you have any questions concerning our return policy, please contact us at:</p>
       <div className="bg-slate-50 p-8 rounded-none border border-slate-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-3">
-                     <p className="flex items-center gap-3 text-blue-600 font-black tracking-tight">info@printerclub.shop</p>          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">Contact support for immediate assistance</p>
+                     <p className="flex items-center gap-3 text-blue-600 font-black ">info@luxprinters.shop</p>          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">Contact support for immediate assistance</p>
         </address>
       </div>
     </PolicyLayout>

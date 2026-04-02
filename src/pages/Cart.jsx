@@ -1,192 +1,220 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { 
+  Trash2, 
+  Plus, 
+  Minus, 
+  ArrowRight, 
+  ShoppingBag, 
+  ChevronLeft, 
+  Package, 
+  ShieldCheck, 
+  Truck,
+  Zap,
+  Sparkles
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Plus, Minus, ArrowRight, ShoppingBag, Trash2, ChevronLeft, ShieldCheck, Zap } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { cn } from '../lib/utils';
 
 export default function Cart() {
-  const { cart, removeFromCart, updateQuantity, cartCount } = useCart();
-
-  const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } = useCart();
+  const navigate = useNavigate();
 
   const getImagePath = (images) => {
     try {
       const imgs = typeof images === 'string' ? JSON.parse(images) : images;
       if (Array.isArray(imgs) && imgs.length > 0) return `/${imgs[0]}`;
     } catch (e) { }
-    return "https://via.placeholder.com/200x200?text=Product";
+    return "https://via.placeholder.com/400x400?text=Product";
   };
 
-  if (cart.length === 0) {
-    return (
-      <div className="bg-white min-h-screen font-jakarta text-slate-900 overflow-x-hidden">
-        <SEO title="Empty Archive | Inktrix Printers" />
-        
-        <section className="pt-32 pb-16 border-b border-slate-50 bg-slate-50/30">
-          <div className="w-full px-4 md:px-12 lg:px-20 text-center md:text-left">
-            <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="flex items-center justify-center md:justify-start gap-2 mb-3">
-              <div className="h-[1px] w-8 bg-blue-600" />
-              <span className="text-[10px] font-black uppercase tracking-[3px] text-blue-600">Inventory Status</span>
-            </motion.div>
-            <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none mb-6">
-              Cart is <span className="text-blue-600">Empty.</span>
-            </h1>
-          </div>
-        </section>
-
-        <section className="py-20 flex items-center justify-center min-h-[50vh]">
-          <div className="text-center max-w-xl mx-auto px-8">
-            <div className="h-20 w-20 bg-slate-50 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-slate-100">
-              <ShoppingBag size={32} className="text-slate-200" />
-            </div>
-            <h2 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">No units selected</h2>
-            <p className="text-slate-500 font-bold mb-10 leading-relaxed">Browse our high-performance inventory to find the ideal hardware for your professional workspace.</p>
-            <Link to="/shop" className="inline-flex items-center gap-4 bg-blue-600 text-white px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-slate-900 transition-all shadow-xl active:scale-95 group">
-              Explore Collection <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </section>
-      </div>
-    );
-  }
+  const parsePrice = (price) => {
+    if (typeof price === 'string') {
+      return parseFloat(price.replace(/[$,]/g, '')) || 0;
+    }
+    return parseFloat(price) || 0;
+  };
 
   return (
     <div className="bg-white min-h-screen font-jakarta text-slate-900 overflow-x-hidden">
-      <SEO title="Unit Cart | Inktrix Printers" />
-      
-      {/* --- MINIMAL PAGE HEADER --- */}
-      <section className="pt-32 pb-16 border-b border-slate-50 bg-slate-50/30">
-        <div className="w-full px-4 md:px-12 lg:px-20">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="text-left">
-              <motion.div 
-                initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-2 mb-3"
-              >
-                <div className="h-[1px] w-8 bg-blue-600" />
-                <span className="text-[10px] font-black uppercase tracking-[3px] text-blue-600">Unit Selection</span>
-              </motion.div>
-              <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">
-                Your <span className="text-blue-600">Cart.</span>
-              </h1>
-            </div>
-            <div className="flex items-center gap-2 text-[11px] font-black text-slate-400 uppercase tracking-widest">
-               <ShoppingBag size={14} /> {cartCount} Units Pending
-            </div>
-          </div>
+      <SEO title="Procurement Cart | Lux Printers" description="Review your selected professional printing units before final procurement." />
+
+      {/* --- PURE WHITE CENTERED HEADER --- */}
+      <section className="pt-28 md:pt-40 pb-16 bg-white border-b border-slate-50">
+        <div className="w-full px-4 md:px-10 lg:px-16 text-center max-w-5xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-slate-900 text-[9px] font-black uppercase tracking-[3px] mb-6"
+          >
+            <ShoppingBag size={12} className="text-blue-600 fill-current" />
+            Procurement Summary
+          </motion.div>
+          <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-none mb-6">
+            Your <span className="text-blue-600">Cart.</span>
+          </h1>
+          <p className="text-slate-500 text-base md:text-lg font-bold leading-relaxed max-w-2xl mx-auto">
+            Review your selected professional units and supplies. Finalize your specifications for immediate dispatch.
+          </p>
         </div>
       </section>
 
-      <section className="py-20 min-h-screen">
-        <div className="w-full px-4 md:px-12 lg:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            
-            {/* --- ITEMS LIST --- */}
-            <div className="lg:col-span-8 space-y-6">
-              <AnimatePresence mode="popLayout">
-                {cart.map((item) => (
-                  <motion.div 
-                    layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }}
-                    key={item.id} 
-                    className="group flex flex-col md:flex-row gap-8 items-center p-6 bg-white rounded-[2.5rem] border border-slate-100 hover:border-blue-600 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-blue-500/5"
-                  >
-                    <div className="h-32 w-32 bg-slate-50 rounded-2xl flex items-center justify-center p-4 border border-slate-100 shrink-0 group-hover:bg-white transition-colors overflow-hidden">
-                      <img 
-                        src={getImagePath(item.images)} 
-                        alt={item.name}
-                        className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-110"
-                      />
-                    </div>
-
-                    <div className="flex-1 min-w-0 flex flex-col w-full">
-                      <div className="flex justify-between items-start gap-4">
-                        <div className="space-y-1">
-                          <Link to={`/product/${item.slug}`}>
-                            <h3 className="text-[15px] font-black text-slate-800 hover:text-blue-600 transition-colors uppercase tracking-wide leading-tight line-clamp-1">{item.name}</h3>
-                          </Link>
-                          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Ref: #{item.id.toString().slice(-6)}</p>
-                        </div>
-                        <button 
-                          onClick={() => removeFromCart(item.id)}
-                          className="h-10 w-10 rounded-xl bg-slate-50 text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all flex items-center justify-center shrink-0"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
-
-                      <div className="flex flex-wrap items-center justify-between mt-8 gap-4">
-                        <div className="flex items-center border border-slate-100 rounded-xl h-12 px-1 bg-slate-50">
-                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors"><Minus size={14} /></button>
-                          <span className="text-sm font-black w-10 text-center text-slate-900">{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors"><Plus size={14} /></button>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-[10px] text-slate-400 font-bold mb-1 uppercase tracking-widest">Unit Valuation</p>
-                          <span className="text-xl font-black text-slate-900 tracking-tight">${(item.price * item.quantity).toLocaleString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-
-              <div className="pt-8 flex justify-center">
-                <Link to="/shop" className="group inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[2px] text-slate-400 hover:text-blue-600 transition-all">
-                  <ChevronLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-                  Update Inventory Selection
+      <section className="py-20 bg-white">
+        <div className="w-full px-4 md:px-10 lg:px-16">
+          
+          <AnimatePresence mode="wait">
+            {cart.length === 0 ? (
+              <motion.div 
+                key="empty"
+                initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-32 bg-white rounded-[3rem] border border-slate-100 max-w-4xl mx-auto px-8 shadow-sm"
+              >
+                <div className="h-20 w-20 bg-slate-50 rounded-3xl flex items-center justify-center mx-auto mb-8">
+                  <ShoppingBag size={32} className="text-slate-200" />
+                </div>
+                <h2 className="text-3xl font-black text-slate-900 mb-4 tracking-tight uppercase">Procurement Cart is Empty</h2>
+                <p className="text-slate-400 font-bold mb-10 max-w-xs mx-auto">Select high-performance machines from our inventory to begin your procurement process.</p>
+                <Link to="/shop" className="inline-flex items-center gap-4 bg-slate-900 text-white px-12 py-5 rounded-2xl font-black text-[11px] uppercase tracking-[3px] hover:bg-blue-600 transition-all shadow-xl active:scale-95 group">
+                  Explore Inventory <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-              </div>
-            </div>
-
-            {/* --- SUMMARY CARD --- */}
-            <div className="lg:col-span-4">
-              <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white space-y-10 sticky top-32 overflow-hidden relative shadow-2xl shadow-slate-200">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-32 -mt-32" />
+              </motion.div>
+            ) : (
+              <div className="grid grid-cols-1 xl:grid-cols-12 gap-16 items-start">
                 
-                <div className="space-y-2 relative z-10">
-                  <div className="flex items-center gap-2 text-blue-500">
-                     <Zap size={16} fill="currentColor" />
-                     <span className="text-[10px] font-black uppercase tracking-[3px]">Valuation Protocol</span>
+                {/* --- LEFT: ITEMS LIST --- */}
+                <div className="xl:col-span-8 space-y-6">
+                  <div className="flex items-center justify-between px-4 mb-8">
+                     <h3 className="text-lg font-black text-slate-900 uppercase tracking-widest flex items-center gap-3">
+                        <Package size={20} className="text-blue-600" />
+                        Selected Units ({cartCount})
+                     </h3>
                   </div>
-                  <h2 className="text-2xl font-black tracking-tight uppercase">Summary</h2>
+
+                  <div className="space-y-4">
+                    {cart.map((item) => (
+                      <motion.div 
+                        key={item.id}
+                        layout
+                        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -20 }}
+                        className="group relative flex flex-col md:flex-row items-center gap-8 p-8 bg-white border border-slate-100 rounded-[2.5rem] hover:shadow-2xl hover:border-blue-100 transition-all duration-700"
+                      >
+                        {/* Image */}
+                        <div className="h-32 w-32 md:h-40 md:w-40 bg-white border border-slate-50 rounded-2xl p-4 shrink-0 flex items-center justify-center overflow-hidden">
+                          <img 
+                            src={getImagePath(item.images)} 
+                            alt={item.name} 
+                            className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-700" 
+                          />
+                        </div>
+
+                        {/* Details */}
+                        <div className="flex-1 min-w-0 text-center md:text-left">
+                          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                            <div className="space-y-1">
+                               <h4 className="text-[14px] md:text-[16px] font-black text-slate-900 uppercase tracking-tight line-clamp-2 leading-tight">
+                                 {item.name}
+                               </h4>
+                               <p className="text-[10px] font-black text-blue-600 uppercase tracking-[2px]">Professional Unit</p>
+                            </div>
+                            <div className="text-xl font-black text-slate-900 tracking-tight">
+                               ${(parsePrice(item.price) * item.quantity).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-8">
+                            <div className="flex items-center justify-center md:justify-start gap-4 p-1.5 bg-slate-50 border border-slate-100 rounded-xl w-fit mx-auto md:mx-0">
+                              <button 
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                className="h-8 w-8 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-blue-600 transition-all active:scale-90 disabled:opacity-30"
+                                disabled={item.quantity <= 1}
+                              >
+                                <Minus size={14} />
+                              </button>
+                              <span className="text-[13px] font-black text-slate-900 min-w-[20px] text-center">{item.quantity}</span>
+                              <button 
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                className="h-8 w-8 rounded-lg bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-blue-600 transition-all active:scale-90"
+                              >
+                                <Plus size={14} />
+                              </button>
+                            </div>
+
+                            <button 
+                              onClick={() => removeFromCart(item.id)}
+                              className="flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-red-500 uppercase tracking-widest transition-all group/del"
+                            >
+                              <div className="h-8 w-8 rounded-lg bg-slate-50 group-hover/del:bg-red-50 flex items-center justify-center transition-colors">
+                                 <Trash2 size={14} />
+                              </div>
+                              Remove Unit
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="space-y-6 relative z-10">
-                  <div className="flex justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <span>Hardware Subtotal</span>
-                    <span className="text-white text-sm">${total.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <span>Logistics handling</span>
-                    <span className="text-blue-500 text-sm">Included</span>
-                  </div>
-                  <div className="h-px bg-white/5 w-full" />
-                  <div className="pt-2">
-                    <span className="text-[9px] text-slate-500 font-black uppercase tracking-[4px] mb-2 block">Total Investment</span>
-                    <p className="text-5xl font-black text-blue-500 leading-none tracking-tighter">${total.toLocaleString()}</p>
-                  </div>
-                </div>
+                {/* --- RIGHT: SUMMARY PANEL --- */}
+                <div className="xl:col-span-4 sticky top-32">
+                  <div className="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)]">
+                    <h3 className="text-xl font-black text-slate-900 uppercase tracking-widest mb-10 border-b border-slate-50 pb-6">Summary</h3>
+                    
+                    <div className="space-y-6">
+                      <div className="flex justify-between items-center text-[13px] font-bold text-slate-500 uppercase tracking-widest">
+                        <span>Units Total</span>
+                        <span className="text-slate-900 font-black">${(cartTotal || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-[13px] font-bold text-slate-500 uppercase tracking-widest">
+                        <span>Logistics (Standard)</span>
+                        <span className="text-emerald-600 font-black">Free Delivery</span>
+                      </div>
+                      <div className="flex justify-between items-center text-[13px] font-bold text-slate-500 uppercase tracking-widest">
+                        <span>Estimated Tax</span>
+                        <span className="text-slate-900 font-black">$0.00</span>
+                      </div>
+                      
+                      <div className="h-[1px] w-full bg-slate-100 my-8" />
+                      
+                      <div className="flex justify-between items-end mb-10">
+                        <div className="space-y-1">
+                           <span className="text-[10px] font-black text-slate-400 uppercase tracking-[3px]">Procurement Value</span>
+                           <h4 className="text-3xl font-black text-slate-900 tracking-tight leading-none">${(cartTotal || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h4>
+                        </div>
+                      </div>
 
-                <div className="pt-4 relative z-10 space-y-6">
-                  <Link 
-                    to="/checkout"
-                    className="w-full h-16 bg-blue-600 text-white rounded-full font-black text-[11px] uppercase tracking-[3px] hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-900/20 active:scale-95 group"
-                  >
-                    Proceed to Protocol
-                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                      <button 
+                        onClick={() => navigate('/checkout')}
+                        className="w-full h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center gap-4 font-black text-[11px] uppercase tracking-[3px] hover:bg-blue-600 transition-all shadow-xl active:scale-95 group"
+                      >
+                        Initiate Checkout
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                      </button>
+
+                      <div className="mt-10 grid grid-cols-2 gap-4">
+                         <div className="p-4 bg-slate-50/50 rounded-2xl border border-slate-100 flex flex-col items-center gap-2 text-center">
+                            <ShieldCheck size={18} className="text-blue-600" />
+                            <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest">Secured Node</span>
+                         </div>
+                         <div className="p-4 bg-slate-50/50 rounded-2xl border border-slate-100 flex flex-col items-center gap-2 text-center">
+                            <Truck size={18} className="text-blue-600" />
+                            <span className="text-[9px] font-black text-slate-900 uppercase tracking-widest">Tracked Units</span>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link to="/shop" className="group flex items-center justify-center gap-3 mt-8 text-[11px] font-black text-slate-400 hover:text-blue-600 uppercase tracking-[2px] transition-all">
+                    <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+                    Continue Procuring
                   </Link>
-
-                  <div className="flex items-center justify-center gap-3 text-slate-500">
-                    <ShieldCheck size={16} className="text-blue-600" />
-                    <span className="text-[9px] font-black uppercase tracking-[3px]">Encrypted Transmission</span>
-                  </div>
                 </div>
-              </div>
-            </div>
 
-          </div>
+              </div>
+            )}
+          </AnimatePresence>
+
         </div>
       </section>
     </div>
