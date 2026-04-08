@@ -207,7 +207,7 @@ export default function TermsAndConditions() {
       <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-2 uppercase er">
           <p className="text-slate-900 font-black">Lux Printers </p>
-          <p>2300 Lakeland Dr, Flowood, MS 39232, United States</p>
+          <p>4 River Bend Pl, Flowood, MS 39232, USA</p>
           
           <p className="pt-4 text-blue-600 font-black lowercase">Email: <a href="mailto:info@luxprinters.shop" className="hover:underline">info@luxprinters.shop</a></p>
         </address>

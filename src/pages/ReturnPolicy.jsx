@@ -20,7 +20,7 @@ export default function ReturnPolicy() {
         <p className="font-medium text-slate-700 mb-4 italic">Place the item securely in its original packaging and include your proof of purchase, then mail your return to the following address:</p>
         <address className="not-italic text-slate-900 font-black leading-relaxed uppercase er">
                     Lux Printers <br />
-                    2300 Lakeland Dr, Flowood, MS 39232, United States
+                    4 River Bend Pl, Flowood, MS 39232, USA
         </address>
         <p className="mt-6 text-blue-600 font-black uppercase text-xs tracking-widest">
           Return shipping charges will be paid or reimbursed by us.

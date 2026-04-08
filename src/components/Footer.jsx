@@ -118,7 +118,7 @@ export default function Footer() {
                <div className="flex items-start gap-3">
                   <MapPin size={18} className="text-blue-600 shrink-0 mt-0.5" />
                   <span className="text-[12px] font-black text-slate-700 uppercase  leading-tight">
-                    2300 Lakeland Dr, Flowood, MS 39232, United States
+                    4 River Bend Pl, Flowood, MS 39232, USA
                   </span>
                </div>
                <div className="flex items-center gap-3">

@@ -90,7 +90,7 @@ export default function CookiePolicy() {
       <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-1">
           <p className="text-slate-900">Lux Printers</p>
-          <p>2300 Lakeland Dr, Flowood, MS 39232, United States</p>
+          <p>4 River Bend Pl, Flowood, MS 39232, USA</p>
           <p className="pt-4 text-blue-600 font-bold">info@luxprinters.shop</p>
         </address>
       </div>

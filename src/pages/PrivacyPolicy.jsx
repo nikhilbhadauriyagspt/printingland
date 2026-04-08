@@ -278,7 +278,7 @@ export default function PrivacyPolicy() {
       <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed">
          Lux Printers <br/>
-          2300 Lakeland Dr, Flowood, MS 39232, United States
+          4 River Bend Pl, Flowood, MS 39232, USA
         </address>
       </div>
 

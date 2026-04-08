@@ -83,7 +83,7 @@ export default function Contact() {
               <div className="grid gap-4">
                 {[
                   { icon: <Mail size={18} />, label: "Email Support", val: "info@luxprinters.shop", link: "mailto:info@luxprinters.shop" },
-                  { icon: <MapPin size={18} />, label: "Location", val: "2300 Lakeland Dr, Flowood, MS 39232, USA", link: "#" },
+                  { icon: <MapPin size={18} />, label: "Location", val: "4 River Bend Pl, Flowood, MS 39232, USA", link: "#" },
                  
                 ].map((item, i) => (
                   <div key={i} className="p-8 bg-white border border-slate-100 rounded-2xl group hover:border-blue-600 transition-all duration-500 shadow-sm hover:shadow-xl">
