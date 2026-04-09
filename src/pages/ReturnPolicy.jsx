@@ -6,7 +6,7 @@ export default function ReturnPolicy() {
     <PolicyLayout
       title="Return Policy"
       subtitle="Read our return and refund policy for your purchases."
-      lastUpdated="April 9, 2026"
+      lastUpdated="April 10, 2026"
     >
       <h2>RETURNS</h2>
       <p>
@@ -15,12 +15,12 @@ export default function ReturnPolicy() {
 
       <h2>RETURN PROCESS</h2>
       <p>
-                 To return an item, please email customer service at <a href="mailto:info@luxprinters.shop">info@luxprinters.shop</a>.      </p>
+                 To return an item, please email customer service at <a href="mailto:info@iconicprinters.shop">info@iconicprinters.shop</a>.      </p>
       <div className="bg-slate-50 p-8 rounded-none border border-slate-100 mt-6 not-prose">
         <p className="font-medium text-slate-700 mb-4 italic">Place the item securely in its original packaging and include your proof of purchase, then mail your return to the following address:</p>
         <address className="not-italic text-slate-900 font-black leading-relaxed uppercase er">
-                    Lux Printers <br />
-                    4 River Bend Pl, Flowood, MS 39232, USA
+                    Iconic Printers <br />
+                    8560 Florida Blvd, Baton Rouge, LA 70815, USA
         </address>
         <p className="mt-6 text-blue-600 font-black uppercase text-xs tracking-widest">
           Return shipping charges will be paid or reimbursed by us.
@@ -42,7 +42,7 @@ export default function ReturnPolicy() {
       <p>If you have any questions concerning our return policy, please contact us at:</p>
       <div className="bg-slate-50 p-8 rounded-none border border-slate-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-3">
-                     <p className="flex items-center gap-3 text-blue-600 font-black ">info@luxprinters.shop</p>          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">Contact support for immediate assistance</p>
+                     <p className="flex items-center gap-3 text-blue-600 font-black ">info@iconicprinters.shop</p>          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">Contact support for immediate assistance</p>
         </address>
       </div>
     </PolicyLayout>

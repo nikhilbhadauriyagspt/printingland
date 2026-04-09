@@ -13,7 +13,7 @@ const Hero = () => {
             <img
               src={banner2}
               alt="Promotion Banner"
-              className="w-full h-auto"
+              className="w-full md:h-[850px]"
             />
           </Link>
         </div>

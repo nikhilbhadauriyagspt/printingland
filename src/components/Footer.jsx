@@ -111,20 +111,19 @@ export default function Footer() {
               <img src="/logo/logo.png" alt="Logo" className="h-14 w-auto" />
             </Link>
             <p className="text-slate-500 text-[13px] font-bold leading-relaxed max-w-sm">
-              The United States' premier source for professional-grade printing solutions. Precision-engineered for excellence.
-            </p>
+Delivering top-tier printing solutions across the United States, engineered for precision and reliability.            </p>
             
             <div className="pt-2 space-y-4">
                <div className="flex items-start gap-3">
                   <MapPin size={18} className="text-blue-600 shrink-0 mt-0.5" />
                   <span className="text-[12px] font-black text-slate-700 uppercase  leading-tight">
-                    4 River Bend Pl, Flowood, MS 39232, USA
+                    8560 Florida Blvd, Baton Rouge, LA 70815, USA
                   </span>
                </div>
                <div className="flex items-center gap-3">
                   <Mail size={18} className="text-blue-600 shrink-0" />
-                  <a href="mailto:info@luxprinters.shop" className="text-[15px] font-black text-slate-700  hover:text-blue-600 transition-colors">
-                    info@luxprinters.shop
+                  <a href="mailto:info@iconicprinters.shop" className="text-[15px] font-black text-slate-700  hover:text-blue-600 transition-colors">
+                    info@iconicprinters.shop
                   </a>
                </div>
                
@@ -178,7 +177,7 @@ export default function Footer() {
         {/* --- BOTTOM SECTION --- */}
         <div className="pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[9px] text-slate-400 font-black uppercase tracking-[4px]">
-            © 2026 Lux Printers. All rights reserved.
+            © 2026 Iconic Printers. All rights reserved.
           </p>
           
           <div className="flex items-center gap-6">

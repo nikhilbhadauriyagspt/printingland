@@ -1,70 +1,69 @@
 import React from 'react';
-import { Truck, ShieldCheck, Zap, Headphones } from 'lucide-react';
+import { Truck, RotateCcw, ShieldCheck, Headphones, CreditCard } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const features = [
   {
-    icon: <Truck size={28} />,
-    title: "Swift Logistics",
-    desc: "Tracked worldwide delivery",
-    color: "blue"
+    icon: <Truck size={24} className="text-blue-600" />,
+    title: "FREE SHIPPING",
+    desc: "On all orders"
   },
   {
-    icon: <ShieldCheck size={28} />,
-    title: "Ironclad Security",
-    desc: "Next-gen payment protection",
-    color: "emerald"
+    icon: <RotateCcw size={24} className="text-blue-600" />,
+    title: "MONEY GUARANTEE",
+    desc: "7 days money back"
   },
   {
-    icon: <Zap size={28} />,
-    title: "Elite Selection",
-    desc: "Curated premium printer",
-    color: "amber"
+    icon: <ShieldCheck size={24} className="text-blue-600" />,
+    title: "SAFE SHOPPING",
+    desc: "Safe shopping guarantee"
   },
   {
-    icon: <Headphones size={28} />,
-    title: "Infinite Support",
-    desc: "24/7 dedicated assistance",
-    color: "rose"
+    icon: <Headphones size={24} className="text-blue-600" />,
+    title: "ONLINE SUPPORT",
+    desc: "Support 24/24h on day"
+  },
+  {
+    icon: <CreditCard size={24} className="text-blue-600" />,
+    title: "PAYMENT METHOD",
+    desc: "Many different ways"
   }
 ];
 
 export default function Features() {
   return (
-    <section className="w-full bg-slate-50/50 py-12 md:py-16 border-y border-slate-100">
-      <div className="w-full px-4 md:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+    <section className="w-full bg-white py-12 md:py-16 border-y border-slate-100">
+      <div className="w-full px-4 md:px-10 lg:px-16 max-w-[1920px] mx-auto">
+        <div className="flex flex-wrap xl:flex-nowrap items-center justify-between gap-10 xl:gap-0">
           {features.map((item, index) => (
-            <motion.div 
-              key={index} 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group relative flex items-center gap-6 p-8 bg-white border border-slate-200/60 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-500/30 transition-all duration-500 overflow-hidden"
-            >
-              {/* Background Glow */}
-              <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-slate-50 rounded-full group-hover:bg-blue-50 transition-colors duration-500 blur-3xl opacity-50" />
-              
-              <div className="relative shrink-0 flex items-center justify-center">
-                <div className="h-16 w-16 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-600 group-hover:bg-blue-600 group-hover:text-white group-hover:rotate-[10deg] transition-all duration-500 shadow-inner">
+            <React.Fragment key={index}>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-5 group flex-1 min-w-[240px] xl:min-w-0 xl:px-6"
+              >
+                {/* Icon in Thin Circular Border */}
+                <div className="h-14 w-14 rounded-full border border-slate-200 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:border-blue-600 group-hover:bg-blue-50/50">
                   {item.icon}
                 </div>
-                {/* Accent Dot */}
-                <div className="absolute -top-1 -right-1 h-3 w-3 bg-blue-500 rounded-full border-2 border-white scale-0 group-hover:scale-100 transition-transform duration-500" />
-              </div>
+                
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-[12px] xl:text-[13px] font-black text-slate-900 uppercase tracking-widest leading-none">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-400 text-[10px] xl:text-[11px] font-bold uppercase tracking-wider">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
 
-              <div className="relative flex flex-col gap-1">
-                <h3 className="text-[14px] font-black text-slate-900 uppercase tracking-[0.1em] group-hover:text-blue-600 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-slate-500 text-[12px] font-medium tracking-wide">
-                  {item.desc}
-                </p>
-                <div className="w-8 h-1 bg-slate-100 mt-1 rounded-full group-hover:w-full group-hover:bg-blue-600 transition-all duration-500" />
-              </div>
-            </motion.div>
+              {/* Vertical Divider - only visible on Desktop (xl) and between items */}
+              {index !== features.length - 1 && (
+                <div className="hidden xl:block h-10 w-[1px] bg-slate-100 shrink-0" />
+              )}
+            </React.Fragment>
           ))}
         </div>
       </div>

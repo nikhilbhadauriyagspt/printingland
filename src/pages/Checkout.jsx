@@ -156,7 +156,7 @@ export default function Checkout() {
             <CheckCircle2 size={48} />
           </motion.div>
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight leading-none">Order confirmed!</h1>
+            <h1 className="text-4xl font-bold  leading-none">Order confirmed!</h1>
             <p className="text-slate-500 font-medium leading-relaxed">
                 Thank you for your purchase. Your order ID is <span className="font-bold text-slate-900">#{orderId}</span>.
                 We've sent a confirmation email to <a href={`mailto:${formData.email}`} className="font-bold text-slate-900 hover:text-blue-600 transition-colors underline decoration-blue-500/30 underline-offset-4">{formData.email}</a>.
@@ -189,7 +189,7 @@ export default function Checkout() {
                     <div key={s} className={cn("h-2 w-8 rounded-full transition-all duration-500", step >= s ? "bg-blue-500" : "bg-gray-100")} />
                 ))}
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-none">
+            <h1 className="text-3xl md:text-5xl font-bold text-slate-900  leading-none">
               {step === 1 ? 'Shipping details' : 'Payment method'}
             </h1>
             <p className="text-slate-500 font-medium text-base">Step {step} of 2 — Secure checkout</p>
@@ -358,7 +358,7 @@ export default function Checkout() {
                 <div className="h-px bg-gray-200 w-full" />
                 <div className="flex justify-between items-end">
                   <span className="text-base font-bold text-slate-900">Grand total</span>
-                  <span className="text-4xl font-bold text-blue-600 leading-none tracking-tighter">${total.toLocaleString()}</span>
+                  <span className="text-4xl font-bold text-blue-600 leading-none ">${total.toLocaleString()}</span>
                 </div>
               </div>
               <div className="flex items-center justify-center gap-3 text-slate-300">

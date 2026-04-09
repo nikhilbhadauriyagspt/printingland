@@ -7,11 +7,11 @@ export default function CookiePolicy() {
     <PolicyLayout
       title="Cookie policy"
       subtitle="This cookie policy explains how we use cookies and similar technologies to provide you with a better shopping experience."
-      lastUpdated="April 9, 2026"
+      lastUpdated="April 10, 2026"
     >
       <p className="lead">
-        This cookie policy explains howLux Printers
-        ("company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://luxprinters.shop/">https://luxprinters.shop/</a>
+        This cookie policy explains howIconic Printers
+        ("company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://iconicprinters.shop/">https://iconicprinters.shop/</a>
       </p>
       <p>
         This policy should be read together with our <Link to="/privacy-policy">Privacy policy</Link> and <Link to="/terms-and-conditions">Terms and conditions</Link>.
@@ -80,7 +80,7 @@ export default function CookiePolicy() {
         We do not sell personal information. If you have any concerns regarding how your data is shared for advertising, you may exercise your rights by:
       </p>
       <ul>
-        <li>Emailing: <a href="mailto:info@luxprinters.shop">info@luxprinters.shop</a></li>
+        <li>Emailing: <a href="mailto:info@iconicprinters.shop">info@iconicprinters.shop</a></li>
         <li>Visiting: <Link to="/contact">Contact us</Link></li>
       </ul>
 
@@ -89,9 +89,9 @@ export default function CookiePolicy() {
       <p>If you have any questions regarding this cookie policy, please contact us:</p>
       <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-1">
-          <p className="text-slate-900">Lux Printers</p>
-          <p>4 River Bend Pl, Flowood, MS 39232, USA</p>
-          <p className="pt-4 text-blue-600 font-bold">info@luxprinters.shop</p>
+          <p className="text-slate-900">Iconic Printers</p>
+          <p>8560 Florida Blvd, Baton Rouge, LA 70815, USA</p>
+          <p className="pt-4 text-blue-600 font-bold">info@iconicprinters.shop</p>
         </address>
       </div>
     </PolicyLayout>

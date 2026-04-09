@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://luxprinters.shop/sitemap.xml
+Sitemap: https://iconicprinters.shop/sitemap.xml

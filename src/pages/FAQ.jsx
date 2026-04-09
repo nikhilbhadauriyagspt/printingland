@@ -58,7 +58,7 @@ export default function FAQ() {
   return (
     <div className="bg-white min-h-screen font-jakarta text-slate-900">
       <SEO 
-        title="FAQ | Lux Printers" 
+        title="FAQ | Iconic Printers" 
         description="Find answers to common questions about our printers and delivery."
       />
 

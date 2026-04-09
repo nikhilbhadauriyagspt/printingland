@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, Printer, Sparkles, ShieldCheck, Zap } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from 'lucide-react';
 import API_BASE_URL from '../config';
 import SEO from '@/components/SEO';
 import { cn } from '../lib/utils';
@@ -57,126 +57,100 @@ export default function UserLogin() {
   };
 
   return (
-    <div className="bg-white min-h-screen font-jakarta text-slate-900 overflow-hidden flex flex-col lg:flex-row">
-      <SEO title="Sign In | Lux Printers" />
+    <div className="min-h-screen font-jakarta text-slate-900 bg-slate-50 flex items-center justify-center p-4 relative overflow-hidden">
+      <SEO title="Sign In | Iconic Printers" />
 
-      {/* --- LEFT: CONTENT SIDE --- */}
-      <div className="w-full lg:w-[45%] bg-slate-900 p-8 md:p-16 lg:p-24 flex flex-col justify-between relative overflow-hidden shrink-0">
-         {/* Decorative Blurs */}
-         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] -mr-48 -mt-48" />
-         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] -ml-48 -mb-48" />
+      {/* Subtle Background Accents */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-400/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-400/10 rounded-full blur-[120px] pointer-events-none" />
 
-         <div className="relative z-10">
-            <Link to="/" className="inline-block mb-20">
-               <img src="/logo/logo.png" alt="Logo" className="h-10 brightness-0 invert" />
-            </Link>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md bg-white rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 p-8 sm:p-12 relative z-10"
+      >
+        <div className="text-center mb-10">
+          <Link to="/" className="inline-block mb-8">
+            <img src="/logo/logo.png" alt="Logo" className="h-8 mx-auto" />
+          </Link>
+          <h1 className="text-3xl font-black text-slate-900 ">Welcome Back</h1>
+          <p className="text-slate-500 font-medium text-sm mt-2">Sign in to manage your professional printing setup.</p>
+        </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="space-y-8 pt-20"
-            >
-               <div className="inline-flex items-center  gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-blue-400 text-[10px] font-black uppercase tracking-[3px]">
-                  <Sparkles size={14} className="fill-current" />
-                  Welcome Back
-               </div>
-               <h1 className="text-5xl md:text-6xl font-black text-white leading-[1] ">
-                  Sign In to  <span className="text-blue-500 underline decoration-blue-500/30 underline-offset-8">Account.</span>
-               </h1>
-               <p className="text-slate-400 text-lg md:text-xl font-bold leading-relaxed max-w-md">
-                  Access your machine inventory, track orders, and manage your printing supplies in one place.
-               </p>
-            </motion.div>
-         </div>
-
-         
-      </div>
-
-      {/* --- RIGHT: FORM SIDE --- */}
-      <div className="flex-1 bg-white p-8 md:p-16 lg:p-24 flex items-center justify-center relative">
-         <div className="w-full max-w-md space-y-12">
-            <div className="lg:hidden text-center mb-12">
-               <h2 className="text-3xl font-black text-slate-900 ">Sign In</h2>
-               <p className="text-slate-400 font-bold mt-2">Enter your credentials below</p>
-            </div>
-
-            <form onSubmit={handleLogin} className="space-y-8">
-              <AnimatePresence>
-                {error && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="p-5 bg-red-50 text-red-600 text-[13px] font-bold rounded-2xl border border-red-100 flex items-center gap-3"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-red-600 shrink-0 animate-pulse" />
-                    {error}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <div className="space-y-3">
-                <label className="text-[10px] font-black text-slate-900 uppercase tracking-[2px] ml-1">Email Address</label>
-                <div className="relative group">
-                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors" size={20} />
-                  <input
-                    required
-                    type="email"
-                    placeholder="name@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-16 pl-14 pr-6 bg-slate-50 border border-slate-100 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-sm font-bold transition-all placeholder:text-slate-300"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex justify-between items-center px-1">
-                  <label className="text-[10px] font-black text-slate-900 uppercase tracking-[2px]">Password</label>
-                  <Link to="#" className="text-[10px] font-black text-blue-600 uppercase tracking-[1px] hover:text-slate-900 transition-colors">Forgot?</Link>
-                </div>
-                <div className="relative group">
-                  <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors" size={20} />
-                  <input
-                    required
-                    type={showPassword ? "text" : "password"}
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-16 pl-14 pr-14 bg-slate-50 border border-slate-100 rounded-2xl focus:border-blue-600 focus:bg-white outline-none text-sm font-bold transition-all placeholder:text-slate-300"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-900 transition-colors"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
-              </div>
-
-              <button
-                disabled={loading}
-                className="w-full h-16 bg-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-[3px] hover:bg-blue-600 transition-all shadow-xl active:scale-95 disabled:opacity-50 flex items-center justify-center gap-4 mt-10 group"
+        <form onSubmit={handleLogin} className="space-y-6">
+          <AnimatePresence>
+            {error && (
+              <motion.div 
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden"
               >
-                {loading ? <Loader2 className="animate-spin" size={22} /> : (
-                  <>
-                    Sign In Account
-                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </button>
-            </form>
+                <div className="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-2xl border border-red-100 mb-2 text-center">
+                  {error}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-            <div className="pt-8 border-t border-slate-50 text-center">
-              <p className="text-slate-400 font-bold text-sm">
-                New to Lux Printers?{' '}
-                <Link to="/signup" className="text-blue-600 font-black hover:text-slate-900 transition-colors">Create Account</Link>
-              </p>
+          <div className="space-y-4">
+            <div className="relative group">
+              <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={18} />
+              <input
+                required
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full h-14 pl-12 pr-6 bg-slate-50/50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/5 outline-none text-sm font-bold transition-all placeholder:text-slate-400 placeholder:font-medium"
+              />
             </div>
-         </div>
-      </div>
+
+            <div className="relative group">
+              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={18} />
+              <input
+                required
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full h-14 pl-12 pr-12 bg-slate-50/50 border border-slate-200 rounded-2xl focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/5 outline-none text-sm font-bold transition-all placeholder:text-slate-400 placeholder:font-medium"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-900 transition-colors"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+          </div>
+
+          <div className="flex justify-end px-1">
+            <Link to="#" className="text-xs font-black text-blue-600 hover:text-slate-900 transition-colors">Forgot Password?</Link>
+          </div>
+
+          <button
+            disabled={loading}
+            className="w-full h-14 bg-slate-900 text-white rounded-2xl font-black text-[12px] uppercase tracking-wider hover:bg-blue-600 transition-all shadow-lg shadow-slate-900/10 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3 mt-8 group"
+          >
+            {loading ? <Loader2 className="animate-spin" size={18} /> : (
+              <>
+                Sign In
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </>
+            )}
+          </button>
+        </form>
+
+        <div className="mt-8 text-center">
+          <p className="text-slate-500 font-medium text-sm">
+            Don't have an account?{' '}
+            <Link to="/signup" className="text-blue-600 font-bold hover:text-slate-900 transition-colors">Create one</Link>
+          </p>
+        </div>
+      </motion.div>
     </div>
   );
 }
