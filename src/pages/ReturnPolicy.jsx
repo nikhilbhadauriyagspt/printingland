@@ -6,7 +6,7 @@ export default function ReturnPolicy() {
     <PolicyLayout
       title="Return Policy"
       subtitle="Read our return and refund policy for your purchases."
-      lastUpdated="April 11, 2026"
+      lastUpdated="April 14, 2026"
     >
       <h2>RETURNS</h2>
       <p>
@@ -15,12 +15,12 @@ export default function ReturnPolicy() {
 
       <h2>RETURN PROCESS</h2>
       <p>
-                 To return an item, please email customer service at <a href="mailto:info@printerloop.shop">info@printerloop.shop</a>.      </p>
+                 To return an item, please email customer service at <a href="mailto:info@printease.shop">info@printease.shop</a>.      </p>
       <div className="bg-slate-50 p-8 rounded-none border border-slate-100 mt-6 not-prose">
         <p className="font-medium text-slate-700 mb-4 italic">Place the item securely in its original packaging and include your proof of purchase, then mail your return to the following address:</p>
         <address className="not-italic text-slate-900 font-black leading-relaxed uppercase er">
-                    Printer Loop <br />
-                    1311 N Hancock St Philadelphia, PA 19122, USA
+                    Print Ease <br />
+                    1901 S Woodrow St, Little Rock, AR 72204, USA
         </address>
         <p className="mt-6 text-blue-600 font-black uppercase text-xs tracking-widest">
           Return shipping charges will be paid or reimbursed by us.
@@ -42,7 +42,7 @@ export default function ReturnPolicy() {
       <p>If you have any questions concerning our return policy, please contact us at:</p>
       <div className="bg-slate-50 p-8 rounded-none border border-slate-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-3">
-                     <p className="flex items-center gap-3 text-blue-600 font-black ">info@printerloop.shop</p>          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">Contact support for immediate assistance</p>
+                     <p className="flex items-center gap-3 text-blue-600 font-black ">info@printease.shop</p>          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">Contact support for immediate assistance</p>
         </address>
       </div>
     </PolicyLayout>

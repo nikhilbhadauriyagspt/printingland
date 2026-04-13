@@ -7,11 +7,11 @@ export default function CookiePolicy() {
     <PolicyLayout
       title="Cookie policy"
       subtitle="This cookie policy explains how we use cookies and similar technologies to provide you with a better shopping experience."
-      lastUpdated="April 11, 2026"
+      lastUpdated="April 14, 2026"
     >
       <p className="lead">
-        This cookie policy explains howPrinter Loop
-        ("company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://printerloop.shop/">https://printerloop.shop/</a>
+        This cookie policy explains howPrint Ease
+        ("company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://printease.shop/">https://printease.shop/</a>
       </p>
       <p>
         This policy should be read together with our <Link to="/privacy-policy">Privacy policy</Link> and <Link to="/terms-and-conditions">Terms and conditions</Link>.
@@ -80,7 +80,7 @@ export default function CookiePolicy() {
         We do not sell personal information. If you have any concerns regarding how your data is shared for advertising, you may exercise your rights by:
       </p>
       <ul>
-        <li>Emailing: <a href="mailto:info@printerloop.shop">info@printerloop.shop</a></li>
+        <li>Emailing: <a href="mailto:info@printease.shop">info@printease.shop</a></li>
         <li>Visiting: <Link to="/contact">Contact us</Link></li>
       </ul>
 
@@ -89,9 +89,9 @@ export default function CookiePolicy() {
       <p>If you have any questions regarding this cookie policy, please contact us:</p>
       <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-1">
-          <p className="text-slate-900">Printer Loop</p>
-          <p>1311 N Hancock St Philadelphia, PA 19122, USA</p>
-          <p className="pt-4 text-blue-600 font-bold">info@printerloop.shop</p>
+          <p className="text-slate-900">Print Ease</p>
+          <p>1901 S Woodrow St, Little Rock, AR 72204, USA</p>
+          <p className="pt-4 text-blue-600 font-bold">info@printease.shop</p>
         </address>
       </div>
     </PolicyLayout>

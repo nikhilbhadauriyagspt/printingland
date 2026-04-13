@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Mail, Loader2, MapPin, Sparkles, ShieldCheck, ArrowRight, Phone, Send } from 'lucide-react';
+import { Mail, Loader2, MapPin, ShieldCheck, Send } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import API_BASE_URL from '../config';
-import { cn } from '../lib/utils';
-import { motion } from 'framer-motion';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -72,59 +70,61 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white text-slate-900 pt-20 pb-10 font-jakarta overflow-hidden relative border-t border-slate-100">
-     
-      
-      <div className="w-full px-4 md:px-10 lg:px-16 max-w-[1920px] mx-auto">
+    <footer className="bg-white text-slate-900 pt-16 pb-10 font-['Poppins'] border-t border-slate-100">
+      <div className="max-w-[1920px] mx-auto px-4 md:px-10 lg:px-20">
         
-        {/* --- TOP SECTION: BRAND & NEWSLETTER --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20 items-center">
-          <div className="lg:col-span-5 space-y-6">
-            <Link to="/" className="inline-block group">
-              <img src="/logo/logo.png" alt="Printer Loop" className="h-12 md:h-16 w-auto" />
-            </Link>
-            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed max-w-md">
-              Delivering high-performance industrial printing solutions nationwide. Engineered for precision, built for reliability, and supported by experts.
-            </p>
+        {/* --- TOP SECTION: NEWSLETTER --- */}
+        <div className="mb-16 p-8 md:p-12 bg-blue-50 border border-blue-100 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="max-w-xl text-center lg:text-left">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Join Our Newsletter</h3>
+            <p className="text-slate-500 text-sm md:text-base font-medium">Get the latest deals and printer news delivered to your inbox every week.</p>
           </div>
-
-          <div className="lg:col-span-7 bg-slate-50 border border-slate-100 p-8 md:p-10 rounded-[2.5rem] relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full blur-3xl -mr-16 -mt-16 transition-colors" />
-            
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="space-y-2 text-center md:text-left">
-                <h3 className="text-xl md:text-2xl font-black  ">Stay Updated.</h3>
-                <p className="text-slate-500 text-xs md:text-sm font-medium  tracking-wider">Subscribe for exclusive insights and new arrivals.</p>
-              </div>
-              
-              <form onSubmit={handleSubscribe} className="flex gap-2 w-full max-w-md">
-                <input
-                  required type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="flex-1 bg-white border border-slate-200 rounded-xl px-6 py-4 text-sm font-bold outline-none focus:border-blue-500 transition-all placeholder:text-slate-300 shadow-sm"
-                />
-                <button
-                  disabled={loading}
-                  className="h-14 w-14 bg-slate-900 text-white rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all shadow-lg active:scale-95 shrink-0"
-                >
-                  {loading ? <Loader2 className="animate-spin" size={20} /> : <Send size={20} />}
-                </button>
-              </form>
-            </div>
-          </div>
+          
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-0 w-full max-w-lg border-2 border-blue-600">
+            <input
+              required type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your Email Address"
+              className="flex-1 bg-white px-6 py-4 text-sm font-medium outline-none placeholder:text-slate-400"
+            />
+            <button
+              disabled={loading}
+              className="bg-blue-600 text-white px-8 py-4 text-sm font-bold flex items-center justify-center gap-2 hover:bg-slate-900 transition-all shrink-0 uppercase tracking-widest"
+            >
+              {loading ? <Loader2 className="animate-spin" size={18} /> : <>Subscribe <Send size={16} /></>}
+            </button>
+          </form>
         </div>
 
         {/* --- MAIN LINKS GRID --- */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-12 mb-20 border-t border-slate-100 pt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
-          {/* Quick Links Column */}
-          <div className="lg:col-span-3">
-            <h4 className="text-[11px] font-black uppercase tracking-[3px] text-blue-600 mb-8">Quick Menu</h4>
-            <ul className="space-y-4">
+          {/* Brand Info */}
+          <div className="space-y-6">
+            <Link to="/">
+              <img src="/logo/logo.png" alt="Print Ease" className="h-10 md:h-12" />
+            </Link>
+            <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
+              We provide the best printers and accessories for your home and office. Trust us for high quality and great service.
+            </p>
+            <div className="space-y-4 pt-2">
+               <div className="flex items-start gap-3">
+                  <MapPin size={18} className="text-blue-600 mt-0.5" />
+                  <span className="text-sm text-slate-600">1901 S Woodrow St, Little Rock, AR 72204, USA</span>
+               </div>
+               <div className="flex items-center gap-3">
+                  <Mail size={18} className="text-blue-600" />
+                  <a href="mailto:info@printease.shop" className="text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors">info@printease.shop</a>
+               </div>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">Quick Links</h4>
+            <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-slate-500 hover:text-blue-600 text-[13px] font-black transition-all flex items-center gap-3 group">
-                    <span className="h-[2px] w-0 bg-blue-600 group-hover:w-4 transition-all duration-300" />
+                  <Link to={link.path} className="text-slate-500 hover:text-blue-600 text-sm font-medium transition-all inline-block">
                     {link.name}
                   </Link>
                 </li>
@@ -132,14 +132,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Categories Column */}
-          <div className="lg:col-span-3">
-            <h4 className="text-[11px] font-black uppercase tracking-[3px] text-blue-600 mb-8">Collections</h4>
-            <ul className="space-y-4">
+          {/* Collections */}
+          <div>
+            <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">Collections</h4>
+            <ul className="space-y-3">
               {categories.map((cat) => (
                 <li key={cat.id}>
-                  <Link to={`/shop?category=${cat.slug}`} className="text-slate-500 hover:text-blue-600 text-[13px] font-black  transition-all flex items-center gap-3 group">
-                    <span className="h-[2px] w-0 bg-blue-600 group-hover:w-4 transition-all duration-300" />
+                  <Link to={`/shop?category=${cat.slug}`} className="text-slate-500 hover:text-blue-600 text-sm font-medium transition-all inline-block capitalize">
                     {cat.name}
                   </Link>
                 </li>
@@ -147,65 +146,39 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal/Support Column */}
-          <div className="lg:col-span-3">
-            <h4 className="text-[11px] font-black uppercase tracking-[3px] text-blue-600 mb-8">Assistance</h4>
-            <ul className="space-y-4">
+          {/* Assistance */}
+          <div>
+            <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">Support</h4>
+            <ul className="space-y-3">
               {legalLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-slate-500 hover:text-blue-600 text-[13px] font-black  transition-all flex items-center gap-3 group">
-                    <span className="h-[2px] w-0 bg-blue-600 group-hover:w-4 transition-all duration-300" />
+                  <Link to={link.path} className="text-slate-500 hover:text-blue-600 text-sm font-medium transition-all inline-block">
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
-          {/* Contact Column */}
-          <div className="lg:col-span-3 space-y-8">
-            <h4 className="text-[11px] font-black uppercase tracking-[3px] text-blue-600 mb-8">Contact Us</h4>
-            <div className="space-y-6">
-               <div className="flex items-start gap-4 group">
-                  <div className="h-10 w-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
-                    <MapPin size={18} />
-                  </div>
-                  <span className="text-[13px] font-bold text-slate-600 leading-relaxed  ">
-                    1311 N Hancock St Philadelphia, PA 19122, USA
-                  </span>
-               </div>
-               <div className="flex items-center gap-4 group">
-                  <div className="h-10 w-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
-                    <Mail size={18} />
-                  </div>
-                  <a href="mailto:info@printerloop.shop" className="text-[15px] font-black text-slate-900 hover:text-blue-600 transition-colors  ">
-                    info@printerloop.shop
-                  </a>
-               </div>
-            </div>
-          </div>
         </div>
 
         {/* --- BOTTOM SECTION --- */}
-        <div className="pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-          <div className="flex flex-col gap-2">
-            <p className="text-[10px] text-slate-400 font-black uppercase tracking-[3px]">
-              © 2026 Printer Loop. All rights reserved.
-            </p>
-          </div>
+        <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs text-slate-400 font-medium">
+            © 2026 Print Ease. All rights reserved.
+          </p>
           
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-3 py-2 px-4 bg-slate-50 rounded-xl border border-slate-100 shadow-sm">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
                <ShieldCheck size={16} className="text-blue-600" />
-               <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest leading-none">SSL Secure</span>
+               <span className="text-[11px] font-bold text-slate-900 uppercase tracking-wider">SSL Secure Checkout</span>
             </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-5 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-6 " />
           </div>
         </div>
 
-        <div className="mt-10 text-center border-t border-slate-50 pt-8">
-           <p className="text-slate-300 text-[9px] font-bold uppercase tracking-[2px]">
-              For informational purposes only. No software distribution.
+        <div className="mt-8 text-center border-t border-slate-50 pt-6">
+           <p className="text-slate-600 text-[10px] font-medium italic">
+              Disclaimer - For Informational only. No software installation or distribution.
            </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MoveRight, Zap, Scan, Shield } from 'lucide-react';
+import { ArrowRight, Printer } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // Assets
 import trip1 from '@/assets/bannerr/trip1.jpg';
@@ -12,83 +13,73 @@ const banners = [
     id: "01",
     title: "Workforce Pro Series",
     subtitle: "Enterprise Solutions",
-    desc: "Industrial-grade efficiency designed for high-volume corporate environments.",
+    desc: "Industrial-grade efficiency for high-volume corporate environments.",
     image: trip1,
-    icon: <Zap size={18} />
   },
   {
     id: "02",
     title: "Precision Laser Tech",
     subtitle: "Advanced Documentation",
-    desc: "Next-gen thermal imaging for crystal clear documentation and accuracy.",
+    desc: "Next-gen imaging for crystal clear documentation and accuracy.",
     image: trip2,
-    icon: <Scan size={18} />
   },
   {
     id: "03",
     title: "Supply Eco System",
     subtitle: "Authentic Components",
-    desc: "Authentic manufacturer components ensuring peak mechanical longevity.",
+    desc: "Reliable components ensuring peak mechanical longevity.",
     image: trip3,
-    icon: <Shield size={18} />
   }
 ];
 
 export default function TripleBanners() {
+  const gradientStyle = {
+    background: 'linear-gradient(135deg, rgb(30, 58, 138) 0%, rgb(29, 78, 216) 50%, rgb(37, 99, 235) 100%)'
+  };
+
   return (
-    <section className="w-full bg-white py-12 md:py-20">
-      <div className="w-full px-4 md:px-10 lg:px-16 max-w-[1920px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {banners.map((item) => (
-            <Link 
+    <section className="w-full bg-white py-12 md:py-16 font-['Poppins']">
+      <div className="max-w-[1920px] mx-auto px-4 md:px-10 lg:px-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {banners.map((item, index) => (
+            <motion.div
               key={item.id}
-              to="/shop"
-              className="group relative h-[350px] md:h-[480px] overflow-hidden border border-slate-100 flex flex-col justify-end"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative overflow-hidden group flex flex-row min-h-[220px] md:min-h-[280px] shadow-xl shadow-blue-900/10"
+              style={gradientStyle}
             >
-              {/* Background Image Layer */}
-              <div className="absolute inset-0">
+              {/* --- LEFT CONTENT --- */}
+              <div className="w-[60%] p-6 md:p-8 flex flex-col justify-center text-white relative z-10">
+                <span className="inline-block text-[11px] font-bold text-blue-100/70 mb-2 tracking-wider">
+                  {item.subtitle}
+                </span>
+                <h3 className="text-xl md:text-2xl font-bold leading-tight mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-[12px] md:text-[13px] text-blue-50/70 line-clamp-2 mb-6">
+                  {item.desc}
+                </p>
+                <Link 
+                  to="/shop" 
+                  className="inline-flex items-center justify-center px-6 py-2 bg-white text-black text-[12px] font-bold transition-all hover:bg-slate-900 hover:text-white w-fit"
+                >
+                  Buy Now
+                </Link>
+              </div>
+
+              {/* --- RIGHT IMAGE --- */}
+              <div className="w-[40%] relative overflow-hidden bg-white/5">
                 <img 
                   src={item.image} 
                   alt={item.title} 
-                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover "
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/10" />
               </div>
-
-              {/* Top Meta Info */}
-              <div className="absolute top-0 left-0 w-full p-6 md:p-8 flex justify-between items-start z-20">
-                <span className="text-[11px] font-bold text-white/60 tracking-widest font-mono">
-                  /{item.id}
-                </span>
-                <div className="text-blue-400">
-                  {item.icon}
-                </div>
-              </div>
-
-              {/* Content Layer - Now always visible */}
-              <div className="relative p-6 md:p-8 z-20 space-y-4">
-                <div className="space-y-1.5">
-                  <p className="text-[10px] font-bold text-blue-400 tracking-wider">
-                    {item.subtitle}
-                  </p>
-                  <h3 className="text-xl md:text-2xl font-black text-white leading-tight">
-                    {item.title}
-                  </h3>
-                </div>
-
-                <p className="text-slate-300 text-[13px] md:text-[14px] font-medium leading-relaxed max-w-[280px]">
-                  {item.desc}
-                </p>
-
-                <div className="pt-2 flex items-center gap-3 text-white text-[11px] font-black uppercase tracking-widest group-hover:text-blue-400 transition-colors">
-                  Explore Collection
-                  <MoveRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-
-              {/* Decorative Accent */}
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-blue-600 opacity-50 group-hover:opacity-100 transition-opacity" />
-            </Link>
+            </motion.div>
           ))}
         </div>
       </div>

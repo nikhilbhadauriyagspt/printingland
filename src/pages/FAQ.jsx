@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SEO from '@/components/SEO';
-import { ChevronDown, ArrowRight, MessageSquare, ShieldCheck, Truck, RotateCcw, Info, LayoutGrid, Sparkles } from 'lucide-react';
+import { ChevronDown, ArrowRight, ShieldCheck, Truck, Info, RotateCcw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
@@ -56,180 +56,140 @@ export default function FAQ() {
   const filteredFaqs = currentCategoryData?.questions || [];
 
   return (
-    <div className="bg-white min-h-screen font-jakarta text-slate-900">
+    <div className="bg-white min-h-screen font-['Poppins'] text-slate-900">
       <SEO 
-        title="FAQ | Printer Loop" 
+        title="FAQ | Print Ease" 
         description="Find answers to common questions about our printers and delivery."
       />
 
-      {/* --- PROFESSIONAL CENTERED HEADER --- */}
-      <section className="pt-32 md:pt-25 pb-16 bg-white border-b border-slate-50">
-        <div className="w-full px-4 md:px-10 lg:px-16 text-center max-w-5xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-center gap-3 mb-6"
-          >
-            <div className="h-px w-8 bg-blue-600" />
-            <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.3em]">Support Center</span>
-            <div className="h-px w-8 bg-blue-600" />
-          </motion.div>
-          
-          <div className="flex flex-col items-center gap-4">
-            <motion.h1 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-black text-slate-900  leading-none mb-4"
-            >
-              Frequently Asked <span className="text-blue-600 ">Questions</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-slate-500 text-base md:text-lg font-bold leading-relaxed max-w-2xl mx-auto"
-            >
-              Quick resolutions to common inquiries regarding our industrial-grade printer models and specialized logistics.
-            </motion.p>
-            <motion.div 
-              initial={{ width: 0 }}
-              animate={{ width: "80px" }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="h-1.5 bg-blue-600 rounded-full mt-6"
-            />
+      {/* --- PAGE HEADER --- */}
+      <section className="pt-32 pb-16 bg-white border-b border-slate-100">
+        <div className="max-w-[1920px] mx-auto px-4 md:px-10 lg:px-20">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="h-[2px] w-8 bg-blue-600 rounded-full" />
+                <span className="text-[13px] font-bold text-blue-600 tracking-wider">Common Questions</span>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
+                Frequently Asked <span className="text-blue-600">Questions</span>
+              </h1>
+            </div>
+            <p className="text-slate-500 text-sm md:text-base font-medium max-w-md">
+              Need quick answers? We have compiled a list of common questions about our products, shipping, and support.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-12 md:py-24 bg-slate-50/30">
-        <div className="w-full px-4 md:px-10 lg:px-16 max-w-[1920px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      <section className="py-12 md:py-20">
+        <div className="max-w-[1920px] mx-auto px-4 md:px-10 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
-            {/* LEFT: CATEGORY NAV */}
-            <aside className="lg:col-span-4 space-y-8">
+            {/* LEFT: CATEGORIES */}
+            <aside className="lg:col-span-4 space-y-6">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400">Select Category</h4>
               <div className="flex flex-col gap-2">
-                <h4 className="text-[11px] font-black uppercase tracking-[3px] text-slate-400 mb-4 px-4">Support Domains</h4>
                 {faqs.map((f) => (
                   <button
                     key={f.category}
                     onClick={() => { setActiveCategory(f.category); setActiveIdx(null); }}
                     className={cn(
-                      "w-full text-left px-8 py-5 rounded-[2rem] text-[13px] font-black transition-all flex items-center gap-5 group border transition-all duration-500",
+                      "w-full text-left px-6 py-4 flex items-center gap-4 transition-all border",
                       activeCategory === f.category 
-                        ? "bg-slate-900 text-white border-slate-900 shadow-2xl" 
-                        : "bg-white border-slate-100 text-slate-500 hover:border-blue-200 hover:text-blue-600 hover:shadow-lg hover:shadow-blue-600/5"
+                        ? "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-900/10" 
+                        : "bg-white border-slate-200 text-slate-600 hover:border-blue-400 hover:text-blue-600"
                     )}
                   >
                     <div className={cn(
-                      "h-10 w-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-500",
-                      activeCategory === f.category ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20" : "bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600"
+                      "shrink-0",
+                      activeCategory === f.category ? "text-white" : "text-blue-600"
                     )}>
                       {f.icon}
                     </div>
-                    <span className="uppercase  leading-none">{f.category}</span>
+                    <span className="text-sm font-bold">{f.category}</span>
                   </button>
                 ))}
               </div>
-
-              
             </aside>
 
-            {/* RIGHT: ACCORDION PANEL */}
+            {/* RIGHT: ACCORDION */}
             <main className="lg:col-span-8">
-              <div className="mb-12 flex items-center gap-4">
-                <div className="h-12 w-12 rounded-[1.25rem] bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20">
-                  {currentCategoryData?.icon}
-                </div>
-                <div className="h-px flex-1 bg-slate-200" />
-                <h2 className="text-2xl font-black text-slate-900 uppercase  ml-4">{activeCategory}</h2>
+              <div className="mb-8 flex items-center gap-4">
+                <h2 className="text-xl font-bold text-slate-900">{activeCategory}</h2>
+                <div className="h-px flex-1 bg-slate-100" />
               </div>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeCategory}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-6"
-                >
-                  {filteredFaqs.map((faq, i) => (
-                    <div 
-                      key={i}
-                      className={cn(
-                        "bg-white rounded-[2rem] transition-all duration-700 overflow-hidden border transition-all",
-                        activeIdx === i ? "border-blue-600 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)]" : "border-slate-100 hover:border-slate-300"
-                      )}
+              <div className="space-y-4">
+                {filteredFaqs.map((faq, i) => (
+                  <div 
+                    key={i}
+                    className={cn(
+                      "bg-white border transition-all duration-300",
+                      activeIdx === i ? "border-blue-600 shadow-xl shadow-blue-900/5" : "border-slate-200 hover:border-blue-400"
+                    )}
+                  >
+                    <button
+                      onClick={() => toggle(i)}
+                      className="w-full flex items-center justify-between p-6 text-left"
                     >
-                      <button
-                        onClick={() => toggle(i)}
-                        className="w-full flex items-center justify-between p-8 md:p-10 text-left group"
-                      >
-                        <span className={cn(
-                          "text-[16px] md:text-[18px] font-black uppercase  transition-colors leading-tight pr-10",
-                          activeIdx === i ? "text-blue-600" : "text-slate-800 group-hover:text-blue-600"
-                        )}>
-                          {faq.q}
-                        </span>
-                        <div className={cn(
-                          "h-12 w-12 rounded-full border-2 flex items-center justify-center transition-all duration-500 shrink-0",
-                          activeIdx === i ? "bg-blue-600 text-white border-blue-600 rotate-180 shadow-lg shadow-blue-500/20" : "bg-white border-slate-100 text-slate-300 group-hover:border-blue-600 group-hover:text-blue-600"
-                        )}>
-                          <ChevronDown size={22} strokeWidth={3} />
-                        </div>
-                      </button>
+                      <span className={cn(
+                        "text-base font-bold transition-colors pr-8",
+                        activeIdx === i ? "text-blue-600" : "text-slate-800"
+                      )}>
+                        {faq.q}
+                      </span>
+                      <ChevronDown 
+                        size={20} 
+                        className={cn(
+                          "shrink-0 transition-transform duration-300",
+                          activeIdx === i ? "rotate-180 text-blue-600" : "text-slate-400"
+                        )} 
+                      />
+                    </button>
 
-                      <AnimatePresence>
-                        {activeIdx === i && (
-                          <motion.div 
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.4, ease: "circOut" }}
-                          >
-                            <div className="px-8 md:px-10 pb-10 pt-0">
-                              <div className="h-[2px] w-full bg-slate-50 mb-8 rounded-full" />
-                              <p className="text-slate-500 text-[15px] md:text-[16px] font-medium leading-relaxed max-w-3xl">
-                                {faq.a}
-                              </p>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+                    <AnimatePresence>
+                      {activeIdx === i && (
+                        <motion.div 
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="px-6 pb-6 pt-0">
+                            <div className="h-px w-full bg-slate-100 mb-6" />
+                            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">
+                              {faq.a}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
             </main>
 
           </div>
         </div>
       </section>
 
-      {/* --- PREMIUM CTA --- */}
-      <section className="py-32 text-center bg-white border-t border-slate-50 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-50/20 -z-10" />
-        <div className="w-full px-4 max-w-4xl mx-auto space-y-10 relative z-10">
-          <div className="flex flex-col items-center gap-4">
-             <div className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-             <h2 className="text-4xl md:text-4xl font-black text-slate-900  uppercase leading-none">Unresolved Inquiry?</h2>
-          </div>
-          <p className="text-slate-500 text-lg md:text-xl font-bold max-w-2xl mx-auto leading-relaxed">Our support specialized departments are ready to provide any assistance you require.</p>
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-4">
-            <Link 
-              to="/contact" 
-              className="bg-slate-900 text-white h-16 px-14 rounded-2xl flex items-center justify-center font-black text-[11px] uppercase tracking-[3px] hover:bg-blue-600 transition-all shadow-2xl active:scale-95 group"
-            >
-              Contact Support
-              <ArrowRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link 
-              to="/shop" 
-              className="bg-white border-2 border-slate-900 text-slate-900 h-16 px-14 rounded-2xl flex items-center justify-center font-black text-[11px] uppercase tracking-[3px] hover:bg-slate-900 hover:text-white transition-all active:scale-95"
-            >
-              Browse Inventory
-            </Link>
+      {/* --- MINI CTA --- */}
+      <section className="py-20 bg-slate-50/50">
+        <div className="max-w-[1920px] mx-auto px-4 md:px-10 lg:px-20">
+          <div className="bg-white border border-slate-200 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">Still have questions?</h2>
+              <p className="text-slate-500 font-medium">Our friendly support team is here to help you.</p>
+            </div>
+            <div className="flex gap-4 w-full md:w-auto">
+              <Link to="/contact" className="flex-1 md:flex-none px-8 py-3 bg-blue-600 text-white font-bold text-sm uppercase tracking-widest hover:bg-slate-900 transition-all text-center">
+                Contact Us
+              </Link>
+              <Link to="/shop" className="flex-1 md:flex-none px-8 py-3 bg-white border border-slate-900 text-slate-900 font-bold text-sm uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all text-center">
+                View Printers
+              </Link>
+            </div>
           </div>
         </div>
       </section>

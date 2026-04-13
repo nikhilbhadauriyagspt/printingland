@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { Mail, CheckCircle2, Loader2, Send, MapPin, Phone, ChevronDown, MessageSquare, Sparkles, HeadphonesIcon } from 'lucide-react';
+import { Mail, CheckCircle2, Loader2, Send, MapPin, Phone, ChevronDown } from 'lucide-react';
 import API_BASE_URL from '../config';
 import { cn } from '../lib/utils';
 
@@ -42,99 +42,76 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-white min-h-screen font-jakarta text-slate-900">
+    <div className="bg-white min-h-screen font-['Poppins'] text-slate-900">
       <SEO 
-        title="Contact Us | Printer Loop" 
-        description="Connect with Printer Loop for support and inquiries about our printers."
+        title="Contact Us | Print Ease" 
+        description="Get in touch with Print Ease for help with your printer or orders."
       />
       
-      {/* --- PROFESSIONAL CENTERED HEADER --- */}
-      <section className="pt-32 md:pt-25 pb-12 md:pb-20 bg-white border-b border-slate-50">
-        <div className="w-full px-4 md:px-10 lg:px-16 max-w-[1620px] mx-auto">
-          <div className="flex flex-col items-center text-center">
-             <motion.div 
-               initial={{ opacity: 0, y: 10 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="flex items-center gap-3 mb-4"
-             >
-                <div className="h-px w-8 bg-blue-600" />
-                <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.3em]">Support Hub</span>
-                <div className="h-px w-8 bg-blue-600" />
-             </motion.div>
-             
-             <div className="flex flex-col items-center gap-4">
-                <motion.h1 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="text-4xl md:text-7xl font-black text-slate-900  leading-none"
-                >
-                  Get In <span className="text-blue-600">Touch</span>
-                </motion.h1>
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-slate-500 text-sm md:text-lg font-medium max-w-2xl mt-2 leading-relaxed"
-                >
-                  Our dedicated specialist team is available to assist with technical specifications, logistics, and professional account support.
-                </motion.p>
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: "80px" }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  className="h-1.5 bg-blue-600 rounded-full mt-4"
-                />
-             </div>
+      {/* --- PAGE HEADER --- */}
+      <section className="pt-32 pb-16 bg-white border-b border-slate-100">
+        <div className="max-w-[1920px] mx-auto px-4 md:px-10 lg:px-20">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="h-[2px] w-8 bg-blue-600 rounded-full" />
+                <span className="text-[13px] font-bold text-blue-600 tracking-wider">Help Center</span>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
+                Get In <span className="text-blue-600">Touch</span>
+              </h1>
+            </div>
+            <p className="text-slate-500 text-sm md:text-base font-medium max-w-md">
+              We are here to help you. Whether you have a question about a product or need help with an order, our team is ready to assist.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-12 md:py-24 bg-slate-50/30">
-        <div className="w-full px-4 md:px-10 lg:px-16 max-w-[1620px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+      <section className="py-12 md:py-20">
+        <div className="max-w-[1920px] mx-auto px-4 md:px-10 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
-            {/* LEFT: INFO & CONTACT CARDS */}
+            {/* LEFT: INFO */}
             <div className="lg:col-span-4 space-y-8">
               <div className="space-y-4">
-                <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-[0.3em]">Contact Channels</h3>
+                <h3 className="text-lg font-bold text-slate-900">Contact Information</h3>
                 <p className="text-slate-500 text-sm font-medium leading-relaxed">
-                  Select your preferred method of contact. Our systems ensure your inquiry is routed to the correct specialist immediately.
+                  Choose the best way to reach us. We usually reply within a few hours during business days.
                 </p>
               </div>
                 
               <div className="grid gap-4">
-                {[
-                  { icon: <Mail size={20} />, label: "Email Support", val: "info@printerloop.shop", link: "mailto:info@printerloop.shop" },
-                  { icon: <MapPin size={20} />, label: "HQ Address", val: "1311 N Hancock St Philadelphia, PA 19122, USA", link: "#" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-6 p-8 bg-white border border-slate-100 rounded-[2rem] group hover:border-blue-100 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] transition-all duration-500">
-                    <div className="h-14 w-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all duration-500 text-slate-400">
-                      {item.icon}
-                    </div>
-                    <div className="flex flex-col gap-1 min-w-0">
-                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-[2px]">{item.label}</p>
-                       {item.link !== "#" ? (
-                         <a href={item.link} className="text-[14px] font-black text-slate-900 truncate hover:text-blue-600 transition-colors uppercase ">{item.val}</a>
-                       ) : (
-                         <p className="text-[14px] font-black text-slate-900 leading-tight uppercase ">{item.val}</p>
-                       )}
-                    </div>
+                <div className="p-6 bg-white border border-slate-200 flex items-center gap-5 transition-all hover:border-blue-400">
+                  <div className="h-12 w-12 bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                    <Mail size={20} />
                   </div>
-                ))}
+                  <div>
+                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Email Us</p>
+                    <a href="mailto:info@printease.shop" className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">info@printease.shop</a>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-white border border-slate-200 flex items-center gap-5 transition-all hover:border-blue-400">
+                  <div className="h-12 w-12 bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Our Location</p>
+                    <p className="text-sm font-bold text-slate-900">1901 S Woodrow St, Little Rock, AR 72204, USA</p>
+                  </div>
+                </div>
               </div>
 
-              {/* Status Banner */}
-              <div className="p-10 bg-slate-900 rounded-[3rem] text-white overflow-hidden relative group shadow-2xl">
-                 <div className="absolute top-0 right-0 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-blue-600/30 transition-colors duration-700" />
-                 <div className="relative z-10 space-y-5">
-                    <div className="flex items-center gap-3 text-blue-400">
-                       <div className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
-                       <span className="text-[10px] font-black uppercase tracking-[3px]">Availability</span>
-                    </div>
-                    <h4 className="text-2xl font-black ">24/7 Monitoring</h4>
-                    <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                       Our  monitoring systems are active 24/7. Human support response times currently average under 4 hours for all inquiries.
+              {/* Simple Banner */}
+              <div 
+                className="p-8 text-white relative overflow-hidden"
+                style={{ background: 'linear-gradient(135deg, rgb(30, 58, 138) 0%, rgb(29, 78, 216) 50%, rgb(37, 99, 235) 100%)' }}
+              >
+                 <div className="relative z-10">
+                    <h4 className="text-xl font-bold mb-3">Quick Support</h4>
+                    <p className="text-blue-50/80 text-sm font-medium leading-relaxed">
+                       Our team is available every day to answer your messages. We make sure you get the help you need fast.
                     </p>
                  </div>
               </div>
@@ -142,93 +119,92 @@ export default function Contact() {
 
             {/* RIGHT: CONTACT FORM */}
             <div className="lg:col-span-8">
-              <div className="bg-white p-8 md:p-14 lg:p-20 rounded-[3.5rem] border border-slate-100 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.05)] transition-all duration-700 hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-2 bg-blue-600" />
+              <div className="bg-white p-8 md:p-12 border border-slate-200">
                 <AnimatePresence mode="wait">
                   {status === 'success' ? (
                     <motion.div 
-                      initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                       className="text-center py-12"
                     >
-                      <div className="h-24 w-24 bg-emerald-500 text-white rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-emerald-500/20 rotate-3">
-                        <CheckCircle2 size={48} />
+                      <div className="h-20 w-20 bg-blue-600 text-white flex items-center justify-center mx-auto mb-8">
+                        <CheckCircle2 size={40} />
                       </div>
-                      <h2 className="text-4xl font-black text-slate-900 mb-4  uppercase">Message Dispatched</h2>
-                      <p className="text-slate-500 mb-12 max-w-sm mx-auto font-medium text-lg leading-relaxed">Your inquiry has been successfully logged. A technical specialist will contact you shortly.</p>
+                      <h2 className="text-2xl font-bold text-slate-900 mb-4">Message Sent!</h2>
+                      <p className="text-slate-500 mb-10 max-w-sm mx-auto font-medium">Thank you for reaching out. We have received your message and will get back to you very soon.</p>
                       <button 
                         onClick={() => setStatus(null)} 
-                        className="bg-slate-900 text-white px-14 py-5 rounded-2xl font-black text-[11px] uppercase tracking-[0.3em] transition-all hover:bg-blue-600 shadow-2xl active:scale-95"
+                        className="bg-blue-600 text-white px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-slate-900 transition-all"
                       >
-                        Send Another
+                        Send Another Message
                       </button>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-12">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div className="space-y-4">
-                          <label className="text-[11px] font-black text-slate-900 uppercase tracking-[3px] ml-1">Full Name</label>
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold text-slate-900 uppercase tracking-wider">Your Name</label>
                           <input 
-                            required type="text" placeholder="e.g. Alexander Hamilton" value={formData.name}
+                            required type="text" placeholder="Enter your full name" value={formData.name}
                             onChange={(e) => setFormData({...formData, name: e.target.value})}
-                            className="w-full h-16 px-8 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/5 outline-none text-[15px] font-bold transition-all placeholder:text-slate-300 shadow-sm"
+                            className="w-full h-12 px-4 bg-white border border-slate-200 outline-none focus:border-blue-600 font-medium text-sm transition-all"
                           />
                         </div>
-                        <div className="space-y-4">
-                          <label className="text-[11px] font-black text-slate-900 uppercase tracking-[3px] ml-1">Work Email</label>
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold text-slate-900 uppercase tracking-wider">Your Email</label>
                           <input 
-                            required type="email" placeholder="name@company.com" value={formData.email}
+                            required type="email" placeholder="Enter your email address" value={formData.email}
                             onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            className="w-full h-16 px-8 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/5 outline-none text-[15px] font-bold transition-all placeholder:text-slate-300 shadow-sm"
+                            className="w-full h-12 px-4 bg-white border border-slate-200 outline-none focus:border-blue-600 font-medium text-sm transition-all"
                           />
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div className="space-y-4">
-                          <label className="text-[11px] font-black text-slate-900 uppercase tracking-[3px] ml-1">Contact Number</label>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold text-slate-900 uppercase tracking-wider">Phone Number</label>
                           <input 
-                            type="tel" placeholder="+1 (000) 000-0000" value={formData.phone}
+                            type="tel" placeholder="Enter your phone number" value={formData.phone}
                             onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                            className="w-full h-16 px-8 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/5 outline-none text-[15px] font-bold transition-all placeholder:text-slate-300 shadow-sm"
+                            className="w-full h-12 px-4 bg-white border border-slate-200 outline-none focus:border-blue-600 font-medium text-sm transition-all"
                           />
                         </div>
-                        <div className="space-y-4">
-                          <label className="text-[11px] font-black text-slate-900 uppercase tracking-[3px] ml-1">Topic Of Interest</label>
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold text-slate-900 uppercase tracking-wider">Subject</label>
                           <div className="relative">
                             <select 
                               value={formData.subject}
                               onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                              className="w-full h-16 px-8 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-blue-600 outline-none text-[15px] font-bold transition-all appearance-none cursor-pointer shadow-sm"
+                              className="w-full h-12 px-4 bg-white border border-slate-200 outline-none focus:border-blue-600 font-medium text-sm transition-all appearance-none cursor-pointer"
                             >
                               <option>General Inquiry</option>
-                              <option>Industrial Printer Specs</option>
-                              <option>Logistics & Dispatch</option>
-                              <option>Technical Support</option>
+                              <option>Product Question</option>
+                              <option>Order Support</option>
+                              <option>Technical Help</option>
                             </select>
-                            <ChevronDown className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={18} />
+                            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
                           </div>
                         </div>
                       </div>
 
-                      <div className="space-y-4">
-                        <label className="text-[11px] font-black text-slate-900 uppercase tracking-[3px] ml-1">Message Content</label>
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-slate-900 uppercase tracking-wider">Your Message</label>
                         <textarea 
-                          required rows="6" placeholder="Specify your requirements or describe the technical issue in detail..." value={formData.message}
+                          required rows="5" placeholder="How can we help you today?" value={formData.message}
                           onChange={(e) => setFormData({...formData, message: e.target.value})}
-                          className="w-full p-8 bg-slate-50 border border-slate-100 rounded-3xl focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/5 outline-none text-[15px] font-bold transition-all resize-none min-h-[200px] placeholder:text-slate-300 shadow-sm"
+                          className="w-full p-4 bg-white border border-slate-200 outline-none focus:border-blue-600 font-medium text-sm transition-all resize-none"
                         ></textarea>
                       </div>
 
-                      <div className="pt-6">
+                      <div>
                         <button 
                           disabled={loading}
-                          className="w-full md:w-auto inline-flex items-center justify-center gap-5 bg-slate-900 text-white h-20 px-16 rounded-2xl font-black text-[12px] uppercase tracking-[0.3em] transition-all hover:bg-blue-600 shadow-2xl active:scale-[0.98] disabled:opacity-50 group"
+                          className="w-full md:w-auto inline-flex items-center justify-center gap-3 bg-blue-600 text-white h-14 px-12 font-bold text-sm uppercase tracking-widest hover:bg-slate-900 transition-all disabled:opacity-50"
                         >
-                          {loading ? <Loader2 size={24} className="animate-spin" /> : "Send Message"}
-                          {!loading && <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500" />}
+                          {loading ? <Loader2 size={20} className="animate-spin" /> : "Send Message"}
+                          {!loading && <Send size={18} />}
                         </button>
                       </div>
-                      {status === 'error' && <p className="text-red-600 text-[11px] font-black uppercase tracking-[2px] mt-8 bg-red-50 p-4 rounded-xl border border-red-100 inline-block">Transmission failure. Internal error detected. Please retry.</p>}
+                      {status === 'error' && <p className="text-red-600 text-xs font-bold mt-4">Something went wrong. Please try again later.</p>}
                     </form>
                   )}
                 </AnimatePresence>

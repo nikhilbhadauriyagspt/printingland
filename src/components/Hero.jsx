@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Assets
-import banner2 from '@/assets/bannerr/newban2.png';
+import banner2 from '@/assets/bannerr/ban1.jpg';
 
 const Hero = () => {
   return (
@@ -13,7 +13,7 @@ const Hero = () => {
             <img
               src={banner2}
               alt="Promotion Banner"
-              className="w-full md:h-[800px]"
+              className="w-full md:h-[820px]"
             />
           </Link>
         </div>

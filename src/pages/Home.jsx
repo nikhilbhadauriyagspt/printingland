@@ -4,6 +4,7 @@ import TopShowcase from "@/components/TopShowcase";
 import SEO from "@/components/SEO";
 import Collections from "@/components/Collections";
 import ShopByCategory from "@/components/ShopByCategory";
+import PromoBanner from "@/components/PromoBanner";
 import ProductGrid from "@/components/ProductGrid";
 import CategorySlider from "@/components/CategorySlider";
 import BestSellers from "@/components/BestSellers";
@@ -87,7 +88,7 @@ export default function Home() {
   return (
     <div className="bg-white font-jakarta overflow-x-hidden text-slate-900">
       <SEO 
-        title="Printer Loop | Quality Printers & Accessories"
+        title="Print Ease | Quality Printers & Accessories"
         description="Your trusted source for high-quality printers and printing printer. Delivering excellence across the USA."
       />
 
@@ -95,9 +96,11 @@ export default function Home() {
       <Features />
 
       <ShopByCategory categories={data.categories} loading={data.loading} />
-      <BestSellers products={data.all} loading={data.loading} />
       <TripleBanners />
       
+      <BestSellers products={data.all} loading={data.loading} />
+      
+      <PromoBanner />
      
       <ProductGrid products={data.mixedArrivals.slice(0, 18)} loading={data.loading} />
        <Collections />
