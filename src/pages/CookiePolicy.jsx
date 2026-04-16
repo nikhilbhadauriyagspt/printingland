@@ -90,7 +90,7 @@ export default function CookiePolicy() {
       <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed space-y-1">
           <p className="text-slate-900">Printing Land</p>
-          <p>3001 27th St N, Birmingham, AL 35207, USA</p>
+          <p>5 SE 1st St, Miami, FL 33131, USA</p>
           <p className="pt-4 text-black font-bold">info@printingland.shop</p>
         </address>
       </div>

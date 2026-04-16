@@ -111,7 +111,7 @@ export default function Contact() {
                         <div>
                            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Headquarters</p>
                            <p className="text-[15px] font-medium text-gray-900 leading-relaxed">
-                              3001 27th St N, Birmingham, AL 35207, USA
+                              5 SE 1st St, Miami, FL 33131, USA
                            </p>
                         </div>
                      </div>

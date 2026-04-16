@@ -20,7 +20,7 @@ export default function ReturnPolicy() {
         <p className="font-medium text-slate-700 mb-4 italic">Place the item securely in its original packaging and include your proof of purchase, then mail your return to the following address:</p>
         <address className="not-italic text-slate-900 font-bold leading-relaxed uppercase er">
                     Printing Land <br />
-                    3001 27th St N, Birmingham, AL 35207, USA
+                    5 SE 1st St, Miami, FL 33131, USA
         </address>
         <p className="mt-6 text-black font-bold uppercase text-xs tracking-widest">
           Return shipping charges will be paid or reimbursed by us.

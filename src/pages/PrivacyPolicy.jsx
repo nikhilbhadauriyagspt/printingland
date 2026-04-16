@@ -278,7 +278,7 @@ export default function PrivacyPolicy() {
       <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed">
          Printing Land <br/>
-          3001 27th St N, Birmingham, AL 35207, USA
+          5 SE 1st St, Miami, FL 33131, USA
         </address>
       </div>
 
