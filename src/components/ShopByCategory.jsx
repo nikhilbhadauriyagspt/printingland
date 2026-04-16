@@ -28,7 +28,7 @@ export default function ShopByCategory({ categories = [], loading = false }) {
         !name.includes("pc")
       );
     })
-    .slice(0, 6);
+    .slice(0, 9);
 
   const getImagePath = (image) => {
     if (!image) return "https://via.placeholder.com/900x600?text=Category";

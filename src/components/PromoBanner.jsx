@@ -61,11 +61,11 @@ export default function Collections() {
             >
               <Link to={item.link} className="block h-full">
                 {/* Image */}
-                <div className="h-[230px] md:h-[250px] bg-[#efefec] border-b border-[#e5e5e5] flex items-center justify-center px-6 overflow-hidden">
+                <div className="h-[230px] md:h-[250px] bg-white border-b border-[#e5e5e5] flex items-center justify-center px-6 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="max-h-[180px] md:max-h-[200px] w-auto object-contain transition-transform duration-500 group-hover:scale-[1.05]"
+                    className="max-h-[180px] md:max-h-[200px] w-auto object-contain"
                   />
                 </div>
 
