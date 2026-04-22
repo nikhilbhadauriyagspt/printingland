@@ -277,8 +277,8 @@ export default function PrivacyPolicy() {
       <p>If you have questions or comments about this notice, you may email us at {emailLink} or contact us by post at:</p>
       <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 my-8 not-prose">
         <address className="not-italic text-slate-700 font-bold leading-relaxed">
-         Printing Land <br/>
-          5 SE 1st St, Miami, FL 33131, USA
+         Nanjing New Channel E-commerce Co., Ltd<br/>
+          Room 402-19, Building A2, No. 9 Kechuang Avenue, Intelligent Manufacturing Industrial Park (Zhigu Park), Jiangbei New Area, Nanjing, Jiangsu (JS), 320500, China
         </address>
       </div>
 
