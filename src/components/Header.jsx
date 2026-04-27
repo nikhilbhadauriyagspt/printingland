@@ -165,19 +165,19 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-[120] shadow-sm">
+      <header className="w-full bg-blue-800 border-b border-gray-100 sticky top-0 z-[120] shadow-sm">
         <div className="max-w-[1700px] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
           
           {/* Left: Logo & Mobile Menu */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="lg:hidden p-2 -ml-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
+              className="lg:hidden p-2 -ml-2 text-white hover:bg-gray-100 rounded-full transition-colors"
             >
               <Menu size={24} />
             </button>
             <Link to="/" className="flex items-center">
-              <img src="/logo/logo.png" alt="Printing Land" className="h-8 md:h-10 object-contain" />
+              <img src="/logo/logo.png" alt="Printing Land" className="h-8 md:h-10 object-contain opacity-0" />
             </Link>
           </div>
 
@@ -196,8 +196,8 @@ export default function Header() {
                     className={cn(
                       "flex items-center h-full px-2 text-[15px] font-semibold transition-colors border-b-4 border-transparent",
                       location.pathname === link.path 
-                        ? "text-black border-black" 
-                        : "text-gray-800 hover:text-black"
+                        ? "text-white border-white" 
+                        : "text-white hover:text-white"
                     )}
                   >
                     {link.name}
@@ -262,7 +262,7 @@ export default function Header() {
             <div className="relative" ref={searchRef}>
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2.5 text-gray-700 hover:bg-gray-100 rounded-full transition-colors flex items-center"
+                className="p-2.5 text-white hover:bg-white rounded-full transition-colors flex items-center"
               >
                 {isSearchOpen ? <X size={22} /> : <Search size={22} />}
               </button>
@@ -281,7 +281,7 @@ export default function Header() {
                       <button
                         type="button"
                         onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-                        className="h-12 px-4 flex items-center gap-2 text-[13px] font-bold text-gray-700 hover:bg-gray-50 transition-colors uppercase tracking-wider"
+                        className="h-12 px-4 flex items-center gap-2 text-[13px] font-bold text-black hover:bg-gray-50 transition-colors uppercase tracking-wider"
                       >
                         <span className="max-w-[80px] truncate">{selectedCategory.name}</span>
                         <ChevronDown size={14} className={cn("transition-transform duration-300", isCategoryDropdownOpen && "rotate-180")} />
@@ -328,7 +328,7 @@ export default function Header() {
                       <input
                         autoFocus
                         type="text"
-                        placeholder="Search for printers, ink..."
+                        placeholder="search products..."
                         className="w-full bg-transparent outline-none text-[14px] text-gray-800 placeholder:text-gray-400 font-medium"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -382,25 +382,25 @@ export default function Header() {
 
             {/* User Account */}
             <div
-              className="p-2.5 text-gray-700 hover:bg-gray-100 rounded-full transition-colors relative group cursor-pointer"
+              className="p-2.5 text-white hover:bg-whiterounded-full transition-colors relative group cursor-pointer"
             >
               <User size={22} onClick={() => navigate(user ? '/profile' : '/login')} />
               <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-100 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all p-2 z-[150]" style={{ borderRadius: '0px' }}>
                 {user ? (
                   <>
-                    <p className="px-4 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">My Account</p>
-                    <Link to="/profile" className="block px-4 py-2 text-[13px] text-gray-700 hover:bg-gray-50 font-medium">Profile</Link>
-                    <Link to="/orders" className="block px-4 py-2 text-[13px] text-gray-700 hover:bg-gray-50 font-medium">My Orders</Link>
+                    <p className="px-4 py-2 text-[10px] font-bold text-gray-900 uppercase tracking-widest">My Account</p>
+                    <Link to="/profile" className="block px-4 py-2 text-[13px] text-gray-900 hover:bg-gray-50 font-medium">Profile</Link>
+                    <Link to="/orders" className="block px-4 py-2 text-[13px] text-gray-900 hover:bg-gray-50 font-medium">My Orders</Link>
                     <button 
                       onClick={() => { localStorage.clear(); window.location.reload(); }}
-                      className="w-full text-left px-4 py-2 text-[13px] text-black hover:bg-red-50 flex items-center gap-2 mt-1 border-t border-gray-50 font-bold"
+                      className="w-full text-left px-4 py-2 text-[13px] text-white hover:bg-red-50 flex items-center gap-2 mt-1 border-t border-gray-50 font-bold"
                     >
                       <LogOut size={14} /> Logout
                     </button>
                   </>
                 ) : (
                   <div className="p-4">
-                    <p className="text-[12px] text-gray-500 mb-4 font-medium">Sign in to manage your orders and profile.</p>
+                    <p className="text-[12px] text-gray-900 mb-4 font-medium">Sign in to manage your orders and profile.</p>
                     <Link to="/login" className="block w-full py-2 bg-black text-white text-center font-bold text-[12px] hover:bg-blue-700 transition-colors">Sign In</Link>
                   </div>
                 )}
@@ -410,9 +410,9 @@ export default function Header() {
             {/* Wishlist */}
             <Link
               to="/wishlist"
-              className="p-2.5 text-gray-700 hover:bg-gray-100 rounded-full transition-colors relative"
+              className="p-2.5 text-white hover:bg-white rounded-full transition-colors relative"
             >
-              <Heart size={22} className={cn(wishlistCount > 0 && "fill-gray-700")} />
+              <Heart size={22} className={cn(wishlistCount > 0 && "fill-white")} />
               {wishlistCount > 0 && (
                 <span className="absolute top-1 right-1 w-[16px] h-[16px] bg-black text-white text-[9px] font-bold flex items-center justify-center rounded-full border-2 border-white">
                   {wishlistCount}
@@ -423,7 +423,7 @@ export default function Header() {
             {/* Shopping Cart */}
             <button
               onClick={openCartDrawer}
-              className="p-2.5 text-gray-700 hover:bg-gray-100 rounded-full transition-colors relative"
+              className="p-2.5 text-white hover:bg-white rounded-full transition-colors relative"
             >
               <ShoppingBag size={22} />
               {cartCount > 0 && (
@@ -500,7 +500,7 @@ export default function Header() {
                 {user ? (
                   <button
                     onClick={() => { localStorage.clear(); window.location.reload(); }}
-                    className="w-full py-4 bg-gray-100 text-gray-700 rounded-xl font-bold text-[14px] flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-gray-100 text-whiterounded-xl font-bold text-[14px] flex items-center justify-center gap-2"
                   >
                     <LogOut size={18} /> Logout
                   </button>
