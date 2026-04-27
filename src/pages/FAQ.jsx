@@ -213,7 +213,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 ">Still have questions?</h2>
               <p className="text-gray-400 max-w-xl mx-auto mb-12 text-[14px] font-medium leading-relaxed">Our support specialists are ready to provide professional assistance for all your enterprise printing requirements.</p>
               <div className="flex flex-wrap justify-center gap-6">
-                <Link to="/contact" className="px-10 py-5 bg-black text-white font-bold text-[12px] tracking-[0.2em] hover:bg-blue-700 transition-all active:scale-95">Contact Specialist</Link>
+                <Link to="/contact" className="px-10 py-5 bg-black text-white font-bold text-[12px] tracking-[0.2em] hover:bg-blue-700 transition-all active:scale-95">Contact us</Link>
                 <Link to="/shop" className="px-10 py-5 border-2 border-white text-white font-bold text-[12px] tracking-[0.2em] hover:bg-white hover:text-gray-900 transition-all active:scale-95">Browse Hardware</Link>
               </div>
            </div>
